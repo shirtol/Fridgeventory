@@ -1,0 +1,4 @@
+@font-face {
+    font-family: "regular";
+    src: local("regular"), url("./assets/fonts/regular.otf") format("truetype");
+}
