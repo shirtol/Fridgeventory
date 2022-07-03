@@ -17,7 +17,7 @@ const Home = () => {
                 <StyledHomePageBox width="20%" height="70vh">
                     <ShoppingListHome></ShoppingListHome>
                 </StyledHomePageBox>
-                <StyledFlexWrapper flexDirection="column" width="80%">
+                <StyledFlexWrapper flexDirection="column" width="70%">
                     <StyledHomePageBox width="80%" height="45vh">
                         <HoodFeed></HoodFeed>
                     </StyledHomePageBox>
