@@ -8,6 +8,7 @@ export const StyledNavbar = styled.header`
     font-size: 2rem;
     padding: 2rem;
     height: 10vh;
+
     @media ${device.tablet} {
         display: none;
     }

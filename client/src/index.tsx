@@ -4,6 +4,7 @@ import "normalize.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import "./assets/fonts/regular.otf";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
