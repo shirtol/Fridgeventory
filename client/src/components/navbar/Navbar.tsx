@@ -6,13 +6,27 @@ import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 
 const Navbar = () => {
     return (
-        <StyledHeaderWrapper>
-            <StyledNavbar>
-                <StyledNavbarItem>
-                    <NavLink to="/">Home</NavLink>
-                </StyledNavbarItem>
-            </StyledNavbar>
-        </StyledHeaderWrapper>
+        <StyledNavbar>
+            <StyledNavbarItem>
+                <NavLink to="/">Home</NavLink>
+            </StyledNavbarItem>
+
+            <StyledNavbarItem>
+                <NavLink to="/fridge">Fridge</NavLink>
+            </StyledNavbarItem>
+
+            <StyledNavbarItem>
+                <NavLink to="/shopping-list">Shopping List</NavLink>
+            </StyledNavbarItem>
+
+            <StyledNavbarItem>
+                <NavLink to="/hood">Hood</NavLink>
+            </StyledNavbarItem>
+
+            <StyledNavbarItem>
+                <NavLink to="/statistics">Statistics</NavLink>
+            </StyledNavbarItem>
+        </StyledNavbar>
     );
 };
 
