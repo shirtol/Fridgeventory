@@ -2,3 +2,9 @@
     font-family: "regular";
     src: local("regular"), url("./assets/fonts/regular.otf") format("truetype");
 }
+
+@font-face {
+    font-family: "GraphikMedium";
+    src: local("GraphikMedium"),
+        url("./assets/fonts/GraphikMedium.ttf") format("truetype");
+}
