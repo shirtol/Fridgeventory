@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { StyledBackground } from "../../components/layouts/StyledBackground";
 import Navbar from "../../components/navbar/Navbar";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";

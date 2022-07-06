@@ -4,10 +4,12 @@ import device from "../../../utils/stylesUtils/mediaQuerySizes";
 export const StyledNavbar = styled.header`
     display: flex;
     list-style: none;
+    height: max-content;
     gap: 3.5rem;
-    font-size: 2rem;
-    padding: 2rem;
-    height: 10vh;
+    font-size: 1.7rem;
+    align-items: center;
+    padding-left: 2rem;
+    height: 7vh;
 
     @media ${device.tablet} {
         display: none;
