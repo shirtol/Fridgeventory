@@ -20,6 +20,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         productName: "",
         amount: 1,
         productImage: "",
+        expiryDate: new Date(),
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const [startDate, setStartDate] = useState(new Date());
@@ -33,7 +34,12 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
             await fridgeventoryApi.post("auth/product/addProduct", {
                 body: form,
             });
-            setForm({ productName: "", amount: 1, productImage: "" });
+            setForm({
+                productName: "",
+                amount: 1,
+                productImage: "",
+                expiryDate: new Date(),
+            });
             closeModal();
         } catch (err: any) {
             console.log(err.message);
@@ -41,7 +47,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         }
     };
 
-    //!TODO: Add upload image to this form
     return (
         <>
             {isShown && (
@@ -79,7 +84,13 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                         <Title titleText="Expiry date"></Title>
                         <DatePicker
                             selected={startDate}
-                            onChange={(date: Date) => setStartDate(date)}
+                            onChange={(date: Date) => {
+                                setStartDate(date);
+                                setForm((prev) => ({
+                                    ...prev,
+                                    expiryDate: date,
+                                }));
+                            }}
                         ></DatePicker>
                         <Button
                             buttonText="Add New Product"
