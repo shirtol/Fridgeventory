@@ -13,7 +13,8 @@ export const StyledModal = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: 2rem;
     position: sticky;
     font-family: "Poppins", sans-serif;
     font-size: 1.5rem;
