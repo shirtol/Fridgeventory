@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
+import axios from "axios";
+import fridgeventoryApi from "../../apis/fridgeventoryApi";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -26,8 +28,11 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
+            await fridgeventoryApi.post("auth/product/addProduct", {
+                body: form,
+            });
             setForm({ productName: "", amount: 1, productImage: "" });
             closeModal();
         } catch (err: any) {

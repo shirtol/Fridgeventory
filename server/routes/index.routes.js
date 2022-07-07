@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { productRouter } from "./product.routes.js";
+import { auth } from "../middlewares/auth.js";
+import { authRouter } from "./auth.routes.js";
 import { userRouter } from "./user.routes.js";
 
 export const indexRoute = Router();
 
 indexRoute.use("/user", userRouter);
-indexRoute.use("/product", productRouter);
+indexRoute.use("/auth", auth, authRouter);

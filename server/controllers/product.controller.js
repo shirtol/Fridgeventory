@@ -34,6 +34,7 @@ export const addProduct = (req, res) => {
                 expiryDate: req.body.expiryDate,
                 amount: req.body.amount,
                 productImage: data.Location,
+                owner: req.user._id,
             });
             const result = await product.save();
             console.log("result: " + result);

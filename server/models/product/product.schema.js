@@ -16,4 +16,7 @@ export const productSchema = new mongoose.Schema({
     productImage: {
         type: String,
     },
+    owner: {
+        type: String,
+    },
 });
