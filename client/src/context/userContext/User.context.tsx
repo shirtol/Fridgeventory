@@ -1,8 +1,7 @@
 import React, { ReactNode, useContext, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import fridgeventoryApi from "../../apis/fridgeventoryApi";
 import { User } from "./User.type";
-import * as H from "history";
 
 interface UserContextValue {
     currentUser?: User;
@@ -12,17 +11,17 @@ interface UserContextValue {
 
 interface UserProviderProps {
     children: ReactNode;
-    history?: H.History;
 }
 
 const UserContext = React.createContext<UserContextValue>({});
 
 export const useUser = () => useContext(UserContext);
 
-export const UserProvider = ({ children, history }: UserProviderProps) => {
+export const UserProvider = ({ children }: UserProviderProps) => {
     const [currentUser, setCurrentUser] = useState();
     const [token, setToken] = useState();
     // const [error, setError] = useState("");
+    const history = useHistory();
 
     const register = async (newUser: User, isConfirmed: boolean) => {
         // if (!isConfirmed) return setError("Passwords do NOT match");
@@ -38,7 +37,7 @@ export const UserProvider = ({ children, history }: UserProviderProps) => {
             setToken(data.token);
             localStorage.setItem("Token", data.token);
             // setError("");
-            history!.push("/");
+            history.push("/");
         } catch (err: any) {
             console.log({ message: err.message });
         }
