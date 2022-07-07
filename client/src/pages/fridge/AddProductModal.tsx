@@ -6,15 +6,19 @@ import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../components/button/Button";
+import Title from "../../components/title/Title";
+import SelectImage from "../../components/selectImage/SelectImage";
 
 interface AddProductModalProps {
     isShown: boolean;
+    closeModal: () => void;
 }
 
-const AddProductModal = ({ isShown }: AddProductModalProps) => {
+const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     const [form, setForm] = useState({
         productName: "",
         amount: 1,
+        productImage: "",
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const [startDate, setStartDate] = useState(new Date());
@@ -25,7 +29,8 @@ const AddProductModal = ({ isShown }: AddProductModalProps) => {
 
     const handleSubmit = () => {
         try {
-            setForm({ productName: "", amount: 1 });
+            setForm({ productName: "", amount: 1, productImage: "" });
+            closeModal();
         } catch (err: any) {
             console.log(err.message);
             setSubmitMsg(err.response.data || err.message);
@@ -54,6 +59,20 @@ const AddProductModal = ({ isShown }: AddProductModalProps) => {
                             required={true}
                             min="1"
                         ></CustomInput>
+                        {/* <CustomInput
+                            id="productImage"
+                            type="file"
+                            value={form.productImage}
+                            onChange={handleChange}
+                            inputLabel="Product Image"
+                            required={false}
+                        ></CustomInput> */}
+                        <SelectImage
+                            productImage={form.productImage}
+                            handleChange={handleChange}
+                            inputLabel="Product Image"
+                        ></SelectImage>
+                        <Title titleText="Expiry date"></Title>
                         <DatePicker
                             selected={startDate}
                             onChange={(date: Date) => setStartDate(date)}

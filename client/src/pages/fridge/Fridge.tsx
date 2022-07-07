@@ -12,7 +12,10 @@ const Fridge = () => {
 
     return (
         <StyledMainWrapper>
-            <AddProductModal isShown={isModalOpen}></AddProductModal>
+            <AddProductModal
+                isShown={isModalOpen}
+                closeModal={() => setIsModalOpen(false)}
+            ></AddProductModal>
             <StyledAddBtn
                 className="fa-solid fa-circle-plus fa-3x"
                 onClick={onAddBtnClicked}
