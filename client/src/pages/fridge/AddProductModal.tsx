@@ -6,10 +6,15 @@ import DatePicker from "react-date-picker";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
-import fridgeventoryApi, { postImage } from "../../apis/fridgeventoryApi";
+import fridgeventoryApi, {
+    postImage,
+    productsApi,
+} from "../../apis/fridgeventoryApi";
 import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChooser";
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
+import { useProduct } from "../../context/productContext/Product.context";
+import Product from "../../utils/products/types";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -20,7 +25,7 @@ const isBlob = (obj: unknown): obj is Blob => typeof obj === typeof new Blob();
 
 const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     const [form, setForm] = useState({
-        productName: "",
+        name: "",
         amount: 1,
         productImage: new Blob(),
         expiryDate: new Date(),
@@ -29,6 +34,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     const [submitMsg, setSubmitMsg] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const { token } = useUser();
+    const { allProducts, setAllProducts } = useProduct();
 
     const handleChange = (e: any) => {
         setForm((prev) => ({
@@ -52,16 +58,24 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                 );
                 console.log(entry);
             });
+            console.log(form);
 
-            // await postImage().post()
-            await fridgeventoryApi.post("auth/product/addProduct", formData, {
+            // setAllProducts((prev) => )
+
+            const { data } = await productsApi.post("/addProduct", formData, {
                 headers: {
                     Authorization: token!,
                     "Content-Type": "multipart/form-data",
                 },
             });
+            console.log(data);
+
+            setAllProducts &&
+                allProducts &&
+                setAllProducts([...allProducts, data as Product]);
+
             setForm({
-                productName: "",
+                name: "",
                 amount: 1,
                 productImage: new Blob(),
                 expiryDate: new Date(),
@@ -79,8 +93,8 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                 <StyledModalWrapper>
                     <StyledModal height="85%">
                         <CustomInput
-                            id="productName"
-                            value={form.productName}
+                            id="name"
+                            value={form.name}
                             onChange={handleChange}
                             inputLabel="Product Name"
                             required={true}

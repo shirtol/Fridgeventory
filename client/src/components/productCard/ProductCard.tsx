@@ -1,29 +1,24 @@
 import React from "react";
+import Product from "../../utils/products/types";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledCardTitle } from "./styles/StyledCardTitle";
+import { StyledCategory } from "./styles/StyledCategory";
 import { StyledExpireMsg } from "./styles/StyledExpireMsg";
 import { StyledProductAmount } from "./styles/StyledProductAmount";
 import { StyledProductImg } from "./styles/StyledProductImg";
 
 interface ProductCardProps {
-    productName: string;
-    productImgSrc: string;
-    productAmount: number;
-    productExpiry: string;
+    product: Product;
 }
 
-const ProductCard = ({
-    productName,
-    productImgSrc,
-    productAmount,
-    productExpiry,
-}: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
     return (
-        <StyledFlexWrapper>
-            <StyledCardTitle>{productName}</StyledCardTitle>
-            <StyledProductImg src={productImgSrc}></StyledProductImg>
-            <StyledProductAmount>{productAmount}</StyledProductAmount>
-            <StyledExpireMsg>Expires in: {productExpiry}</StyledExpireMsg>
+        <StyledFlexWrapper flexDirection="column">
+            <StyledCardTitle>{product.name}</StyledCardTitle>
+            <StyledCategory>{`Category: ${product.category}`}</StyledCategory>
+            <StyledProductImg src={product.productImage}></StyledProductImg>
+            <StyledProductAmount>{product.amount}</StyledProductAmount>
+            <StyledExpireMsg>{`Expires in: ${product.expiryDate}`}</StyledExpireMsg>
         </StyledFlexWrapper>
     );
 };

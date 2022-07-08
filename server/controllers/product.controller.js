@@ -28,7 +28,7 @@ export const addProduct = (req, res) => {
         }
         try {
             const product = new Product({
-                name: req.body.productName,
+                name: req.body.name,
                 expiryDate: req.body.expiryDate,
                 amount: req.body.amount,
                 productImage: data.Location,

@@ -1,7 +1,8 @@
 export default interface Product {
-    productName: string;
+    name: string;
     amount: number;
     productImage: string;
     expiryDate: Date;
     category: string;
+    _id: string;
 }
