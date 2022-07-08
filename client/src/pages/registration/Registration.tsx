@@ -7,7 +7,7 @@ import Button from "../../components/button/Button";
 import { useUser } from "../../context/userContext/User.context";
 
 const Registration = () => {
-    const { register, currentUser } = useUser();
+    const { register } = useUser();
     const [form, setForm] = useState<User>({
         name: "",
         email: "",

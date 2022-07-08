@@ -1,10 +1,10 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import fridgeventoryApi from "../../apis/fridgeventoryApi";
 import { User } from "./User.type";
+import { useCookies } from "react-cookie";
 
 interface UserContextValue {
-    currentUser?: User;
     token?: string;
     register?: (newUser: User) => Promise<void>;
     login?: (email: string, password: string) => Promise<void>;
@@ -20,17 +20,22 @@ const UserContext = React.createContext<UserContextValue>({});
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-    const [currentUser, setCurrentUser] = useState<User>();
     const [token, setToken] = useState<string | undefined>();
     const history = useHistory();
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
+    useEffect(() => {
+        if (cookies.token) {
+            setToken(cookies.token);
+        }
+    }, []);
 
     const register = async (newUser: User) => {
         const { data } = await fridgeventoryApi.post("/user/register", {
             data: newUser,
         });
-        setCurrentUser(data.user);
         setToken(data.token);
-        localStorage.setItem("Token", data.token);
+        setCookie("token", data.token);
         history.push("/");
     };
 
@@ -40,9 +45,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         });
         console.log(data);
 
-        setCurrentUser(data.user);
         setToken(data.token);
-        localStorage.setItem("Token", data.token);
+        setCookie("token", data.token);
         history.push("/");
     };
 
@@ -56,13 +60,12 @@ export const UserProvider = ({ children }: UserProviderProps) => {
                 },
             }
         );
-        setCurrentUser(undefined);
+        removeCookie("token");
         setToken("");
         history.push("/");
     };
 
     const value: UserContextValue = {
-        currentUser,
         token,
         register,
         login,

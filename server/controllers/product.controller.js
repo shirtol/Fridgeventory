@@ -4,7 +4,7 @@ import { fetchAllProducts } from "../services/product.services.js";
 
 export const getAllProducts = async (req, res) => {
     try {
-        const allProduct = await fetchAllProducts();
+        const allProduct = await fetchAllProducts(req.user._id);
         res.status(200).send(allProduct);
     } catch (err) {
         res.status(404).send({ message: err.message });
@@ -28,7 +28,7 @@ export const addProduct = (req, res) => {
         }
         try {
             const product = new Product({
-                name: req.body.productName,
+                name: req.body.name,
                 expiryDate: req.body.expiryDate,
                 amount: req.body.amount,
                 productImage: data.Location,

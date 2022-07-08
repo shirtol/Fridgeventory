@@ -6,7 +6,7 @@ import { StyledNavbar } from "./styles/StyledNavbar";
 import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 
 const Navbar = () => {
-    const { currentUser } = useUser();
+    const { token } = useUser();
 
     return (
         <StyledNavbar>
@@ -30,17 +30,19 @@ const Navbar = () => {
                 <NavLink to="/statistics">Statistics</NavLink>
             </StyledNavbarItem>
 
-            <StyledNavbarItem>
-                <NavLink to="/register">Register</NavLink>
-            </StyledNavbarItem>
+            {!token && (
+                <StyledNavbarItem>
+                    <NavLink to="/register">Register</NavLink>
+                </StyledNavbarItem>
+            )}
 
-            {!currentUser && (
+            {!token && (
                 <StyledNavbarItem>
                     <NavLink to="/login">Login</NavLink>
                 </StyledNavbarItem>
             )}
 
-            {currentUser && (
+            {token && (
                 <StyledNavbarItem>
                     <NavLink to="/logout">Logout</NavLink>
                 </StyledNavbarItem>
