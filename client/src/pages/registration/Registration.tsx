@@ -32,7 +32,6 @@ const Registration = () => {
             setErrorMsg("");
         } catch (err: any) {
             setErrorMsg(err.response.data.message);
-            console.log(err.response.data.message);
         }
     };
 

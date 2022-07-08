@@ -26,8 +26,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const { data } = await fridgeventoryApi.post("/user/register", {
             data: newUser,
         });
-        console.log(data);
-
         setCurrentUser(data.user);
         setToken(data.token);
         localStorage.setItem("Token", data.token);

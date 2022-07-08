@@ -40,9 +40,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
             });
             closeModal();
         } catch (err: any) {
-            console.log(err.message);
-            // setSubmitMsg(err.response.data || err.message);
-            setSubmitMsg(err.message);
+            setSubmitMsg(err.response.data || err.message);
         }
     };
 
