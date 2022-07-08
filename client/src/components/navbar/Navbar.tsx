@@ -26,6 +26,10 @@ const Navbar = () => {
             <StyledNavbarItem>
                 <NavLink to="/statistics">Statistics</NavLink>
             </StyledNavbarItem>
+
+            <StyledNavbarItem>
+                <NavLink to="/register">Register</NavLink>
+            </StyledNavbarItem>
         </StyledNavbar>
     );
 };

@@ -15,7 +15,7 @@ userSchema.methods.toJSON = function () {
 };
 
 //Function on instance
-userSchema.methods.generateAuthToken = async function (params) {
+userSchema.methods.generateAuthToken = async function () {
     const user = this;
     const token = jwt.sign(
         { _id: user._id.toString() },
