@@ -26,11 +26,6 @@ export const userSchema = new mongoose.Schema({
                 );
             }
         },
-        // validate(value) {
-        //     if (value.length < 8) {
-        //         throw Error("Password length must be at least 8 characters");
-        //     }
-        // },
     },
     location: {
         type: String,
