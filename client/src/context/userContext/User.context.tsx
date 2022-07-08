@@ -7,6 +7,7 @@ interface UserContextValue {
     currentUser?: User;
     token?: string;
     register?: (newUser: User) => Promise<void>;
+    login?: (email: string, password: string) => Promise<void>;
 }
 
 interface UserProviderProps {
@@ -32,9 +33,22 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         history.push("/");
     };
 
+    const login = async (email: string, password: string) => {
+        const { data } = await fridgeventoryApi.post("/user/login", {
+            data: { email, password },
+        });
+        console.log(data);
+
+        setCurrentUser(data.user);
+        setToken(data.token);
+        localStorage.setItem("Token", data.token);
+        history.push("/");
+    };
+
     const value: UserContextValue = {
         currentUser,
         register,
+        login,
     };
 
     return (
