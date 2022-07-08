@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import Hood from "../hood/Hood";
+import Registration from "../registration/Registration";
 import ShoppingList from "../shoppingList/ShoppingList";
 import Statistics from "../statistics/Statistics";
 
@@ -22,6 +23,7 @@ const Routes = () => {
                 ></Route>
                 <Route exact path="/hood" component={Hood}></Route>
                 <Route exact path="/statistics" component={Statistics}></Route>
+                <Route exact path="/register" component={Registration}></Route>
             </Switch>
         </>
     );

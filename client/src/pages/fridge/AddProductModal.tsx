@@ -2,7 +2,9 @@ import { useState } from "react";
 import CustomInput from "../../components/input/CustomInput";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
+import DatePicker from "react-date-picker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
@@ -82,7 +84,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             inputLabel="Product Image"
                         ></SelectImage>
                         <Title titleText="Expiry date"></Title>
-                        <DatePicker
+                        {/* <DatePicker
                             selected={startDate}
                             onChange={(date: Date) => {
                                 setStartDate(date);
@@ -91,7 +93,16 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                                     expiryDate: date,
                                 }));
                             }}
-                        ></DatePicker>
+                        ></DatePicker> */}
+                        <DatePicker
+                            onChange={(date: Date) => {
+                                setForm((prev) => ({
+                                    ...prev,
+                                    expiryDate: date,
+                                }));
+                            }}
+                            value={form.expiryDate}
+                        />
                         <Button
                             buttonText="Add New Product"
                             onBtnClicked={handleSubmit}
