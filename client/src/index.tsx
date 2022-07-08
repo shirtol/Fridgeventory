@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./assets/fonts/regular.otf";
 import "./assets/fonts/GraphikMedium.ttf";
 import { UserProvider } from "./context/userContext/User.context";
+import TranslationProvider from "./context/translation/Translation.context";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -15,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <UserProvider>
-                <App />
-            </UserProvider>
+            <TranslationProvider>
+                <UserProvider>
+                    <App />
+                </UserProvider>
+            </TranslationProvider>
         </BrowserRouter>
     </React.StrictMode>
 );
