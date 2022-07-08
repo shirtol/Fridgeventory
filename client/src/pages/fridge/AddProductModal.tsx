@@ -2,11 +2,15 @@ import { useState } from "react";
 import CustomInput from "../../components/input/CustomInput";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
+import DatePicker from "react-date-picker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
+import axios from "axios";
+import fridgeventoryApi from "../../apis/fridgeventoryApi";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -18,6 +22,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         productName: "",
         amount: 1,
         productImage: "",
+        expiryDate: new Date(),
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const [startDate, setStartDate] = useState(new Date());
@@ -26,9 +31,17 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
-            setForm({ productName: "", amount: 1, productImage: "" });
+            await fridgeventoryApi.post("auth/product/addProduct", {
+                body: form,
+            });
+            setForm({
+                productName: "",
+                amount: 1,
+                productImage: "",
+                expiryDate: new Date(),
+            });
             closeModal();
         } catch (err: any) {
             console.log(err.message);
@@ -36,7 +49,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         }
     };
 
-    //!TODO: Add upload image to this form
     return (
         <>
             {isShown && (
@@ -72,10 +84,25 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             inputLabel="Product Image"
                         ></SelectImage>
                         <Title titleText="Expiry date"></Title>
-                        <DatePicker
+                        {/* <DatePicker
                             selected={startDate}
-                            onChange={(date: Date) => setStartDate(date)}
-                        ></DatePicker>
+                            onChange={(date: Date) => {
+                                setStartDate(date);
+                                setForm((prev) => ({
+                                    ...prev,
+                                    expiryDate: date,
+                                }));
+                            }}
+                        ></DatePicker> */}
+                        <DatePicker
+                            onChange={(date: Date) => {
+                                setForm((prev) => ({
+                                    ...prev,
+                                    expiryDate: date,
+                                }));
+                            }}
+                            value={form.expiryDate}
+                        />
                         <Button
                             buttonText="Add New Product"
                             onBtnClicked={handleSubmit}
