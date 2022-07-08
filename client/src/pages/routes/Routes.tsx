@@ -6,6 +6,7 @@ import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import Hood from "../hood/Hood";
 import Login from "../login/Login";
+import Logout from "../logout/Logout";
 import Registration from "../registration/Registration";
 import ShoppingList from "../shoppingList/ShoppingList";
 import Statistics from "../statistics/Statistics";
@@ -26,7 +27,7 @@ const Routes = () => {
                 <Route exact path="/statistics" component={Statistics}></Route>
                 <Route exact path="/register" component={Registration}></Route>
                 <Route exact path="/login" component={Login}></Route>
-                {/* <Route exact path="/logout" component={}></Route> */}
+                <Route exact path="/logout" component={Logout}></Route>
             </Switch>
         </>
     );

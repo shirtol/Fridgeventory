@@ -7,4 +7,7 @@ const URL =
 
 export default axios.create({
     baseURL: URL,
+    headers: {
+        "Content-Type": "application/json",
+    },
 });
