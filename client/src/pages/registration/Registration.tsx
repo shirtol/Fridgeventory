@@ -5,7 +5,6 @@ import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import Button from "../../components/button/Button";
 import { useUser } from "../../context/userContext/User.context";
-import validator from "validator";
 
 const Registration = () => {
     const { register, currentUser } = useUser();
@@ -26,17 +25,18 @@ const Registration = () => {
     };
 
     const handleSubmit = async () => {
-        if (failToRegister()) return;
+        if (formNotValidated()) return;
 
         try {
             await register!(form);
             setErrorMsg("");
         } catch (err: any) {
-            console.log(err.message);
+            setErrorMsg(err.response.data.message);
+            console.log(err.response.data.message);
         }
     };
 
-    const failToRegister = () => {
+    const formNotValidated = () => {
         if (confirmPassword !== form.password) {
             setErrorMsg("Passwords do NOT match");
             return true;
@@ -47,12 +47,6 @@ const Registration = () => {
             );
             return true;
         }
-        // if (!validator.isStrongPassword(form.password)) {
-        //     setErrorMsg(
-        //         "Your password must be at least 8 chars and must contain at least 1 lowercase letter, 1 uppercase letter, 1 number and one symbol"
-        //     );
-        //     return true;
-        // }
         return false;
     };
 

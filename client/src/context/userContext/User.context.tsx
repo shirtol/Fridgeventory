@@ -23,19 +23,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const history = useHistory();
 
     const register = async (newUser: User) => {
-        try {
-            const { data } = await fridgeventoryApi.post("/user/register", {
-                data: newUser,
-            });
-            console.log(data);
+        const { data } = await fridgeventoryApi.post("/user/register", {
+            data: newUser,
+        });
+        console.log(data);
 
-            setCurrentUser(data.user);
-            setToken(data.token);
-            localStorage.setItem("Token", data.token);
-            history.push("/");
-        } catch (err: any) {
-            console.log({ message: err.message });
-        }
+        setCurrentUser(data.user);
+        setToken(data.token);
+        localStorage.setItem("Token", data.token);
+        history.push("/");
     };
 
     const value: UserContextValue = {

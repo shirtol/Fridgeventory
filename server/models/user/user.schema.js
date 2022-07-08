@@ -19,18 +19,18 @@ export const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 8,
-        // validate(value) {
-        //     if (!validator.isStrongPassword(value)) {
-        //         throw Error(
-        //             "Your password must be at least 8 chars and must contain at least 1 lowercase letter, 1 uppercase letter, 1 number and one symbol"
-        //         );
-        //     }
-        // },
         validate(value) {
-            if (value.length < 8) {
-                throw Error("Password length must be at least 8 characters");
+            if (!validator.isStrongPassword(value)) {
+                throw Error(
+                    "Your password must be at least 8 chars and must contain at least 1 lowercase letter, 1 uppercase letter, 1 number and one symbol"
+                );
             }
         },
+        // validate(value) {
+        //     if (value.length < 8) {
+        //         throw Error("Password length must be at least 8 characters");
+        //     }
+        // },
     },
     location: {
         type: String,
