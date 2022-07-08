@@ -2,9 +2,13 @@ import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
 import { Colors, Shadows } from "../../utils/stylesUtils/stylesConsts";
 
-export const StyledModal = styled.div`
+interface StyledModalProps {
+    height?: string;
+}
+
+export const StyledModal = styled.div<StyledModalProps>`
     width: 40%;
-    height: 65%;
+    height: ${(props) => props.height ?? "65%"};
     background-color: ${Colors.whiteSmoke};
     background-image: ${Colors.modalBg};
     opacity: 0.9;

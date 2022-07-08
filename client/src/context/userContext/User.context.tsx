@@ -21,7 +21,7 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
     const [currentUser, setCurrentUser] = useState<User>();
-    const [token, setToken] = useState<string>("");
+    const [token, setToken] = useState<string | undefined>();
     const history = useHistory();
 
     const register = async (newUser: User) => {
@@ -38,6 +38,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const { data } = await fridgeventoryApi.post("/user/login", {
             data: { email, password },
         });
+        console.log(data);
+
         setCurrentUser(data.user);
         setToken(data.token);
         localStorage.setItem("Token", data.token);
@@ -50,7 +52,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             {},
             {
                 headers: {
-                    Authorization: token,
+                    Authorization: token!,
                 },
             }
         );
@@ -61,6 +63,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     const value: UserContextValue = {
         currentUser,
+        token,
         register,
         login,
         logout,

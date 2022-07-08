@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledSelectImage } from "./styles/StyledSelectImage";
 
 interface SelectImageProps {
-    productImage: string;
+    productImage: Blob;
     handleChange: (e: any) => void;
     inputLabel: string;
 }
 const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
+    const onImageChange = (e: any) => {
+        handleChange(e);
+    };
+
     return (
         <StyledSelectImage
             id="productImage"
             type="file"
-            value={productImage}
-            onChange={handleChange}
+            onChange={onImageChange}
             required={false}
             capture="environment"
+            accept="image/*"
         ></StyledSelectImage>
     );
 };

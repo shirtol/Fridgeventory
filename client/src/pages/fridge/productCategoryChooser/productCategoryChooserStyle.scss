@@ -1,0 +1,16 @@
+.category-drop-down {
+    cursor: pointer;
+    font-size: 1.6rem;
+    height: 15vh;
+    overflow-y: scroll;
+    // @include responsive(mini-tablet) {
+    //     font-size: 1.2rem;
+    // }
+}
+
+.category-chooser {
+    font-size: 1.6rem;
+    // @include responsive(mini-tablet) {
+    //     font-size: 1.2rem;
+    // }
+}

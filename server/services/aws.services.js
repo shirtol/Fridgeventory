@@ -1,6 +1,7 @@
 import { imageFileTypes } from "../constants/constants.js";
 import multer from "multer";
 import Aws from "aws-sdk";
+import "dotenv/config";
 
 const storage = multer.memoryStorage({
     destination: (req, file, cb) => {

@@ -12,7 +12,6 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body.data;
     try {
         const user = await User.findByCredentials(email, password);

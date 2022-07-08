@@ -6,37 +6,66 @@ import DatePicker from "react-date-picker";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
-import fridgeventoryApi from "../../apis/fridgeventoryApi";
+import fridgeventoryApi, { postImage } from "../../apis/fridgeventoryApi";
+import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChooser";
+import { Option } from "react-dropdown";
+import { useUser } from "../../context/userContext/User.context";
 
 interface AddProductModalProps {
     isShown: boolean;
     closeModal: () => void;
 }
 
+const isBlob = (obj: unknown): obj is Blob => typeof obj === typeof new Blob();
+
 const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     const [form, setForm] = useState({
         productName: "",
         amount: 1,
-        productImage: "",
+        productImage: new Blob(),
         expiryDate: new Date(),
+        category: "other",
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const [startDate, setStartDate] = useState(new Date());
+    const { token } = useUser();
 
     const handleChange = (e: any) => {
-        setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+        setForm((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.files ? e.target.files[0] : e.target.value,
+        }));
+    };
+
+    const handleCategoryChange = (selectedCategory: Option) => {
+        setForm((prev) => ({ ...prev, category: selectedCategory.value }));
     };
 
     const handleSubmit = async () => {
+        setSubmitMsg("Submitted!");
         try {
-            await fridgeventoryApi.post("auth/product/addProduct", {
-                body: form,
+            const formData = new FormData();
+            Object.entries(form).forEach((entry) => {
+                formData.append(
+                    entry[0],
+                    isBlob(entry[1]) ? entry[1] : entry[1].toString()
+                );
+                console.log(entry);
+            });
+
+            // await postImage().post()
+            await fridgeventoryApi.post("auth/product/addProduct", formData, {
+                headers: {
+                    Authorization: token!,
+                    "Content-Type": "multipart/form-data",
+                },
             });
             setForm({
                 productName: "",
                 amount: 1,
-                productImage: "",
+                productImage: new Blob(),
                 expiryDate: new Date(),
+                category: "other",
             });
             closeModal();
         } catch (err: any) {
@@ -48,7 +77,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         <>
             {isShown && (
                 <StyledModalWrapper>
-                    <StyledModal>
+                    <StyledModal height="85%">
                         <CustomInput
                             id="productName"
                             value={form.productName}
@@ -56,6 +85,11 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             inputLabel="Product Name"
                             required={true}
                         ></CustomInput>
+                        <SelectImage
+                            productImage={form.productImage}
+                            handleChange={handleChange}
+                            inputLabel="Product Image"
+                        ></SelectImage>
                         <CustomInput
                             id="amount"
                             type="number"
@@ -65,11 +99,10 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             required={true}
                             min="1"
                         ></CustomInput>
-                        <SelectImage
-                            productImage={form.productImage}
-                            handleChange={handleChange}
-                            inputLabel="Product Image"
-                        ></SelectImage>
+
+                        <ProductCategoryChooser
+                            onCategoryChange={handleCategoryChange}
+                        ></ProductCategoryChooser>
                         <Title titleText="Expiry date"></Title>
                         <DatePicker
                             onChange={(date: Date) => {
@@ -80,12 +113,13 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             }}
                             value={form.expiryDate}
                         />
+
                         <Button
                             buttonText="Add New Product"
                             onBtnClicked={handleSubmit}
                         ></Button>
                     </StyledModal>
-                    <>{submitMsg}</>
+                    {/* <>{submitMsg}</> */}
                 </StyledModalWrapper>
             )}
         </>

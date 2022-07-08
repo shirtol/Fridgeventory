@@ -12,6 +12,7 @@ export const getAllProducts = async (req, res) => {
 };
 
 export const addProduct = (req, res) => {
+    console.log(req.body);
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: req.file.originalname,
@@ -27,15 +28,18 @@ export const addProduct = (req, res) => {
         }
         try {
             const product = new Product({
-                name: req.body.name,
+                name: req.body.productName,
                 expiryDate: req.body.expiryDate,
                 amount: req.body.amount,
                 productImage: data.Location,
+                category: req.body.category,
                 owner: req.user._id,
             });
+            console.log("Product:  " + product);
             const result = await product.save();
             res.status(200).send(result);
         } catch (err) {
+            console.log(err);
             res.send({ message: err.message });
         }
     });
