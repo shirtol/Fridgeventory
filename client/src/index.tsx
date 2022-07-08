@@ -9,20 +9,26 @@ import "./assets/fonts/regular.otf";
 import "./assets/fonts/GraphikMedium.ttf";
 import { UserProvider } from "./context/userContext/User.context";
 import TranslationProvider from "./context/translation/Translation.context";
+import { ProductProvider } from "./context/productContext/Product.context";
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <TranslationProvider>
+    // <React.StrictMode>
+    <BrowserRouter>
+        <TranslationProvider>
+            <CookiesProvider>
                 <UserProvider>
-                    <App />
+                    <ProductProvider>
+                        <App />
+                    </ProductProvider>
                 </UserProvider>
-            </TranslationProvider>
-        </BrowserRouter>
-    </React.StrictMode>
+            </CookiesProvider>
+        </TranslationProvider>
+    </BrowserRouter>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

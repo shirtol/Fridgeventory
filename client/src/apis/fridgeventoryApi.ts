@@ -18,3 +18,10 @@ export const postImage = axios.create({
         "Content-Type": "multipart/form-data",
     },
 });
+
+export const productsApi = axios.create({
+    baseURL: `${URL}/auth/product`,
+    headers: {
+        "Content-Type": "application/json",
+    },
+});

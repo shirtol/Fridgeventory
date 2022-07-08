@@ -4,7 +4,7 @@ import { fetchAllProducts } from "../services/product.services.js";
 
 export const getAllProducts = async (req, res) => {
     try {
-        const allProduct = await fetchAllProducts();
+        const allProduct = await fetchAllProducts(req.user._id);
         res.status(200).send(allProduct);
     } catch (err) {
         res.status(404).send({ message: err.message });
