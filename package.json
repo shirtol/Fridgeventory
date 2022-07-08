@@ -11,7 +11,7 @@
         "start": "node index.js",
         "dev": "concurrently \"npm run server\" \"npm run client\"",
         "install-client": "cd client && npm install --legacy-peer-deps && npm run build && cd..",
-        "install server": "npm install",
+        "install-server": "npm install",
         "heroku-postbuild": "npm run install-client && npm run install-server"
     },
     "keywords": [],
