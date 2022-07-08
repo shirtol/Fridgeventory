@@ -5,7 +5,7 @@ import { StyledInputContainer } from "./styles/StyledInputContainer";
 import { StyledLabel } from "./styles/StyledLabel";
 
 interface CustomInputProps {
-    id: string;
+    id?: string;
     type?: string;
     value: string | number;
     onChange: (e: any) => void;

@@ -2,14 +2,10 @@ import { useState } from "react";
 import CustomInput from "../../components/input/CustomInput";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
-// import DatePicker from "react-datepicker";
 import DatePicker from "react-date-picker";
-
-import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
-import axios from "axios";
 import fridgeventoryApi from "../../apis/fridgeventoryApi";
 
 interface AddProductModalProps {
@@ -44,7 +40,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
             });
             closeModal();
         } catch (err: any) {
-            console.log(err.message);
             setSubmitMsg(err.response.data || err.message);
         }
     };
@@ -70,30 +65,12 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             required={true}
                             min="1"
                         ></CustomInput>
-                        {/* <CustomInput
-                            id="productImage"
-                            type="file"
-                            value={form.productImage}
-                            onChange={handleChange}
-                            inputLabel="Product Image"
-                            required={false}
-                        ></CustomInput> */}
                         <SelectImage
                             productImage={form.productImage}
                             handleChange={handleChange}
                             inputLabel="Product Image"
                         ></SelectImage>
                         <Title titleText="Expiry date"></Title>
-                        {/* <DatePicker
-                            selected={startDate}
-                            onChange={(date: Date) => {
-                                setStartDate(date);
-                                setForm((prev) => ({
-                                    ...prev,
-                                    expiryDate: date,
-                                }));
-                            }}
-                        ></DatePicker> */}
                         <DatePicker
                             onChange={(date: Date) => {
                                 setForm((prev) => ({

@@ -4,4 +4,11 @@ Host: {{host}}
 Content-Type: application/json
 
 
-{"name": "Rachel Geller", "email": "rachelgeller@example.com" , "password": "0554678132!1Aa", "location": "Hadera 1" }
+{
+    "data":
+    {
+        "name": "Rachel Geller",
+        "email": "rachelgeller@example.com" , 
+        "password": "aaaaaaaaaaaa!Aa" 
+    }
+}

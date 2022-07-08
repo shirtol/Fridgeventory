@@ -14,6 +14,7 @@ const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
             value={productImage}
             onChange={handleChange}
             required={false}
+            capture="environment"
         ></StyledSelectImage>
     );
 };
