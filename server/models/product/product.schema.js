@@ -7,13 +7,16 @@ export const productSchema = new mongoose.Schema({
     },
     expiryDate: {
         type: Date,
-        required: true,
+        // required: true,
     },
     amount: {
         type: Number,
         default: 1,
     },
     productImage: {
+        type: String,
+    },
+    category: {
         type: String,
     },
     owner: {

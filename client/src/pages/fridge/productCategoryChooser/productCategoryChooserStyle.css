@@ -1,0 +1,10 @@
+.category-drop-down {
+  cursor: pointer;
+  font-size: 1.6rem;
+  height: 15vh;
+  overflow-y: scroll;
+}
+
+.category-chooser {
+  font-size: 1.6rem;
+}/*# sourceMappingURL=productCategoryChooserStyle.css.map */
