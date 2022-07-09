@@ -1,9 +1,11 @@
 import React from "react";
 import Product from "../../utils/products/types";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
+import { StyledCard } from "./styles/StyledCard";
 import { StyledCardTitle } from "./styles/StyledCardTitle";
 import { StyledCategory } from "./styles/StyledCategory";
 import { StyledExpireMsg } from "./styles/StyledExpireMsg";
+import { StyledImageBox } from "./styles/StyledImageBox";
 import { StyledProductAmount } from "./styles/StyledProductAmount";
 import { StyledProductImg } from "./styles/StyledProductImg";
 
@@ -13,13 +15,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
     return (
-        <StyledFlexWrapper flexDirection="column">
+        <StyledCard>
             <StyledCardTitle>{product.name}</StyledCardTitle>
-            <StyledCategory>{`Category: ${product.category}`}</StyledCategory>
-            <StyledProductImg src={product.productImage}></StyledProductImg>
+            <StyledCategory>{product.category}</StyledCategory>
+            <StyledImageBox>
+                <StyledProductImg src={product.productImage}></StyledProductImg>
+            </StyledImageBox>
             <StyledProductAmount>{product.amount}</StyledProductAmount>
             <StyledExpireMsg>{`Expires in: ${product.expiryDate}`}</StyledExpireMsg>
-        </StyledFlexWrapper>
+        </StyledCard>
     );
 };
 
