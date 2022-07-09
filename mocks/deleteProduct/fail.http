@@ -1,0 +1,4 @@
+DELETE /api/auth/product/deleteProduct/62c928d046850e9b17ede22 HTTP/1.1
+Host: localhost:5000
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM5MjdmMjQ2ODUwZTliMTdlZGUwNmMiLCJpYXQiOjE2NTczNTAxMzF9.c_rPxlR4ug16ZC2mtiH74hfWDsMH6X2cQFJeT4udwfo
+

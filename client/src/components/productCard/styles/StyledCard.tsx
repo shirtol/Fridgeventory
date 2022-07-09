@@ -7,7 +7,7 @@ interface StyledCardProps {
 
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
     display: flex;
-    width: 80%;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -15,7 +15,7 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
     border-radius: 4px;
     position: relative;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1rem;
     & > * {
         flex: 1;
     }

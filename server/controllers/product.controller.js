@@ -1,6 +1,9 @@
 import { Product } from "../models/product/product.model.js";
 import { s3 } from "../services/aws.services.js";
-import { fetchAllProducts } from "../services/product.services.js";
+import {
+    fetchAllProducts,
+    fetchProductAndDelete,
+} from "../services/product.services.js";
 
 export const getAllProducts = async (req, res) => {
     try {
@@ -12,7 +15,6 @@ export const getAllProducts = async (req, res) => {
 };
 
 export const addProduct = (req, res) => {
-    console.log(req.body);
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: req.file.originalname,
@@ -35,12 +37,24 @@ export const addProduct = (req, res) => {
                 category: req.body.category,
                 owner: req.user._id,
             });
-            console.log("Product:  " + product);
             const result = await product.save();
             res.status(200).send(result);
         } catch (err) {
-            console.log(err);
             res.send({ message: err.message });
         }
     });
+};
+
+export const deleteProduct = async (req, res) => {
+    try {
+        const product = await fetchProductAndDelete(
+            req.params.productId,
+            req.user._id.valueOf()
+        );
+
+        return res.status(200).send(product);
+    } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
 };
