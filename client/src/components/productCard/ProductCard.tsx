@@ -13,13 +13,25 @@ import {
     ContextMenu,
     ContextMenuItem,
 } from "rctx-contextmenu";
+import { deleteProductById } from "../../services/product.services";
+import { useUser } from "../../context/userContext/User.context";
+import { useProduct } from "../../context/productContext/Product.context";
 
 interface ProductCardProps {
     product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-    const handleDelete = () => {};
+    const { token } = useUser();
+    const { allProducts, setAllProducts } = useProduct();
+
+    const handleDelete = async () => {
+        const deletedProduct = await deleteProductById(product._id, token!);
+        const newProductsArr = allProducts?.filter((product) => {
+            return product._id !== deletedProduct._id;
+        });
+        setAllProducts!(newProductsArr!);
+    };
 
     return (
         <>
