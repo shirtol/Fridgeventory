@@ -1,6 +1,4 @@
-import React from "react";
 import Product from "../../utils/products/types";
-import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledCard } from "./styles/StyledCard";
 import { StyledCardTitle } from "./styles/StyledCardTitle";
 import { StyledCategory } from "./styles/StyledCategory";

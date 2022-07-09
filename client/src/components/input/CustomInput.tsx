@@ -23,13 +23,6 @@ const CustomInput = ({
     required,
     min,
 }: CustomInputProps) => {
-    // const [inputValue, setInputValue] = useState<string>("");
-
-    // const onInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    //     const { value } = target;
-    //     setInputValue(value);
-    // };
-
     return (
         <StyledInputContainer>
             <StyledInput
@@ -44,12 +37,6 @@ const CustomInput = ({
                 {inputLabel}
             </StyledLabel>
         </StyledInputContainer>
-        // <StyledInput
-        //     color={Colors.greyInput}
-        //     placeholder={placeHolder}
-        //     onChange={onInputChange}
-        //     value={inputValue}
-        // ></StyledInput>
     );
 };
 
