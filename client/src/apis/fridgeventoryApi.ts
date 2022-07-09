@@ -25,3 +25,10 @@ export const productsApi = axios.create({
         "Content-Type": "application/json",
     },
 });
+
+export const hoodsApi = axios.create({
+    baseURL: `${URL}/hood`,
+    headers: {
+        "Content-Type": "application/json",
+    },
+});

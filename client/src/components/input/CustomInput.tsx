@@ -12,6 +12,7 @@ interface CustomInputProps {
     inputLabel: string;
     required: boolean;
     min?: string;
+    inputWidth?: string;
 }
 
 const CustomInput = ({
@@ -22,14 +23,8 @@ const CustomInput = ({
     inputLabel,
     required,
     min,
+    inputWidth,
 }: CustomInputProps) => {
-    // const [inputValue, setInputValue] = useState<string>("");
-
-    // const onInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    //     const { value } = target;
-    //     setInputValue(value);
-    // };
-
     return (
         <StyledInputContainer>
             <StyledInput
@@ -39,17 +34,12 @@ const CustomInput = ({
                 onChange={onChange}
                 required={required || false}
                 min={min}
+                width={inputWidth}
             />
             <StyledLabel htmlFor={id} isTransform={value}>
                 {inputLabel}
             </StyledLabel>
         </StyledInputContainer>
-        // <StyledInput
-        //     color={Colors.greyInput}
-        //     placeholder={placeHolder}
-        //     onChange={onInputChange}
-        //     value={inputValue}
-        // ></StyledInput>
     );
 };
 

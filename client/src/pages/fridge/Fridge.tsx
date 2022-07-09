@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
