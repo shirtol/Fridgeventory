@@ -12,6 +12,7 @@ interface CustomInputProps {
     inputLabel: string;
     required: boolean;
     min?: string;
+    inputWidth?: string;
 }
 
 const CustomInput = ({
@@ -22,6 +23,7 @@ const CustomInput = ({
     inputLabel,
     required,
     min,
+    inputWidth,
 }: CustomInputProps) => {
     return (
         <StyledInputContainer>
@@ -32,6 +34,7 @@ const CustomInput = ({
                 onChange={onChange}
                 required={required || false}
                 min={min}
+                width={inputWidth}
             />
             <StyledLabel htmlFor={id} isTransform={value}>
                 {inputLabel}

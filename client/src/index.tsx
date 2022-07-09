@@ -11,6 +11,7 @@ import { UserProvider } from "./context/userContext/User.context";
 import TranslationProvider from "./context/translation/Translation.context";
 import { ProductProvider } from "./context/productContext/Product.context";
 import { CookiesProvider } from "react-cookie";
+import { HoodProvider } from "./context/hoodContext/Hood.context";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -22,7 +23,9 @@ root.render(
             <CookiesProvider>
                 <UserProvider>
                     <ProductProvider>
-                        <App />
+                        <HoodProvider>
+                            <App />
+                        </HoodProvider>
                     </ProductProvider>
                 </UserProvider>
             </CookiesProvider>

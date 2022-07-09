@@ -2,10 +2,10 @@ import styled from "styled-components";
 import device from "../../../utils/stylesUtils/mediaQuerySizes";
 import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
-export const StyledInput = styled.input`
+export const StyledLocationInput = styled.input`
     text-align: center;
     padding-top: 1rem;
-    width: 100%;
+    width: 30%;
     height: 5rem;
     font-weight: 600;
     font-size: 2rem;
