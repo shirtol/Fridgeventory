@@ -13,7 +13,7 @@ interface StyledGridWrapperProps {
 export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
     display: grid;
     grid-template-columns: ${(props) =>
-        props.gridTemplateCol ?? "repeat(3, 1fr)"};
+        props.gridTemplateCol ?? "repeat(4, 1fr)"};
     gap: 2rem;
     justify-items: center;
     padding: 2rem;
