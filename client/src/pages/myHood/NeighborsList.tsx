@@ -15,10 +15,12 @@ const NeighborsList = () => {
     return (
         <StyledFlexWrapper
             flexDirection="column"
-            width="30%"
-            justifyContent="flex-end"
+            width="max-content"
+            justifyContent="flex-start"
             alignItems="flex-end"
+            paddingLeft="3rem"
             height="90vh"
+            overflowY="scroll"
         >
             {renderAllNeighbors()}
         </StyledFlexWrapper>

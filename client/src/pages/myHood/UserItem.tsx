@@ -11,7 +11,7 @@ interface UserItemProps {
 
 const UserItem = ({ user }: UserItemProps) => {
     return (
-        <StyledFlexWrapper>
+        <StyledFlexWrapper cursor="pointer" width="max-content">
             <Title titleText={user.name}></Title>
             <StyledUserIcon
                 src={AvatarsImages.Hipster}
