@@ -1,12 +1,11 @@
-import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { StyledBackground } from "../../components/layouts/StyledBackground";
 import Navbar from "../../components/navbar/Navbar";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import HoodPage from "../hood/Hood";
 import Login from "../login/Login";
 import Logout from "../logout/Logout";
+import MyHood from "../myHood/MyHood";
 import Registration from "../registration/Registration";
 import ShoppingList from "../shoppingList/ShoppingList";
 import Statistics from "../statistics/Statistics";
@@ -28,6 +27,7 @@ const Routes = () => {
                 <Route exact path="/register" component={Registration}></Route>
                 <Route exact path="/login" component={Login}></Route>
                 <Route exact path="/logout" component={Logout}></Route>
+                <Route exact path="/my-hood" component={MyHood}></Route>
             </Switch>
         </>
     );

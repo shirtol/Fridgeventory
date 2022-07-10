@@ -17,4 +17,10 @@ export const hoodSchema = new mongoose.Schema({
     ],
     description: String,
     image: String,
+    availableProducts: [
+        {
+            type: String,
+            required: true,
+        },
+    ],
 });

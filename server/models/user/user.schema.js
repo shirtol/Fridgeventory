@@ -31,6 +31,11 @@ export const userSchema = new mongoose.Schema({
     location: {
         type: String,
     },
+    hoods: [
+        {
+            type: String,
+        },
+    ],
     tokens: [
         {
             token: {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { productsApi } from "../../apis/fridgeventoryApi";
-import Product from "../../utils/products/types";
+import Product from "./Product.types";
 import { useUser } from "../userContext/User.context";
 
 interface ProductContextValue {
@@ -28,7 +28,6 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
             },
         });
         setAllProducts(data);
-        console.log(data);
     };
 
     useEffect(() => {

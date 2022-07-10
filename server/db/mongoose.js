@@ -7,6 +7,5 @@ mongoose.connect(URL, (err, mongoConnectionInstance) => {
     if (err) throw Error("Mongoose Connection Error! " + err);
     if (!process.env.NODE_ENV) {
         const { host, port, name } = mongoConnectionInstance;
-        console.log({ host, port, name });
     }
 });

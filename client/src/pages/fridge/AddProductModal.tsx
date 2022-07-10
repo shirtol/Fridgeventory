@@ -14,7 +14,7 @@ import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChoo
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
-import Product from "../../utils/products/types";
+import Product from "../../context/productContext/Product.types";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -56,9 +56,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                     entry[0],
                     isBlob(entry[1]) ? entry[1] : entry[1].toString()
                 );
-                console.log(entry);
             });
-            console.log(form);
 
             // setAllProducts((prev) => )
 
@@ -68,7 +66,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log(data);
 
             setAllProducts &&
                 allProducts &&

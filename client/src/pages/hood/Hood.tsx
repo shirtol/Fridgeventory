@@ -1,14 +1,12 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import HoodCard from "../../components/hoodCard/HoodCard";
-import { StyledHoodLocation } from "../../components/hoodCard/styles/StyledHoodLocation";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
-import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
-import { useHoods } from "../../context/hoodContext/Hood.context";
+import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
 import JoinHoodBox from "./JoinHoodBox";
-import { StyledJoinHoodBox } from "./styles/StyledJoinHoodBox";
 import { StyledLocationInput } from "./styles/StyledLocationInput";
 declare type Libraries = (
     | "drawing"
@@ -21,9 +19,8 @@ declare type Libraries = (
 const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
-    const { token } = useUser();
     const [selectedHood, setSelectedHood] = useState<Hood>();
-    const { fetchHoods, allHoods } = useHoods();
+    const { fetchHoods, allHoods, myHood } = useHood();
     const [inputValue, setInputValue] = useState<string | undefined>("");
     const [currAutoComplete, setCurrAutoComplete] =
         useState<google.maps.places.Autocomplete>();
@@ -49,12 +46,14 @@ const HoodPage = () => {
     const renderAllHoods = () => {
         return allHoods?.map((hood) => {
             return (
-                <HoodCard hood={hood} onHoodClicked={onHoodClicked}></HoodCard>
+                <HoodCard
+                    hood={hood}
+                    onHoodClicked={onHoodClicked}
+                    key={hood._id}
+                ></HoodCard>
             );
         });
     };
-
-    const onJoinHoodClicked = () => {};
 
     useEffect(() => {
         fetchHoods!();
@@ -62,42 +61,46 @@ const HoodPage = () => {
 
     return (
         <>
-            {isLoaded && (
-                <>
-                    <Autocomplete
-                        onPlaceChanged={handleSelectLocation}
-                        onLoad={(autocomplete) => {
-                            console.log(autocomplete);
-                            setCurrAutoComplete(autocomplete);
-                        }}
-                    >
-                        <StyledFlexWrapper>
-                            <StyledLocationInput
-                                type="text"
-                                onChange={handleChange}
-                                value={inputValue!}
-                                required={false}
-                            ></StyledLocationInput>
-                        </StyledFlexWrapper>
-                    </Autocomplete>
-
-                    <StyledFlexWrapper alignItems="flex-start" marginTop="2rem">
-                        <StyledFlexWrapper
-                            flexDirection="column"
-                            width="50%"
-                            gap="0"
+            {isLoaded &&
+                (myHood ? (
+                    <Redirect to="/my-hood" push={true}></Redirect>
+                ) : (
+                    <>
+                        <Autocomplete
+                            onPlaceChanged={handleSelectLocation}
+                            onLoad={(autocomplete) => {
+                                setCurrAutoComplete(autocomplete);
+                            }}
                         >
-                            {renderAllHoods()}
-                        </StyledFlexWrapper>
+                            <StyledFlexWrapper>
+                                <StyledLocationInput
+                                    type="text"
+                                    onChange={handleChange}
+                                    value={inputValue!}
+                                    required={false}
+                                ></StyledLocationInput>
+                            </StyledFlexWrapper>
+                        </Autocomplete>
 
-                        <JoinHoodBox
-                            isShown={selectedHood?.location !== undefined}
-                            hood={selectedHood!}
-                            onJoinHoodClicked={onJoinHoodClicked}
-                        ></JoinHoodBox>
-                    </StyledFlexWrapper>
-                </>
-            )}
+                        <StyledFlexWrapper
+                            alignItems="flex-start"
+                            marginTop="2rem"
+                        >
+                            <StyledFlexWrapper
+                                flexDirection="column"
+                                width="50%"
+                                gap="0"
+                            >
+                                {renderAllHoods()}
+                            </StyledFlexWrapper>
+
+                            <JoinHoodBox
+                                isShown={selectedHood?.location !== undefined}
+                                hood={selectedHood!}
+                            ></JoinHoodBox>
+                        </StyledFlexWrapper>
+                    </>
+                ))}
         </>
     );
 };

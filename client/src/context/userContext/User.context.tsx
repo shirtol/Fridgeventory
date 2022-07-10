@@ -9,6 +9,7 @@ interface UserContextValue {
     register?: (newUser: User) => Promise<void>;
     login?: (email: string, password: string) => Promise<void>;
     logout?: () => Promise<void>;
+    currUser?: User;
 }
 
 interface UserProviderProps {
@@ -23,12 +24,28 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const [token, setToken] = useState<string | undefined>();
     const history = useHistory();
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [currUser, setCurrUser] = useState<User>();
 
     useEffect(() => {
         if (cookies.token) {
             setToken(cookies.token);
+            getUser(cookies.token);
         }
     }, []);
+
+    const getUser = async (currToken: string) => {
+        const { data } = await fridgeventoryApi.get(
+            "/auth/user/getUserDetails",
+            {
+                headers: {
+                    Authorization: currToken,
+                },
+            }
+        );
+        console.log(data);
+        setCurrUser(data);
+        return data;
+    };
 
     const register = async (newUser: User) => {
         const { data } = await fridgeventoryApi.post("/user/register", {
@@ -36,6 +53,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         });
         setToken(data.token);
         setCookie("token", data.token);
+        setCurrUser(data);
         history.push("/");
     };
 
@@ -43,10 +61,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const { data } = await fridgeventoryApi.post("/user/login", {
             data: { email, password },
         });
-        console.log(data);
 
         setToken(data.token);
         setCookie("token", data.token);
+        setCurrUser(data.user);
         history.push("/");
     };
 
@@ -62,6 +80,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         );
         removeCookie("token");
         setToken("");
+        setCurrUser(undefined);
         history.push("/");
     };
 
@@ -70,6 +89,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         register,
         login,
         logout,
+        currUser,
     };
 
     return (
