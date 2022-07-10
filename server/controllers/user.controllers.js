@@ -36,7 +36,6 @@ export const logout = async (req, res) => {
 };
 
 export const getUserDetails = async (req, res) => {
-    console.log(req.user);
     try {
         res.status(200).send(req.user);
     } catch (err) {

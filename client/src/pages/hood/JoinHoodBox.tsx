@@ -15,7 +15,6 @@ const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
 
     const onJoinHoodClicked = async () => {
         const myHood = await joinHood!(hood);
-        console.log(myHood);
     };
 
     return (

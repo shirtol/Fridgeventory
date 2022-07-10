@@ -31,8 +31,6 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     };
 
     const getMyHood = async (hoodId: string) => {
-        console.log(hoodId);
-
         const { data } = await authHoodsApi.get(`/getMyHood/${hoodId}`, {
             headers: {
                 Authorization: token!,
@@ -52,10 +50,14 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     };
 
     useEffect(() => {
-        if (currUser?.hoods?.length) {
+        console.log("hooooo");
+        console.log(currUser?.hoods);
+
+        if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);
         }
+        if (!currUser) setMyHood(undefined);
     }, [currUser]);
 
     const value = {

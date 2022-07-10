@@ -64,7 +64,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
         setToken(data.token);
         setCookie("token", data.token);
-        setCurrUser(data);
+        setCurrUser(data.user);
         history.push("/");
     };
 
