@@ -39,7 +39,8 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        setMyHood(data.hood);
+        console.log(data);
+        setMyHood(data.populatedHood);
         setUsersInHood(data.usersInHood);
     };
 
@@ -57,6 +58,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
 
     useEffect(() => {
         if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
+            console.log(currUser);
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);
         }

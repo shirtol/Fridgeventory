@@ -25,9 +25,10 @@ export const fetchUserHood = async (hoodId, userId) => {
         if (!hood.peopleIdsArr.includes(userId)) {
             throw new FridgeventoryError(403, "Access Denied!");
         }
-        const usersInHood = await getAllUsersInHood(hood);
+        const populatedHood = await hood.populate("availableProducts");
+        const usersInHood = await getAllUsersInHood(populatedHood);
 
-        return { hood, usersInHood };
+        return { populatedHood, usersInHood };
     } catch (err) {
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
@@ -47,11 +48,28 @@ export const joinHood = async (newHood, userId) => {
         const usersInHood = await getAllUsersInHood(hood);
         await User.findOneAndUpdate(
             { _id: userId },
-            { $push: { hoods: newHood._id } },
+            { $push: { hoods: hood._id } },
             { new: true }
         );
         return { hood, usersInHood };
     } catch (err) {
         throw new FridgeventoryError(500, "Cannot create hood");
+    }
+};
+
+export const addProductToHood = async (productObjectId, hoodId, userId) => {
+    try {
+        const hood = await Hood.findOneAndUpdate(
+            { _id: hoodId },
+            { $push: { availableProducts: productObjectId } },
+            { new: true, upsert: true }
+        );
+        return hood;
+    } catch (err) {
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+            hoodId,
+            userId,
+        });
     }
 };
