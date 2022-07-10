@@ -8,6 +8,7 @@ interface StyledFlexWrapperProps {
     justifyContent?: string;
     height?: string;
     overflowY?: string;
+    marginTop?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -19,4 +20,5 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     justify-content: ${(props) => props.justifyContent ?? "center"};
     height: ${(props) => props.height ?? "auto"};
     overflow-y: ${(props) => props.overflowY ?? "visible"};
+    margin-top: ${(props) => props.marginTop ?? "0"};
 `;

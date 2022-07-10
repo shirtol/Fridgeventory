@@ -1,7 +1,6 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 import HoodCard from "../../components/hoodCard/HoodCard";
-import CustomInput from "../../components/input/CustomInput";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { useHoods } from "../../context/hoodContext/Hood.context";
@@ -34,16 +33,13 @@ const Hood = () => {
     };
 
     const handleSelectLocation = () => {
-        console.log(currAutoComplete);
-        currAutoComplete &&
-            console.log(currAutoComplete.getPlace().formatted_address);
-        setCurrAutoComplete(currAutoComplete);
+        currAutoComplete && setCurrAutoComplete(currAutoComplete);
         setInputValue(currAutoComplete!.getPlace().formatted_address);
     };
 
     const renderAllHoods = () => {
         return allHoods?.map((hood) => {
-            return <HoodCard></HoodCard>;
+            return <HoodCard hood={hood}></HoodCard>;
         });
     };
 
@@ -72,8 +68,14 @@ const Hood = () => {
                         </StyledFlexWrapper>
                     </Autocomplete>
 
-                    <h2>{inputValue}</h2>
-                    <StyledGridWrapper>{renderAllHoods()}</StyledGridWrapper>
+                    <StyledFlexWrapper
+                        flexDirection="column"
+                        width="50%"
+                        gap="0"
+                        marginTop="2rem"
+                    >
+                        {renderAllHoods()}
+                    </StyledFlexWrapper>
                 </>
             )}
         </>
