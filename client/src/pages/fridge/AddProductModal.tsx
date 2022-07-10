@@ -56,9 +56,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                     entry[0],
                     isBlob(entry[1]) ? entry[1] : entry[1].toString()
                 );
-                console.log(entry);
             });
-            console.log(form);
 
             // setAllProducts((prev) => )
 
@@ -68,7 +66,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log(data);
 
             setAllProducts &&
                 allProducts &&

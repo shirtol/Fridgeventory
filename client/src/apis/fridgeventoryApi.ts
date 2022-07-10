@@ -32,3 +32,10 @@ export const hoodsApi = axios.create({
         "Content-Type": "application/json",
     },
 });
+
+export const authHoodsApi = axios.create({
+    baseURL: `${URL}/auth/hood`,
+    headers: {
+        "Content-Type": "application/json",
+    },
+});

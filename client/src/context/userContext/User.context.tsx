@@ -43,7 +43,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const { data } = await fridgeventoryApi.post("/user/login", {
             data: { email, password },
         });
-        console.log(data);
 
         setToken(data.token);
         setCookie("token", data.token);

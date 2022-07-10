@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
-import { hoodsApi } from "../../apis/fridgeventoryApi";
+import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
 import { useUser } from "../userContext/User.context";
 import { Hood } from "./Hood.type";
 
@@ -13,11 +13,12 @@ interface HoodContextValue {
     fetchHoods: () => void;
     myHood: Hood;
     setMyHood: (hood: Hood) => void;
+    joinHood: (hood: Hood) => Promise<void>;
 }
 
 const HoodContext = React.createContext<Partial<HoodContextValue>>({});
 
-export const useHoods = () => useContext(HoodContext);
+export const useHood = () => useContext(HoodContext);
 
 export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
@@ -27,11 +28,19 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const fetchHoods = async () => {
         const { data } = await hoodsApi.get("/getAllHoods");
         setAllHoods(data);
-        console.log(data);
     };
 
     const getMyHood = async () => {
         // const {data} = await
+    };
+
+    const joinHood = async (hood: Hood) => {
+        const { data } = await authHoodsApi.put("/joinHood", hood, {
+            headers: {
+                Authorization: token!,
+            },
+        });
+        return data;
     };
 
     useEffect(() => {
@@ -40,7 +49,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         }
     }, [token]);
 
-    const value = { allHoods, fetchHoods, myHood, setMyHood };
+    const value = { allHoods, fetchHoods, myHood, setMyHood, joinHood };
 
     return (
         <HoodContext.Provider value={value}>{children}</HoodContext.Provider>

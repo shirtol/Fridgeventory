@@ -4,7 +4,7 @@ import HoodCard from "../../components/hoodCard/HoodCard";
 import { StyledHoodLocation } from "../../components/hoodCard/styles/StyledHoodLocation";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
-import { useHoods } from "../../context/hoodContext/Hood.context";
+import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
 import JoinHoodBox from "./JoinHoodBox";
@@ -23,7 +23,7 @@ const libraries: Libraries = ["places"];
 const HoodPage = () => {
     const { token } = useUser();
     const [selectedHood, setSelectedHood] = useState<Hood>();
-    const { fetchHoods, allHoods } = useHoods();
+    const { fetchHoods, allHoods } = useHood();
     const [inputValue, setInputValue] = useState<string | undefined>("");
     const [currAutoComplete, setCurrAutoComplete] =
         useState<google.maps.places.Autocomplete>();
@@ -49,12 +49,14 @@ const HoodPage = () => {
     const renderAllHoods = () => {
         return allHoods?.map((hood) => {
             return (
-                <HoodCard hood={hood} onHoodClicked={onHoodClicked}></HoodCard>
+                <HoodCard
+                    hood={hood}
+                    onHoodClicked={onHoodClicked}
+                    key={hood._id}
+                ></HoodCard>
             );
         });
     };
-
-    const onJoinHoodClicked = () => {};
 
     useEffect(() => {
         fetchHoods!();
@@ -67,7 +69,6 @@ const HoodPage = () => {
                     <Autocomplete
                         onPlaceChanged={handleSelectLocation}
                         onLoad={(autocomplete) => {
-                            console.log(autocomplete);
                             setCurrAutoComplete(autocomplete);
                         }}
                     >
@@ -93,7 +94,6 @@ const HoodPage = () => {
                         <JoinHoodBox
                             isShown={selectedHood?.location !== undefined}
                             hood={selectedHood!}
-                            onJoinHoodClicked={onJoinHoodClicked}
                         ></JoinHoodBox>
                     </StyledFlexWrapper>
                 </>

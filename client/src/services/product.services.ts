@@ -6,6 +6,5 @@ export const deleteProductById = async (productId: string, token: string) => {
             Authorization: token!,
         },
     });
-    console.log(data);
     return data;
 };

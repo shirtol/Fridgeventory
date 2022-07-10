@@ -10,7 +10,6 @@ interface HoodCardProps {
 
 const HoodCard = ({ hood, onHoodClicked }: HoodCardProps) => {
     const onClick = () => {
-        console.log(hood);
         onHoodClicked(hood);
     };
 

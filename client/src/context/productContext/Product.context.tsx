@@ -28,7 +28,6 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
             },
         });
         setAllProducts(data);
-        console.log(data);
     };
 
     useEffect(() => {

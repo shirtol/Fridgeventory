@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Button from "../../components/button/Button";
 import { StyledHoodLocation } from "../../components/hoodCard/styles/StyledHoodLocation";
 import HoodLottie from "../../components/hoodLottie/HoodLottie";
+import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { StyledJoinHoodBox } from "./styles/StyledJoinHoodBox";
 import { StyledLocationInput } from "./styles/StyledLocationInput";
@@ -9,15 +10,16 @@ import { StyledLocationInput } from "./styles/StyledLocationInput";
 interface JoinHoodBoxProps {
     isShown: boolean;
     hood: Hood;
-    onJoinHoodClicked: () => void;
 }
 
-const JoinHoodBox = ({
-    isShown,
-    hood,
-    onJoinHoodClicked,
-}: JoinHoodBoxProps) => {
-    const onClick = () => {};
+const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
+    const { joinHood } = useHood();
+
+    const onJoinHoodClicked = async () => {
+        const myHood = await joinHood!(hood);
+        console.log(myHood);
+    };
+
     return (
         <>
             {isShown && (
@@ -27,7 +29,7 @@ const JoinHoodBox = ({
                     <StyledHoodLocation>{`${hood.peopleIdsArr.length} neighbors joined`}</StyledHoodLocation>
                     <Button
                         buttonText="Join Hood"
-                        onBtnClicked={onClick}
+                        onBtnClicked={onJoinHoodClicked}
                     ></Button>
                 </StyledJoinHoodBox>
             )}

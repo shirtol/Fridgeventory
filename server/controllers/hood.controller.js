@@ -40,7 +40,6 @@ export const getHoodById = async (req, res) => {
 // };
 
 export const joinToHood = async (req, res) => {
-    console.log(req.body);
     try {
         const newHood = await joinHood(req.body, req.user._id.valueOf());
         return res.status(200).send(newHood);
