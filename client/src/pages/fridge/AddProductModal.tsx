@@ -14,7 +14,7 @@ import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChoo
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
-import Product from "../../utils/products/types";
+import Product from "../../context/productContext/Product.types";
 
 interface AddProductModalProps {
     isShown: boolean;

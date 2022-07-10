@@ -1,4 +1,4 @@
-import Product from "../../utils/products/types";
+import Product from "../../context/productContext/Product.types";
 import { StyledCard } from "./styles/StyledCard";
 import { StyledCardTitle } from "./styles/StyledCardTitle";
 import { StyledCategory } from "./styles/StyledCategory";
