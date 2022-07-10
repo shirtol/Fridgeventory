@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
 import { useUser } from "../userContext/User.context";
+import { User } from "../userContext/User.type";
 import { Hood } from "./Hood.type";
 
 interface HoodProviderProps {
@@ -24,6 +25,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
     const { token, currUser } = useUser();
     const [myHood, setMyHood] = useState<Hood>();
+    const [usersInHood, setUsersInHood] = useState<User[]>([]);
 
     const fetchHoods = async () => {
         const { data } = await hoodsApi.get("/getAllHoods");
@@ -36,7 +38,8 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        setMyHood(data);
+        setMyHood(data.hood);
+        setUsersInHood(data.usersInHood);
     };
 
     const joinHood = async (hood: Hood) => {
@@ -45,14 +48,13 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        setMyHood(data);
+        console.log(data);
+        setMyHood(data.hood);
+        setUsersInHood(data.usersInHood);
         return data;
     };
 
     useEffect(() => {
-        console.log("hooooo");
-        console.log(currUser?.hoods);
-
         if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);

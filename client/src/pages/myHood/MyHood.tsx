@@ -1,7 +1,8 @@
 import React from "react";
+import NeighborsList from "./NeighborsList";
 
 const MyHood = () => {
-    return <div>MyHood</div>;
+    return <NeighborsList></NeighborsList>;
 };
 
 export default MyHood;

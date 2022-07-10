@@ -6,11 +6,11 @@ export const backgroundImages = {
 };
 
 export const AvatarsImages = {
-    Hipster: appImages("./avatars/.png"),
-    Stalker: appImages("./avatars/.png"),
-    Karen: appImages("./avatars/.png"),
-    BusinessMan: appImages("./avatars/.png"),
-    Ginger: appImages("./avatars/.png"),
-    Brunette: appImages("./avatars/.png"),
-    Blonde: appImages("./avatars/.png"),
+    Hipster: appImages("./avatars/Hipster.png"),
+    Stalker: appImages("./avatars/Stalker.png"),
+    Karen: appImages("./avatars/Karen.png"),
+    BusinessMan: appImages("./avatars/BusinessMan.png"),
+    Ginger: appImages("./avatars/Ginger.png"),
+    Brunette: appImages("./avatars/Brunette.png"),
+    Blonde: appImages("./avatars/Blonde.png"),
 };

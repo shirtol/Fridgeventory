@@ -15,29 +15,22 @@ export const getAllHoods = async (req, res) => {
 
 export const getHoodById = async (req, res) => {
     try {
-        const hood = await fetchUserHood(
+        const data = await fetchUserHood(
             req.params.hoodId,
             req.user._id.valueOf()
         );
-        return res.status(200).send(hood);
+        console.log(data);
+        return res.status(200).send(data);
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);
     }
 };
 
-// export const getMyHood = async (req, res) => {
-//     try {
-
-//     } catch (err) {
-//         res.status(404).send({ message: err.message });
-//     }
-// }
-
 export const joinToHood = async (req, res) => {
     try {
-        const newHood = await joinHood(req.body, req.user._id.valueOf());
-        return res.status(200).send(newHood);
+        const data = await joinHood(req.body, req.user._id.valueOf());
+        return res.status(200).send(data);
     } catch (err) {
         res.status(404).send({ message: err.message });
     }
