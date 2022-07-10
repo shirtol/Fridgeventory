@@ -1,0 +1,3 @@
+GET /api/hood/getAllHoods HTTP/1.1
+Host: {{host}}
+Content-Type: application/json

@@ -1,0 +1,4 @@
+GET /api/auth/hood/getMyHood/62ca86e3a8515784c26ea9f4 HTTP/1.1
+Host: {{host}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhODJiMGI0OGJiNzlhZmE4MWRiMDEiLCJpYXQiOjE2NTc0Mzk5MTZ9.29QThyflNy4jQ2AZqcDDmS-6kST2HbMCenxN22YRERw
+Content-Type: application/json
