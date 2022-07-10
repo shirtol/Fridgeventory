@@ -1,11 +1,10 @@
-POST /api/auth/hood/joinHood HTTP/1.1
+PUT /api/auth/hood/joinHood HTTP/1.1
 Host: {{host}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM5MjdmMjQ2ODUwZTliMTdlZGUwNmMiLCJpYXQiOjE2NTczNTAxMzF9.c_rPxlR4ug16ZC2mtiH74hfWDsMH6X2cQFJeT4udwfo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNiMmViOTc4ZTk2NzdlNzdkMTQ1NWQiLCJpYXQiOjE2NTc0ODI5Mzh9.LxxNwmCIGhgG3Cd6PraJ8X7l3wXEbrLfybFIgel4C7A
 
 
 
 {
-    "name": "The best hood",
     "location": "Carmel Market, HaShomer St 2, Tel Aviv-Yafo, 6560101, Israel"
 }

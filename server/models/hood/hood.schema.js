@@ -19,8 +19,8 @@ export const hoodSchema = new mongoose.Schema({
     image: String,
     availableProducts: [
         {
-            type: String,
-            required: true,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "product",
         },
     ],
 });

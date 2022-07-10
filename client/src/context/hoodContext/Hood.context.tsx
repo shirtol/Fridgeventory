@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
 import { useUser } from "../userContext/User.context";
+import { User } from "../userContext/User.type";
 import { Hood } from "./Hood.type";
 
 interface HoodProviderProps {
@@ -14,6 +15,7 @@ interface HoodContextValue {
     myHood: Hood;
     setMyHood: (hood: Hood) => void;
     joinHood: (hood: Hood) => Promise<void>;
+    usersInHood: User[];
 }
 
 const HoodContext = React.createContext<Partial<HoodContextValue>>({});
@@ -24,6 +26,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
     const { token, currUser } = useUser();
     const [myHood, setMyHood] = useState<Hood>();
+    const [usersInHood, setUsersInHood] = useState<User[]>([]);
 
     const fetchHoods = async () => {
         const { data } = await hoodsApi.get("/getAllHoods");
@@ -36,7 +39,9 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        setMyHood(data);
+        console.log(data);
+        setMyHood(data.populatedHood);
+        setUsersInHood(data.usersInHood);
     };
 
     const joinHood = async (hood: Hood) => {
@@ -45,15 +50,15 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        setMyHood(data);
+        console.log(data);
+        setMyHood(data.hood);
+        setUsersInHood(data.usersInHood);
         return data;
     };
 
     useEffect(() => {
-        console.log("hooooo");
-        console.log(currUser?.hoods);
-
         if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
+            console.log(currUser);
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);
         }
@@ -66,6 +71,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         myHood,
         setMyHood,
         joinHood,
+        usersInHood,
     };
 
     return (

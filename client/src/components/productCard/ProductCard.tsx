@@ -31,6 +31,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         setAllProducts!(newProductsArr!);
     };
 
+    const addProductToHood = async () => {};
+
     return (
         <>
             {/*@ts-ignore*/}
@@ -51,8 +53,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {/*@ts-ignore*/}
             <ContextMenu id={product._id} animation="zoom">
                 {/*@ts-ignore*/}
-                <ContextMenuItem data={{ foo: "bar" }} onClick={handleDelete}>
-                    Delete Item
+                <ContextMenuItem onClick={addProductToHood}>
+                    Give Product
+                </ContextMenuItem>
+                {/*@ts-ignore*/}
+                <ContextMenuItem onClick={handleDelete}>
+                    Delete Product
                 </ContextMenuItem>
             </ContextMenu>
         </>

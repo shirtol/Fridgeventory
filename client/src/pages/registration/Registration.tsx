@@ -52,6 +52,7 @@ const Registration = () => {
     return (
         <StyledModalWrapper>
             <StyledModal>
+                {/* <form> */}
                 <CustomInput
                     id="name"
                     value={form.name}
@@ -87,6 +88,7 @@ const Registration = () => {
                     onBtnClicked={handleSubmit}
                 ></Button>
                 <>{errorMsg}</>
+                {/* </form> */}
             </StyledModal>
         </StyledModalWrapper>
     );

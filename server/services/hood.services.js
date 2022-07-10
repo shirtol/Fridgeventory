@@ -7,6 +7,15 @@ export const fetchAllHoods = async () => {
     return allHoods;
 };
 
+const getAllUsersInHood = async (hood) => {
+    const usersInHood = [];
+    for (const personId of hood.peopleIdsArr) {
+        const user = await User.findById({ _id: personId });
+        usersInHood.push(user);
+    }
+    return usersInHood;
+};
+
 export const fetchUserHood = async (hoodId, userId) => {
     try {
         const hood = await Hood.findById({ _id: hoodId });
@@ -16,7 +25,10 @@ export const fetchUserHood = async (hoodId, userId) => {
         if (!hood.peopleIdsArr.includes(userId)) {
             throw new FridgeventoryError(403, "Access Denied!");
         }
-        return hood;
+        const populatedHood = await hood.populate("availableProducts");
+        const usersInHood = await getAllUsersInHood(populatedHood);
+
+        return { populatedHood, usersInHood };
     } catch (err) {
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
@@ -33,13 +45,31 @@ export const joinHood = async (newHood, userId) => {
             { $push: { peopleIdsArr: userId }, location: newHood.location },
             { new: true, upsert: true }
         );
-        const user = await User.findOneAndUpdate(
+        const usersInHood = await getAllUsersInHood(hood);
+        await User.findOneAndUpdate(
             { _id: userId },
-            { $push: { hoods: newHood._id } },
+            { $push: { hoods: hood._id } },
             { new: true }
+        );
+        return { hood, usersInHood };
+    } catch (err) {
+        throw new FridgeventoryError(500, "Cannot create hood");
+    }
+};
+
+export const addProductToHood = async (productObjectId, hoodId, userId) => {
+    try {
+        const hood = await Hood.findOneAndUpdate(
+            { _id: hoodId },
+            { $push: { availableProducts: productObjectId } },
+            { new: true, upsert: true }
         );
         return hood;
     } catch (err) {
-        throw new FridgeventoryError(500, "Cannot create hood");
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+            hoodId,
+            userId,
+        });
     }
 };

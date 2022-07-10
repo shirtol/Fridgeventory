@@ -29,6 +29,7 @@ const Login = () => {
     return (
         <StyledModalWrapper>
             <StyledModal>
+                {/* <form> */}
                 <CustomInput
                     id="email"
                     type="email"
@@ -47,6 +48,7 @@ const Login = () => {
                 ></CustomInput>
                 <Button buttonText="login" onBtnClicked={handleSubmit}></Button>
                 <>{errorMsg}</>
+                {/* </form> */}
             </StyledModal>
         </StyledModalWrapper>
     );

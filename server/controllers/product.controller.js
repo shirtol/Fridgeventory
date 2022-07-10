@@ -1,5 +1,6 @@
 import { Product } from "../models/product/product.model.js";
 import { s3 } from "../services/aws.services.js";
+import { addProductToHood } from "../services/hood.services.js";
 import {
     fetchAllProducts,
     fetchProductAndDelete,
@@ -53,6 +54,19 @@ export const deleteProduct = async (req, res) => {
         );
 
         return res.status(200).send(product);
+    } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
+};
+
+export const shareProduct = async (req, res) => {
+    try {
+        const hoodAfterUpdating = await addProductToHood(
+            req.body.productId,
+            req.params.hoodId
+        );
+        return res.status(200).send(hoodAfterUpdating);
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);
