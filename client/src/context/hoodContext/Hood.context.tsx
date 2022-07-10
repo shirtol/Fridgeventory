@@ -40,7 +40,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
-        return data;
+        setMyHood(data);
     };
 
     useEffect(() => {
@@ -49,7 +49,13 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         }
     }, [token]);
 
-    const value = { allHoods, fetchHoods, myHood, setMyHood, joinHood };
+    const value = {
+        allHoods,
+        fetchHoods,
+        myHood,
+        setMyHood,
+        joinHood,
+    };
 
     return (
         <HoodContext.Provider value={value}>{children}</HoodContext.Provider>
