@@ -1,5 +1,6 @@
 import { Hood } from "../models/hood/hood.model.js";
 import FridgeventoryError from "../utils/errorHandling.js";
+import { User } from "../models/user/user.model.js";
 
 export const fetchAllHoods = async () => {
     const allHoods = await Hood.find();
@@ -31,6 +32,11 @@ export const joinHood = async (newHood, userId) => {
             { location: newHood.location },
             { $push: { peopleIdsArr: userId }, location: newHood.location },
             { new: true, upsert: true }
+        );
+        const user = await User.findOneAndUpdate(
+            { _id: userId },
+            { $push: { hoods: newHood._id } },
+            { new: true }
         );
         return hood;
     } catch (err) {
