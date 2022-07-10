@@ -6,6 +6,7 @@ export interface User {
     hoods?: string[];
     icon?: UserAvatar;
     phoneNumber?: string;
+    _id?: string;
 }
 
 export type UserAvatar =

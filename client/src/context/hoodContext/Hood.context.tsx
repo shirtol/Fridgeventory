@@ -15,6 +15,7 @@ interface HoodContextValue {
     myHood: Hood;
     setMyHood: (hood: Hood) => void;
     joinHood: (hood: Hood) => Promise<void>;
+    usersInHood: User[];
 }
 
 const HoodContext = React.createContext<Partial<HoodContextValue>>({});
@@ -68,6 +69,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         myHood,
         setMyHood,
         joinHood,
+        usersInHood,
     };
 
     return (
