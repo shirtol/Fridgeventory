@@ -1,6 +1,5 @@
 import {
-    addUserToHood,
-    createNewHood,
+    joinHood,
     fetchAllHoods,
     fetchUserHood,
 } from "../services/hood.services.js";
@@ -27,23 +26,23 @@ export const getHoodById = async (req, res) => {
     }
 };
 
-export const joinHood = async (req, res) => {
-    try {
-        const joinedHood = await addUserToHood(
-            req.params.hoodId,
-            req.user._id.valueOf()
-        );
-        return res.status(200).send(joinedHood);
-    } catch (err) {
-        const parsed = JSON.parse(err.message);
-        return res.status(parsed.statusCode).send(parsed);
-    }
-};
+// export const joinHood = async (req, res) => {
+//     try {
+//         const joinedHood = await addUserToHood(
+//             req.params.hoodId,
+//             req.user._id.valueOf()
+//         );
+//         return res.status(200).send(joinedHood);
+//     } catch (err) {
+//         const parsed = JSON.parse(err.message);
+//         return res.status(parsed.statusCode).send(parsed);
+//     }
+// };
 
-export const createHood = async (req, res) => {
+export const joinToHood = async (req, res) => {
     console.log(req.body);
     try {
-        const newHood = await createNewHood(req.body, req.user._id.valueOf());
+        const newHood = await joinHood(req.body, req.user._id.valueOf());
         return res.status(200).send(newHood);
     } catch (err) {
         res.status(404).send({ message: err.message });

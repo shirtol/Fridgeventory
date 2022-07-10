@@ -1,9 +1,5 @@
 import { Router } from "express";
-import {
-    createHood,
-    getHoodById,
-    joinHood,
-} from "../controllers/hood.controller.js";
+import { getHoodById, joinToHood } from "../controllers/hood.controller.js";
 import { logout } from "../controllers/user.controllers.js";
 import { productRouter } from "./product.routes.js";
 
@@ -15,6 +11,4 @@ authRouter.post("/user/logout", logout);
 
 authRouter.get("/hood/getMyHood/:hoodId", getHoodById);
 
-authRouter.put("/hood/joinHood", joinHood);
-
-authRouter.post("/hood/createHood", createHood);
+authRouter.put("/hood/joinHood", joinToHood);
