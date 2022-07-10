@@ -22,7 +22,7 @@ export const useHood = () => useContext(HoodContext);
 
 export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
-    const { token } = useUser();
+    const { token, currUser } = useUser();
     const [myHood, setMyHood] = useState<Hood>();
 
     const fetchHoods = async () => {
@@ -30,8 +30,15 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         setAllHoods(data);
     };
 
-    const getMyHood = async () => {
-        // const {data} = await
+    const getMyHood = async (hoodId: string) => {
+        console.log(hoodId);
+
+        const { data } = await authHoodsApi.get(`/getMyHood/${hoodId}`, {
+            headers: {
+                Authorization: token!,
+            },
+        });
+        setMyHood(data);
     };
 
     const joinHood = async (hood: Hood) => {
@@ -41,13 +48,15 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             },
         });
         setMyHood(data);
+        return data;
     };
 
     useEffect(() => {
-        if (token) {
-            getMyHood();
+        if (currUser?.hoods?.length) {
+            const hoodId = currUser?.hoods[0];
+            getMyHood(hoodId as string);
         }
-    }, [token]);
+    }, [currUser]);
 
     const value = {
         allHoods,

@@ -19,7 +19,6 @@ declare type Libraries = (
 const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
-    const { token } = useUser();
     const [selectedHood, setSelectedHood] = useState<Hood>();
     const { fetchHoods, allHoods, myHood } = useHood();
     const [inputValue, setInputValue] = useState<string | undefined>("");

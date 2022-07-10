@@ -34,3 +34,12 @@ export const logout = async (req, res) => {
         res.status(500).send(err.message);
     }
 };
+
+export const getUserDetails = async (req, res) => {
+    console.log(req.user);
+    try {
+        res.status(200).send(req.user);
+    } catch (err) {
+        res.status(404).send(err.message);
+    }
+};
