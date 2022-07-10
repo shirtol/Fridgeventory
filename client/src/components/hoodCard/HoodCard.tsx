@@ -5,11 +5,17 @@ import { StyledHoodLocation } from "./styles/StyledHoodLocation";
 
 interface HoodCardProps {
     hood: Hood;
+    onHoodClicked: (hood: Hood) => void;
 }
 
-const HoodCard = ({ hood }: HoodCardProps) => {
+const HoodCard = ({ hood, onHoodClicked }: HoodCardProps) => {
+    const onClick = () => {
+        console.log(hood);
+        onHoodClicked(hood);
+    };
+
     return (
-        <StyledHoodCard>
+        <StyledHoodCard onClick={onClick}>
             <StyledHoodLocation>{hood.location}</StyledHoodLocation>
         </StyledHoodCard>
     );
