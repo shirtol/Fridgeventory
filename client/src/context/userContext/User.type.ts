@@ -2,7 +2,17 @@ export interface User {
     name: string;
     email: string;
     password: string;
-    location?: string;
     tokens?: string[];
     hoods?: string[];
+    icon?: UserAvatar;
+    phoneNumber?: string;
 }
+
+export type UserAvatar =
+    | "Hipster"
+    | "Stalker"
+    | "Karen"
+    | "BusinessMan"
+    | "Ginger"
+    | "Brunette"
+    | "Blonde";

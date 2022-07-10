@@ -6,10 +6,7 @@ import DatePicker from "react-date-picker";
 import Button from "../../components/button/Button";
 import Title from "../../components/title/Title";
 import SelectImage from "../../components/selectImage/SelectImage";
-import fridgeventoryApi, {
-    postImage,
-    productsApi,
-} from "../../apis/fridgeventoryApi";
+import { productsApi } from "../../apis/fridgeventoryApi";
 import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChooser";
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
@@ -32,7 +29,6 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         category: "other",
     });
     const [submitMsg, setSubmitMsg] = useState("");
-    const [startDate, setStartDate] = useState(new Date());
     const { token } = useUser();
     const { allProducts, setAllProducts } = useProduct();
 
@@ -130,7 +126,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             onBtnClicked={handleSubmit}
                         ></Button>
                     </StyledModal>
-                    {/* <>{submitMsg}</> */}
+                    <>{submitMsg}</>
                 </StyledModalWrapper>
             )}
         </>
