@@ -3,14 +3,20 @@ import device from "../../../utils/stylesUtils/mediaQuerySizes";
 
 export const StyledNavbar = styled.header`
     display: flex;
+    flex-direction: column;
     list-style: none;
-    height: max-content;
-    gap: 3.5rem;
+    gap: 5rem;
     font-size: 1.7rem;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 17%;
+    position: fixed;
+    z-index: 100;
+    top: 2rem;
+    left: 2rem;
     padding-left: 2rem;
-    height: 7vh;
-
+    height: 100vh;
+    align-self: flex-start;
     @media ${device.tablet} {
         display: none;
     }

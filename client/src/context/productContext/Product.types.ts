@@ -5,4 +5,5 @@ export default interface Product {
     expiryDate: Date;
     category: string;
     _id: string;
+    isShared: boolean;
 }

@@ -42,7 +42,7 @@ export const joinHood = async (newHood, userId) => {
     try {
         const hood = await Hood.findOneAndUpdate(
             { location: newHood.location },
-            { $push: { peopleIdsArr: userId }, location: newHood.location },
+            { $addToSet: { peopleIdsArr: userId }, location: newHood.location },
             { new: true, upsert: true }
         );
         const usersInHood = await getAllUsersInHood(hood);

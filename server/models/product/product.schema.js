@@ -22,4 +22,5 @@ export const productSchema = new mongoose.Schema({
     owner: {
         type: String,
     },
+    isShared: Boolean,
 });

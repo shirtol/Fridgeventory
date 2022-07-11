@@ -25,3 +25,18 @@ export const fetchProductAndDelete = async (productId, userId) => {
         });
     }
 };
+
+export const updateProductAfterSharing = async (productId) => {
+    try {
+        const product = await Product.findOneAndUpdate(
+            { _id: productId },
+            { isShared: true },
+            { new: true }
+        );
+        return product;
+    } catch (err) {
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+        });
+    }
+};

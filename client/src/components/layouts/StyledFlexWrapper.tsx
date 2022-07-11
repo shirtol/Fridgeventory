@@ -12,6 +12,9 @@ interface StyledFlexWrapperProps {
     marginTop?: string;
     cursor?: string;
     paddingLeft?: string;
+    paddingTop?: string;
+    alignSelf?: string;
+    justifySelf?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -24,6 +27,9 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     height: ${(props) => props.height ?? "auto"};
     overflow-y: ${(props) => props.overflowY ?? "visible"};
     margin-top: ${(props) => props.marginTop ?? "0"};
-    padding-left: ${(props) => props.paddingLeft ?? "0"};
     cursor: ${(props) => props.cursor ?? "auth"};
+    padding-left: ${(props) => props.paddingLeft ?? "0"};
+    padding-top: ${(props) => props.paddingTop ?? "0"};
+    align-self: ${(props) => props.alignSelf ?? "auto"};
+    justify-self: ${(props) => props.justifySelf ?? "auto"};
 `;

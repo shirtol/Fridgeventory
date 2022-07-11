@@ -4,9 +4,14 @@ import NeighborsList from "./NeighborsList";
 
 const MyHood = () => {
     return (
-        <StyledFlexWrapper>
-            <NeighborsList></NeighborsList>
+        <StyledFlexWrapper
+            alignItems="flex-start"
+            justifyContent="flex-end"
+            width="90%"
+            justifySelf="flex-end"
+        >
             <HoodProductsContainer></HoodProductsContainer>
+            <NeighborsList></NeighborsList>
         </StyledFlexWrapper>
     );
 };

@@ -3,6 +3,8 @@ import { Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
 interface StyledCardProps {
     boxShadow: string;
+    hasShared: boolean;
+    isMyFridge: boolean;
 }
 
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
@@ -16,6 +18,12 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
     position: relative;
     gap: 1rem;
     padding: 1rem;
+    border: ${(props) =>
+        props.hasShared
+            ? props.isMyFridge
+                ? "1px solid #3C80B9"
+                : "none"
+            : "none"};
     & > * {
         flex: 1;
     }
