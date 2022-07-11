@@ -19,6 +19,7 @@ import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { StyledExpireDays } from "./styles/StyledExpiryDays";
+import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 
 interface ProductCardProps {
     product: Product;
@@ -70,21 +71,27 @@ const ProductCard = ({
                     hasShared={product.isShared}
                     isMyFridge={isMyFridge}
                 >
-                    <StyledCardTitle>{product.name}</StyledCardTitle>
-                    <StyledCategory>{product.category}</StyledCategory>
-                    <StyledImageBox>
-                        <StyledProductImg
-                            src={product.productImage}
-                        ></StyledProductImg>
-                    </StyledImageBox>
-                    <StyledProductAmount>{product.amount}</StyledProductAmount>
-                    <StyledExpireMsg>
-                        Expires in{" "}
-                        <StyledExpireDays numOfDays={dayUntilExpiry}>
-                            {dayUntilExpiry}
-                        </StyledExpireDays>{" "}
-                        days
-                    </StyledExpireMsg>
+                    <StyledFlexWrapper flexDirection="column">
+                        <StyledImageBox>
+                            <StyledProductImg
+                                src={product.productImage}
+                            ></StyledProductImg>
+                        </StyledImageBox>
+                        <StyledProductAmount>
+                            {`amount: ${product.amount}`}
+                        </StyledProductAmount>
+                    </StyledFlexWrapper>
+                    <StyledFlexWrapper flexDirection="column">
+                        <StyledCardTitle>{product.name}</StyledCardTitle>
+                        <StyledCategory>{product.category}</StyledCategory>
+                        <StyledExpireMsg>
+                            Expires in{" "}
+                            <StyledExpireDays numOfDays={dayUntilExpiry}>
+                                {dayUntilExpiry}
+                            </StyledExpireDays>{" "}
+                            days
+                        </StyledExpireMsg>
+                    </StyledFlexWrapper>
                 </StyledCard>
             </ContextMenuTrigger>
 
