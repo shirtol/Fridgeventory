@@ -52,7 +52,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={product._id}>
-                <StyledCard>
+                <StyledCard hasShared={product.isShared}>
                     <StyledCardTitle>{product.name}</StyledCardTitle>
                     <StyledCategory>{product.category}</StyledCategory>
                     <StyledImageBox>
