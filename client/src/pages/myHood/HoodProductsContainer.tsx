@@ -11,13 +11,13 @@ const HoodProductsContainer = () => {
     console.log(myHood);
 
     const renderHoodProducts = () => {
-        return myHood?.availableProducts.map((product) => {
+        return myHood?.availableProducts?.map((product) => {
             const uniqueId = uuid();
             return (
                 <ProductCard
                     shouldShowContextMenu={false}
                     isMyFridge={false}
-                    product={product as Product}
+                    product={product}
                     key={typeof product !== "string" ? product._id : uniqueId}
                 ></ProductCard>
             );

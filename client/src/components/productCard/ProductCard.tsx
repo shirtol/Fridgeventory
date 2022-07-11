@@ -18,6 +18,7 @@ import {
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
 import { useHood } from "../../context/hoodContext/Hood.context";
+import { StyledExpireDays } from "./styles/StyledExpiryDays";
 
 interface ProductCardProps {
     product: Product;
@@ -32,8 +33,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
     const { token } = useUser();
     const { allProducts, setAllProducts } = useProduct();
-    const { myHood, setMyHood, productsInHood, setProductsInHood, getMyHood } =
-        useHood();
+    const { myHood, getMyHood } = useHood();
 
     const handleDelete = async () => {
         const deletedProduct = await deleteProductById(product._id, token!);
@@ -54,6 +54,14 @@ const ProductCard = ({
         await getMyHood!(myHood!._id);
     };
 
+    const getExpiryDays = (date: Date) => {
+        let difference = date.getTime() - new Date().getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays;
+    };
+
+    const dayUntilExpiry = getExpiryDays(product.expiryDate);
+
     return (
         <>
             {/*@ts-ignore*/}
@@ -70,7 +78,13 @@ const ProductCard = ({
                         ></StyledProductImg>
                     </StyledImageBox>
                     <StyledProductAmount>{product.amount}</StyledProductAmount>
-                    <StyledExpireMsg>{`Expires in: ${product.expiryDate}`}</StyledExpireMsg>
+                    <StyledExpireMsg>
+                        Expires in{" "}
+                        <StyledExpireDays numOfDays={dayUntilExpiry}>
+                            {dayUntilExpiry}
+                        </StyledExpireDays>{" "}
+                        days
+                    </StyledExpireMsg>
                 </StyledCard>
             </ContextMenuTrigger>
 

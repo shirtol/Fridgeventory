@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import Navbar from "../../components/navbar/Navbar";
+import WebsiteBanner from "../../components/websiteBanner/WebsiteBanner";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import HoodPage from "../hood/Hood";
@@ -14,6 +15,7 @@ import Statistics from "../statistics/Statistics";
 const Routes = () => {
     return (
         <StyledFlexWrapper height="100vh" justifyContent="space-around">
+            <WebsiteBanner></WebsiteBanner>
             <Navbar></Navbar>
             <Switch>
                 <Route exact path="/" component={Home}></Route>

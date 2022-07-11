@@ -9,7 +9,7 @@ interface StyledCardProps {
 
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
     display: flex;
-    width: 100%;
+    width: 30rem;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
