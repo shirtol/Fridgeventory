@@ -6,6 +6,7 @@ import ProductsCarousel from "../../components/productsCarousel/ProductsCarousel
 import { StyledHomePageBox } from "./styles/StyledHomePageBox";
 import { StyledBackground } from "../../components/layouts/StyledBackground";
 import { StyledSlogan } from "../../components/slogan/StyledSlogan";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 
 const Home = () => {
     return (
