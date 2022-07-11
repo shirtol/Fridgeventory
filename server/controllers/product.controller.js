@@ -4,6 +4,7 @@ import { addProductToHood } from "../services/hood.services.js";
 import {
     fetchAllProducts,
     fetchProductAndDelete,
+    updateProductAfterSharing,
 } from "../services/product.services.js";
 
 export const getAllProducts = async (req, res) => {
@@ -66,7 +67,12 @@ export const shareProduct = async (req, res) => {
             req.body.productId,
             req.params.hoodId
         );
-        return res.status(200).send(hoodAfterUpdating);
+        const productAfterUpdating = await updateProductAfterSharing(
+            req.body.productId
+        );
+        return res
+            .status(200)
+            .send({ hoodAfterUpdating, productAfterUpdating });
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);

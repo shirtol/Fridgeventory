@@ -1,0 +1,10 @@
+PUT /api/auth/product/shareProduct/62cb306ca8515784c296035b HTTP/1.1
+Host: {{host}}
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNiMzU5MjQ4Yjk0ZTlhNGI1MDRkODkiLCJpYXQiOjE2NTc0ODQ2OTB9.jtGf_k_f-xCNF3-Yomc2EC5s3_EHjHbhNW-z_fSzTE0
+
+
+
+{
+    "productId": "62cb4061cd4c7e21b413bf73"
+}

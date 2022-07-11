@@ -16,6 +16,7 @@ const HoodProductsContainer = () => {
                     expiryDate: new Date(),
                     category: "Diary",
                     _id: "123",
+                    isShared: false,
                 }}
             ></ProductCard>
             {/* {renderHoodProducts()} */}
