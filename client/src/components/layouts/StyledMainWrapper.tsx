@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
 export const StyledMainWrapper = styled.div`
-    height: 93vh;
+    height: 100vh;
+    width: 70%;
 `;

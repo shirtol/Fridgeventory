@@ -7,7 +7,7 @@ export const StyledBackground = styled.div`
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 93vh;
+    height: 100vh;
     z-index: -1;
     position: absolute;
     opacity: 0.4;

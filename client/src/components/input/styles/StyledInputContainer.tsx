@@ -6,6 +6,7 @@ export const StyledInputContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 80%;
     &:focus-within label {
         transform: translate(0, 5px) scale(0.8);
         color: #777;

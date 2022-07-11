@@ -5,7 +5,6 @@ import HoodCard from "../../components/hoodCard/HoodCard";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
-import { useUser } from "../../context/userContext/User.context";
 import JoinHoodBox from "./JoinHoodBox";
 import { StyledLocationInput } from "./styles/StyledLocationInput";
 declare type Libraries = (
@@ -60,7 +59,7 @@ const HoodPage = () => {
     }, []);
 
     return (
-        <>
+        <StyledFlexWrapper flexDirection="column" justifyContent="flex-start">
             {isLoaded &&
                 (myHood ? (
                     <Redirect to="/my-hood" push={true}></Redirect>
@@ -72,7 +71,7 @@ const HoodPage = () => {
                                 setCurrAutoComplete(autocomplete);
                             }}
                         >
-                            <StyledFlexWrapper>
+                            <StyledFlexWrapper alignItems="flex-start">
                                 <StyledLocationInput
                                     type="text"
                                     onChange={handleChange}
@@ -101,7 +100,7 @@ const HoodPage = () => {
                         </StyledFlexWrapper>
                     </>
                 ))}
-        </>
+        </StyledFlexWrapper>
     );
 };
 

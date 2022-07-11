@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <>
             <StyledBackground></StyledBackground>
-            <StyledSlogan>More Food? Share It!</StyledSlogan>
+            {/* <StyledSlogan>More Food? Share It!</StyledSlogan> */}
             {/* <StyledMainWrapper>
                 <StyledFlexWrapper
                     height="80vh"

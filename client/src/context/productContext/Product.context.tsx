@@ -19,7 +19,7 @@ export const useProduct = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
     const [allProducts, setAllProducts] = useState<Product[]>([]);
-    const { token } = useUser();
+    const { token, currUser } = useUser();
 
     const fetchProducts = async () => {
         const { data } = await productsApi.get("/getAllProducts", {
@@ -31,10 +31,12 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     };
 
     useEffect(() => {
-        if (token) {
+        if (currUser) {
             fetchProducts();
+        } else {
+            setAllProducts([]);
         }
-    }, [token]);
+    }, [currUser, token]);
 
     const value: ProductContextValue = { allProducts, setAllProducts };
 

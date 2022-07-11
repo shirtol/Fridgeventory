@@ -5,6 +5,7 @@ import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import Button from "../../components/button/Button";
 import { useUser } from "../../context/userContext/User.context";
+import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 
 const Registration = () => {
     const { register } = useUser();
@@ -53,42 +54,51 @@ const Registration = () => {
         <StyledModalWrapper>
             <StyledModal>
                 {/* <form> */}
-                <CustomInput
-                    id="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    inputLabel="name"
-                    required={true}
-                ></CustomInput>
-                <CustomInput
-                    id="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    inputLabel="email"
-                    required={true}
-                ></CustomInput>
-                <CustomInput
-                    id="password"
-                    type="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    inputLabel="password"
-                    required={true}
-                ></CustomInput>
-                <CustomInput
-                    type="password"
-                    value={confirmPassword}
-                    onChange={handleConfirmPassword}
-                    inputLabel="confirm password"
-                    required={true}
-                ></CustomInput>
-                <Button
-                    buttonText="register"
-                    onBtnClicked={handleSubmit}
-                ></Button>
-                <>{errorMsg}</>
-                {/* </form> */}
+                <StyledFlexWrapper
+                    flexDirection="column"
+                    paddingTop="3rem"
+                    justifyContent="space-around"
+                    height="100%"
+                >
+                    <CustomInput
+                        id="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        inputLabel="name"
+                        required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        inputLabel="email"
+                        required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="password"
+                        type="password"
+                        value={form.password}
+                        onChange={handleChange}
+                        inputLabel="password"
+                        required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        type="password"
+                        value={confirmPassword}
+                        onChange={handleConfirmPassword}
+                        inputLabel="confirm password"
+                        required={true}
+                    ></CustomInput>
+                    <StyledFlexWrapper>
+                        <Button
+                            buttonText="register"
+                            onBtnClicked={handleSubmit}
+                        ></Button>
+                    </StyledFlexWrapper>
+                    <>{errorMsg}</>
+                    {/* </form> */}
+                </StyledFlexWrapper>
             </StyledModal>
         </StyledModalWrapper>
     );

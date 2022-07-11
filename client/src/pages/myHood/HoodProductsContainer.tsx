@@ -1,5 +1,4 @@
 import React from "react";
-import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import Product from "../../context/productContext/Product.types";

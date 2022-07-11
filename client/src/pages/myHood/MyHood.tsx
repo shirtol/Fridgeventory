@@ -6,10 +6,12 @@ const MyHood = () => {
     return (
         <StyledFlexWrapper
             alignItems="flex-start"
-            justifyContent="space-around"
+            justifyContent="flex-end"
+            width="90%"
+            justifySelf="flex-end"
         >
-            <NeighborsList></NeighborsList>
             <HoodProductsContainer></HoodProductsContainer>
+            <NeighborsList></NeighborsList>
         </StyledFlexWrapper>
     );
 };

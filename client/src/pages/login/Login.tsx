@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../../components/button/Button";
 import CustomInput from "../../components/input/CustomInput";
+import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import { useUser } from "../../context/userContext/User.context";
@@ -30,23 +31,35 @@ const Login = () => {
         <StyledModalWrapper>
             <StyledModal>
                 {/* <form> */}
-                <CustomInput
-                    id="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    inputLabel="email"
-                    required={true}
-                ></CustomInput>
-                <CustomInput
-                    id="password"
-                    type="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    inputLabel="password"
-                    required={true}
-                ></CustomInput>
-                <Button buttonText="login" onBtnClicked={handleSubmit}></Button>
+                <StyledFlexWrapper
+                    flexDirection="column"
+                    paddingTop="3rem"
+                    justifyContent="space-around"
+                    height="100%"
+                >
+                    <CustomInput
+                        id="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        inputLabel="email"
+                        required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="password"
+                        type="password"
+                        value={form.password}
+                        onChange={handleChange}
+                        inputLabel="password"
+                        required={true}
+                    ></CustomInput>
+                    <StyledFlexWrapper>
+                        <Button
+                            buttonText="login"
+                            onBtnClicked={handleSubmit}
+                        ></Button>
+                    </StyledFlexWrapper>
+                </StyledFlexWrapper>
                 <>{errorMsg}</>
                 {/* </form> */}
             </StyledModal>
