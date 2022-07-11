@@ -42,7 +42,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
                 },
             }
         );
-        console.log(data);
         setCurrUser(data);
         return data;
     };

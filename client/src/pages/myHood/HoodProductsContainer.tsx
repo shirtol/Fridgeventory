@@ -1,25 +1,30 @@
 import React from "react";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
+import { useHood } from "../../context/hoodContext/Hood.context";
+import Product from "../../context/productContext/Product.types";
+import { v4 as uuid } from "uuid";
 
 const HoodProductsContainer = () => {
-    const renderHoodProducts = () => {};
+    const { myHood } = useHood();
+
+    console.log(myHood);
+
+    const renderHoodProducts = () => {
+        return myHood?.availableProducts.map((product) => {
+            const uniqueId = uuid();
+            return (
+                <ProductCard
+                    product={product as Product}
+                    key={typeof product !== "string" ? product._id : uniqueId}
+                ></ProductCard>
+            );
+        });
+    };
 
     return (
         <StyledFlexWrapper width="70%">
-            <ProductCard
-                product={{
-                    name: "Milk",
-                    amount: 3,
-                    productImage:
-                        "https://fridgeventory.s3.eu-central-1.amazonaws.com/WQO50_Z_P_7290114310949_1.webp",
-                    expiryDate: new Date(),
-                    category: "Diary",
-                    _id: "123",
-                    isShared: false,
-                }}
-            ></ProductCard>
-            {/* {renderHoodProducts()} */}
+            {renderHoodProducts()}
         </StyledFlexWrapper>
     );
 };

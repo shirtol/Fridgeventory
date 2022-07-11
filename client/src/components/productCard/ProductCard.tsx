@@ -11,9 +11,13 @@ import {
     ContextMenu,
     ContextMenuItem,
 } from "rctx-contextmenu";
-import { deleteProductById } from "../../services/product.services";
+import {
+    deleteProductById,
+    shareProductToHood,
+} from "../../services/product.services";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
+import { useHood } from "../../context/hoodContext/Hood.context";
 
 interface ProductCardProps {
     product: Product;
@@ -22,6 +26,8 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
     const { token } = useUser();
     const { allProducts, setAllProducts } = useProduct();
+    const { myHood, setMyHood, productsInHood, setProductsInHood, getMyHood } =
+        useHood();
 
     const handleDelete = async () => {
         const deletedProduct = await deleteProductById(product._id, token!);
@@ -31,7 +37,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
         setAllProducts!(newProductsArr!);
     };
 
-    const addProductToHood = async () => {};
+    const addProductToHood = async () => {
+        const { hoodAfterUpdating, productAfterUpdating } =
+            await shareProductToHood(
+                myHood?._id as string,
+                token!,
+                product._id
+            );
+        console.log(productAfterUpdating);
+        await getMyHood!(myHood!._id);
+    };
 
     return (
         <>

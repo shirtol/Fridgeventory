@@ -70,6 +70,7 @@ export const shareProduct = async (req, res) => {
         const productAfterUpdating = await updateProductAfterSharing(
             req.body.productId
         );
+        console.log(productAfterUpdating);
         return res
             .status(200)
             .send({ hoodAfterUpdating, productAfterUpdating });
