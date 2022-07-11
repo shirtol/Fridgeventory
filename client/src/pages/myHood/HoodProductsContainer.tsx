@@ -4,6 +4,7 @@ import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import Product from "../../context/productContext/Product.types";
 import { v4 as uuid } from "uuid";
+import { StyledHoodProductsWrapper } from "./styles/StyledHoodProductsWrapper";
 
 const HoodProductsContainer = () => {
     const { myHood } = useHood();
@@ -15,6 +16,7 @@ const HoodProductsContainer = () => {
             const uniqueId = uuid();
             return (
                 <ProductCard
+                    isMyFridge={false}
                     product={product as Product}
                     key={typeof product !== "string" ? product._id : uniqueId}
                 ></ProductCard>
@@ -23,9 +25,9 @@ const HoodProductsContainer = () => {
     };
 
     return (
-        <StyledFlexWrapper width="70%">
+        <StyledHoodProductsWrapper>
             {renderHoodProducts()}
-        </StyledFlexWrapper>
+        </StyledHoodProductsWrapper>
     );
 };
 

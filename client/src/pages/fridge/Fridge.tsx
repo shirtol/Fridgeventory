@@ -17,7 +17,11 @@ const Fridge = () => {
     const renderAllProducts = () => {
         return allProducts?.map((product) => {
             return (
-                <ProductCard product={product} key={product._id}></ProductCard>
+                <ProductCard
+                    product={product}
+                    key={product._id}
+                    isMyFridge={true}
+                ></ProductCard>
             );
         });
     };

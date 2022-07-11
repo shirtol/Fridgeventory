@@ -21,9 +21,10 @@ import { useHood } from "../../context/hoodContext/Hood.context";
 
 interface ProductCardProps {
     product: Product;
+    isMyFridge: boolean;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, isMyFridge }: ProductCardProps) => {
     const { token } = useUser();
     const { allProducts, setAllProducts } = useProduct();
     const { myHood, setMyHood, productsInHood, setProductsInHood, getMyHood } =
@@ -52,7 +53,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={product._id}>
-                <StyledCard hasShared={product.isShared}>
+                <StyledCard
+                    hasShared={product.isShared}
+                    isMyFridge={isMyFridge}
+                >
                     <StyledCardTitle>{product.name}</StyledCardTitle>
                     <StyledCategory>{product.category}</StyledCategory>
                     <StyledImageBox>

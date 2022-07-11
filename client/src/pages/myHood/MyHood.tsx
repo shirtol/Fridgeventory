@@ -4,7 +4,10 @@ import NeighborsList from "./NeighborsList";
 
 const MyHood = () => {
     return (
-        <StyledFlexWrapper>
+        <StyledFlexWrapper
+            alignItems="flex-start"
+            justifyContent="space-around"
+        >
             <NeighborsList></NeighborsList>
             <HoodProductsContainer></HoodProductsContainer>
         </StyledFlexWrapper>
