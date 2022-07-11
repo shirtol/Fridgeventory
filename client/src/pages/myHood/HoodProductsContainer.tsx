@@ -16,6 +16,7 @@ const HoodProductsContainer = () => {
             const uniqueId = uuid();
             return (
                 <ProductCard
+                    shouldShowContextMenu={false}
                     isMyFridge={false}
                     product={product as Product}
                     key={typeof product !== "string" ? product._id : uniqueId}
