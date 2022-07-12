@@ -6,6 +6,6 @@ export interface Hood {
     location: string;
     peopleIdsArr: string[];
     _id: string;
-    availableProducts: string[] | Product[];
+    availableProducts: Product[];
     people: User[];
 }

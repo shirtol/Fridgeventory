@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { productsApi } from "../../apis/fridgeventoryApi";
-import Product from "./Product.types";
+import Product, { parseProduct } from "./Product.types";
 import { useUser } from "../userContext/User.context";
 
 interface ProductContextValue {
     allProducts: Product[];
     setAllProducts: (products: Product[]) => void;
+    addProduct: (product: Product) => void;
 }
 
 interface ProductProviderProps {
@@ -27,7 +28,19 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
                 Authorization: token!,
             },
         });
-        setAllProducts(data);
+        const products: Product[] = data.map(parseProduct);
+
+        setAllProducts(products);
+    };
+
+    const addProduct = (product: Product) => {
+        const newProductsArr = allProducts.map((currProducts) => {
+            if (currProducts._id === product._id) {
+                return product;
+            }
+            return currProducts;
+        });
+        setAllProducts(newProductsArr);
     };
 
     useEffect(() => {
@@ -38,7 +51,11 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         }
     }, [currUser, token]);
 
-    const value: ProductContextValue = { allProducts, setAllProducts };
+    const value: ProductContextValue = {
+        allProducts,
+        setAllProducts,
+        addProduct,
+    };
 
     return (
         <ProductContext.Provider value={value}>

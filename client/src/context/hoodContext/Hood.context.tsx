@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
-import Product from "../productContext/Product.types";
+import Product, { parseProduct } from "../productContext/Product.types";
 import { useUser } from "../userContext/User.context";
 import { User } from "../userContext/User.type";
 import { Hood } from "./Hood.type";
@@ -44,6 +44,8 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
+        data.populatedHood.availableProducts =
+            data.populatedHood.availableProducts.map(parseProduct);
         setMyHood(data.populatedHood);
         setUsersInHood(data.usersInHood);
     };
@@ -54,6 +56,8 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                 Authorization: token!,
             },
         });
+        data.hood.availableProducts =
+            data.hood.availableProducts.map(parseProduct);
         setMyHood(data.hood);
         setUsersInHood(data.usersInHood);
         return data;

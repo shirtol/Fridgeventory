@@ -2,6 +2,7 @@ import styled from "styled-components";
 import device from "../../../utils/stylesUtils/mediaQuerySizes";
 
 export const StyledNavbar = styled.header`
+    grid-area: sidebar;
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -12,7 +13,8 @@ export const StyledNavbar = styled.header`
     width: 17%;
     position: fixed;
     z-index: 100;
-    top: 2rem;
+    top: 50%;
+    margin-top: -20rem;
     left: 2rem;
     padding-left: 2rem;
     height: 100vh;

@@ -4,8 +4,10 @@ import styled from "styled-components";
 export const StyledSlogan = styled.div`
     font-family: "GraphikMedium";
     font-size: 4rem;
-    position: absolute;
     top: 50%;
     left: 10rem;
     letter-spacing: 3px;
+    z-index: 210;
+    color: #edd8ba;
+    cursor: pointer;
 `;

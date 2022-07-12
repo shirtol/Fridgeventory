@@ -5,11 +5,14 @@ import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 interface StyledButtonProps {
     fontSize?: string;
     disabled?: boolean;
+    position?: string;
 }
 
 export const StyledButton = styled.div<StyledButtonProps>`
     padding: 0.8rem 2.8rem;
     font-size: ${(props) => props.fontSize ?? "2rem"};
+    position: ${(props) => props.position ?? "static"};
+    bottom: 2rem;
     font-family: "Poppins", sans-serif;
     letter-spacing: 2px;
     border-radius: 4px;

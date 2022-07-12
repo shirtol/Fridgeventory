@@ -11,7 +11,12 @@ import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChoo
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
-import Product from "../../context/productContext/Product.types";
+import Product, {
+    parseProduct,
+} from "../../context/productContext/Product.types";
+import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
+import "./styles/datePicker/datePickerStyle.css";
+import { StyledCameraIcon } from "./styles/StyledCameraIcon";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -44,47 +49,70 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     };
 
     const handleSubmit = async () => {
+        closeModal();
         setSubmitMsg("Submitted!");
         try {
-            const formData = new FormData();
-            Object.entries(form).forEach((entry) => {
-                formData.append(
-                    entry[0],
-                    isBlob(entry[1]) ? entry[1] : entry[1].toString()
-                );
-            });
+            const formData = createFormData();
+            const { data } = await createProductInServer(formData);
 
-            // setAllProducts((prev) => )
-
-            const { data } = await productsApi.post("/addProduct", formData, {
-                headers: {
-                    Authorization: token!,
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            setAllProducts &&
-                allProducts &&
-                setAllProducts([...allProducts, data as Product]);
-
-            setForm({
-                name: "",
-                amount: 1,
-                productImage: new Blob(),
-                expiryDate: new Date(),
-                category: "other",
-            });
-            closeModal();
+            updateProducts(data);
+            resetForm();
         } catch (err: any) {
             setSubmitMsg(err.response.data || err.message);
         }
+    };
+
+    const resetForm = () => {
+        setForm({
+            name: "",
+            amount: 1,
+            productImage: new Blob(),
+            expiryDate: new Date(),
+            category: "other",
+        });
+    };
+
+    const createFormData = () => {
+        const formData = new FormData();
+        Object.entries(form).forEach((entry) => {
+            formData.append(
+                entry[0],
+                isBlob(entry[1]) ? entry[1] : entry[1].toString()
+            );
+        });
+        return formData;
+    };
+
+    const updateProducts = (data: any) => {
+        setAllProducts &&
+            allProducts &&
+            setAllProducts([...allProducts, parseProduct(data)]);
+    };
+
+    const createProductInServer = async (formData: FormData): Promise<any> => {
+        return await productsApi.post("/addProduct", formData, {
+            headers: {
+                Authorization: token!,
+                "Content-Type": "multipart/form-data",
+            },
+        });
     };
 
     return (
         <>
             {isShown && (
                 <StyledModalWrapper>
-                    <StyledModal height="85%">
+                    <StyledModal
+                        height="45%"
+                        width="30%"
+                        justifyContent="flex-start"
+                    >
+                        <SelectImage
+                            productImage={form.productImage}
+                            handleChange={handleChange}
+                            inputLabel="Product Image"
+                        ></SelectImage>
+
                         <CustomInput
                             id="name"
                             value={form.name}
@@ -92,11 +120,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             inputLabel="Product Name"
                             required={true}
                         ></CustomInput>
-                        <SelectImage
-                            productImage={form.productImage}
-                            handleChange={handleChange}
-                            inputLabel="Product Image"
-                        ></SelectImage>
+
                         <CustomInput
                             id="amount"
                             type="number"
@@ -110,23 +134,26 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                         <ProductCategoryChooser
                             onCategoryChange={handleCategoryChange}
                         ></ProductCategoryChooser>
-                        <Title titleText="Expiry date"></Title>
-                        <DatePicker
-                            onChange={(date: Date) => {
-                                setForm((prev) => ({
-                                    ...prev,
-                                    expiryDate: date,
-                                }));
-                            }}
-                            value={form.expiryDate}
-                        />
+                        <StyledFlexWrapper>
+                            <Title titleText="Expiry date"></Title>
+                            <DatePicker
+                                onChange={(date: Date) => {
+                                    setForm((prev) => ({
+                                        ...prev,
+                                        expiryDate: date,
+                                    }));
+                                }}
+                                value={form.expiryDate}
+                            />
+                        </StyledFlexWrapper>
 
-                        <Button
-                            buttonText="Add New Product"
-                            onBtnClicked={handleSubmit}
-                        ></Button>
+                        <StyledFlexWrapper alignItems="flex-end">
+                            <Button
+                                buttonText="Add New Product"
+                                onBtnClicked={handleSubmit}
+                            ></Button>
+                        </StyledFlexWrapper>
                     </StyledModal>
-                    <>{submitMsg}</>
                 </StyledModalWrapper>
             )}
         </>

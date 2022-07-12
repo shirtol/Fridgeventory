@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
+import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useProduct } from "../../context/productContext/Product.context";
@@ -28,18 +29,20 @@ const Fridge = () => {
     };
 
     return (
-        <StyledMainWrapper>
+        <StyledMainArea>
             <AddProductModal
                 isShown={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
             ></AddProductModal>
-            <StyledGridWrapper>{renderAllProducts()}</StyledGridWrapper>
+            <StyledMainWrapper>
+                <StyledGridWrapper>{renderAllProducts()}</StyledGridWrapper>
 
-            <StyledAddBtn
-                className="fa-solid fa-circle-plus fa-3x"
-                onClick={onAddBtnClicked}
-            ></StyledAddBtn>
-        </StyledMainWrapper>
+                <StyledAddBtn
+                    className="fa-solid fa-circle-plus fa-3x"
+                    onClick={onAddBtnClicked}
+                ></StyledAddBtn>
+            </StyledMainWrapper>
+        </StyledMainArea>
     );
 };
 

@@ -18,6 +18,8 @@ import {
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
 import { useHood } from "../../context/hoodContext/Hood.context";
+import { StyledExpireDays } from "./styles/StyledExpiryDays";
+import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 
 interface ProductCardProps {
     product: Product;
@@ -31,9 +33,8 @@ const ProductCard = ({
     shouldShowContextMenu,
 }: ProductCardProps) => {
     const { token } = useUser();
-    const { allProducts, setAllProducts } = useProduct();
-    const { myHood, setMyHood, productsInHood, setProductsInHood, getMyHood } =
-        useHood();
+    const { allProducts, setAllProducts, addProduct } = useProduct();
+    const { myHood, getMyHood } = useHood();
 
     const handleDelete = async () => {
         const deletedProduct = await deleteProductById(product._id, token!);
@@ -44,33 +45,50 @@ const ProductCard = ({
     };
 
     const addProductToHood = async () => {
-        const { hoodAfterUpdating, productAfterUpdating } =
-            await shareProductToHood(
-                myHood?._id as string,
-                token!,
-                product._id
-            );
-        console.log(productAfterUpdating);
+        const { productAfterUpdating } = await shareProductToHood(
+            myHood?._id as string,
+            token!,
+            product._id
+        );
+        addProduct && addProduct(productAfterUpdating);
         await getMyHood!(myHood!._id);
     };
+
+    const getExpiryDays = (date: Date) => {
+        const parsedDate = new Date(date);
+        let difference = parsedDate.getTime() - new Date().getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays;
+    };
+
+    const dayUntilExpiry = getExpiryDays(product.expiryDate);
 
     return (
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={shouldShowContextMenu ? product._id : ""}>
-                <StyledCard
-                    hasShared={product.isShared}
-                    isMyFridge={isMyFridge}
-                >
-                    <StyledCardTitle>{product.name}</StyledCardTitle>
-                    <StyledCategory>{product.category}</StyledCategory>
-                    <StyledImageBox>
-                        <StyledProductImg
-                            src={product.productImage}
-                        ></StyledProductImg>
-                    </StyledImageBox>
-                    <StyledProductAmount>{product.amount}</StyledProductAmount>
-                    <StyledExpireMsg>{`Expires in: ${product.expiryDate}`}</StyledExpireMsg>
+                <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
+                    <StyledFlexWrapper flexDirection="column">
+                        <StyledImageBox>
+                            <StyledProductImg
+                                src={product.productImage}
+                            ></StyledProductImg>
+                        </StyledImageBox>
+                        <StyledProductAmount>
+                            {`amount: ${product.amount}`}
+                        </StyledProductAmount>
+                    </StyledFlexWrapper>
+                    <StyledFlexWrapper flexDirection="column" height="100%">
+                        <StyledCardTitle>{product.name}</StyledCardTitle>
+                        <StyledCategory>{product.category}</StyledCategory>
+                        <StyledExpireMsg>
+                            Expires in{" "}
+                            <StyledExpireDays numOfDays={dayUntilExpiry}>
+                                {dayUntilExpiry}
+                            </StyledExpireDays>{" "}
+                            days
+                        </StyledExpireMsg>
+                    </StyledFlexWrapper>
                 </StyledCard>
             </ContextMenuTrigger>
 

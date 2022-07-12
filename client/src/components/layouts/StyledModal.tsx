@@ -4,10 +4,13 @@ import { Colors, Shadows } from "../../utils/stylesUtils/stylesConsts";
 
 interface StyledModalProps {
     height?: string;
+    justifyContent?: string;
+    alignItems?: string;
+    width?: string;
 }
 
 export const StyledModal = styled.div<StyledModalProps>`
-    width: 40%;
+    width: ${(props) => props.width ?? "40%"};
     height: ${(props) => props.height ?? "65%"};
     background-color: ${Colors.whiteSmoke};
     background-image: ${Colors.modalBg};
@@ -16,8 +19,8 @@ export const StyledModal = styled.div<StyledModalProps>`
     box-shadow: ${Shadows.modalBoxShadow};
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: ${(props) => props.alignItems ?? "center"};
+    justify-content: ${(props) => props.justifyContent ?? "flex-start"};
     gap: 2rem;
     position: sticky;
     font-family: "Poppins", sans-serif;

@@ -3,14 +3,13 @@ import { Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
 interface StyledCardProps {
     boxShadow: string;
-    hasShared: boolean;
+    isShared: boolean;
     isMyFridge: boolean;
 }
 
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
     display: flex;
-    width: 100%;
-    flex-direction: column;
+    width: 30rem;
     align-items: center;
     justify-content: space-around;
     box-shadow: ${(props) => props.boxShadow ?? Shadows.cardBoxShadow};
@@ -19,12 +18,13 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
     gap: 1rem;
     padding: 1rem;
     border: ${(props) =>
-        props.hasShared
+        props.isShared
             ? props.isMyFridge
                 ? "1px solid #3C80B9"
                 : "none"
             : "none"};
     & > * {
         flex: 1;
+        text-align: center;
     }
 `;
