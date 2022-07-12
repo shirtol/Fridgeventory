@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledBannerWrapper = styled.div`
+    grid-area: header;
     display: flex;
     align-items: center;
     justify-content: center;

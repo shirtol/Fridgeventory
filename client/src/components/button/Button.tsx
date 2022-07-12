@@ -7,11 +7,7 @@ interface ButtonProps {
 }
 
 const Button = ({ buttonText, onBtnClicked }: ButtonProps) => {
-    return (
-        <StyledButton onClick={onBtnClicked} position="absolute">
-            {buttonText}
-        </StyledButton>
-    );
+    return <StyledButton onClick={onBtnClicked}>{buttonText}</StyledButton>;
 };
 
 export default Button;

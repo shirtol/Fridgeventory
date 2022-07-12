@@ -1,10 +1,11 @@
 import { Route, Switch } from "react-router-dom";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
+import { StyledMainAreaGrid } from "../../components/layouts/StyledMainAreaGrid";
 import Navbar from "../../components/navbar/Navbar";
 import WebsiteBanner from "../../components/websiteBanner/WebsiteBanner";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
-import HoodPage from "../hood/Hood";
+import HoodPage from "../hood/HoodPage";
 import Login from "../login/Login";
 import Logout from "../logout/Logout";
 import MyHood from "../myHood/MyHood";
@@ -14,7 +15,7 @@ import Statistics from "../statistics/Statistics";
 
 const Routes = () => {
     return (
-        <StyledFlexWrapper height="100vh" justifyContent="space-around">
+        <StyledMainAreaGrid>
             <WebsiteBanner></WebsiteBanner>
             <Navbar></Navbar>
             <Switch>
@@ -32,7 +33,7 @@ const Routes = () => {
                 <Route exact path="/logout" component={Logout}></Route>
                 <Route exact path="/my-hood" component={MyHood}></Route>
             </Switch>
-        </StyledFlexWrapper>
+        </StyledMainAreaGrid>
     );
 };
 

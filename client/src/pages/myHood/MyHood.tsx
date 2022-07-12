@@ -1,11 +1,12 @@
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
+import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import HoodProductsContainer from "./HoodProductsContainer";
 import NeighborsList from "./NeighborsList";
 
 const MyHood = () => {
     return (
-        <StyledMainWrapper>
+        <StyledMainArea>
             <StyledFlexWrapper
                 alignItems="flex-start"
                 justifyContent="flex-end"
@@ -15,7 +16,7 @@ const MyHood = () => {
                 <HoodProductsContainer></HoodProductsContainer>
                 <NeighborsList></NeighborsList>
             </StyledFlexWrapper>
-        </StyledMainWrapper>
+        </StyledMainArea>
     );
 };
 

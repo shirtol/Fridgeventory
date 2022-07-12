@@ -29,7 +29,7 @@ const Login = () => {
 
     return (
         <StyledModalWrapper>
-            <StyledModal>
+            <StyledModal height="40%" width="30%">
                 {/* <form> */}
                 <StyledFlexWrapper
                     flexDirection="column"

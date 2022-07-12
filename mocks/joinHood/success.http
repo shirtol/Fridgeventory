@@ -1,10 +1,10 @@
 PUT /api/auth/hood/joinHood HTTP/1.1
 Host: {{host}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNiMmViOTc4ZTk2NzdlNzdkMTQ1NWQiLCJpYXQiOjE2NTc0ODI5Mzh9.LxxNwmCIGhgG3Cd6PraJ8X7l3wXEbrLfybFIgel4C7A
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNiMmViOTc4ZTk2NzdlNzdkMTQ1NWQiLCJpYXQiOjE2NTc2MTA1MTd9.ZUcklyqzM40sFF_2rol3WxJHVatliag35aYSOwyrEMw
 
 
 
 {
-    "location": "Carmel Market, HaShomer St 2, Tel Aviv-Yafo, 6560101, Israel"
+    "location": "HaGiborim St 1, Hadera, Israel"
 }
