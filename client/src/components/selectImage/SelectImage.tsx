@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { StyledCameraIcon } from "../../pages/fridge/styles/StyledCameraIcon";
 import Button from "../button/Button";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledProductImg } from "../productCard/styles/StyledProductImg";
@@ -28,10 +29,14 @@ const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
                 accept="image/*"
                 ref={(fp) => (fileInput = fp)}
             ></StyledSelectImage>
-            <Button
+            <StyledCameraIcon
+                onClick={() => fileInput?.click()}
+                className="fa-solid fa-camera fa-2x"
+            ></StyledCameraIcon>
+            {/* <Button
                 onBtnClicked={() => fileInput?.click()}
                 buttonText="Upload image"
-            ></Button>
+            ></Button> */}
             {productImage.size > 0 && (
                 <StyledProductImg
                     id="preview"

@@ -15,6 +15,8 @@ import Product, {
     parseProduct,
 } from "../../context/productContext/Product.types";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
+import "./styles/datePicker/datePickerStyle.css";
+import { StyledCameraIcon } from "./styles/StyledCameraIcon";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -100,7 +102,17 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         <>
             {isShown && (
                 <StyledModalWrapper>
-                    <StyledModal height="65%" justifyContent="space-evenly">
+                    <StyledModal
+                        height="45%"
+                        width="30%"
+                        justifyContent="flex-start"
+                    >
+                        <SelectImage
+                            productImage={form.productImage}
+                            handleChange={handleChange}
+                            inputLabel="Product Image"
+                        ></SelectImage>
+
                         <CustomInput
                             id="name"
                             value={form.name}
@@ -108,11 +120,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             inputLabel="Product Name"
                             required={true}
                         ></CustomInput>
-                        <SelectImage
-                            productImage={form.productImage}
-                            handleChange={handleChange}
-                            inputLabel="Product Image"
-                        ></SelectImage>
+
                         <CustomInput
                             id="amount"
                             type="number"
@@ -139,10 +147,12 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                             />
                         </StyledFlexWrapper>
 
-                        <Button
-                            buttonText="Add New Product"
-                            onBtnClicked={handleSubmit}
-                        ></Button>
+                        <StyledFlexWrapper alignItems="flex-end">
+                            <Button
+                                buttonText="Add New Product"
+                                onBtnClicked={handleSubmit}
+                            ></Button>
+                        </StyledFlexWrapper>
                     </StyledModal>
                 </StyledModalWrapper>
             )}

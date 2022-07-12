@@ -25,5 +25,6 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
             : "none"};
     & > * {
         flex: 1;
+        text-align: center;
     }
 `;

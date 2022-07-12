@@ -78,7 +78,7 @@ const ProductCard = ({
                             {`amount: ${product.amount}`}
                         </StyledProductAmount>
                     </StyledFlexWrapper>
-                    <StyledFlexWrapper flexDirection="column">
+                    <StyledFlexWrapper flexDirection="column" height="100%">
                         <StyledCardTitle>{product.name}</StyledCardTitle>
                         <StyledCategory>{product.category}</StyledCategory>
                         <StyledExpireMsg>

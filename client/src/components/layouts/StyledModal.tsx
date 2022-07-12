@@ -6,10 +6,11 @@ interface StyledModalProps {
     height?: string;
     justifyContent?: string;
     alignItems?: string;
+    width?: string;
 }
 
 export const StyledModal = styled.div<StyledModalProps>`
-    width: 40%;
+    width: ${(props) => props.width ?? "40%"};
     height: ${(props) => props.height ?? "65%"};
     background-color: ${Colors.whiteSmoke};
     background-image: ${Colors.modalBg};
