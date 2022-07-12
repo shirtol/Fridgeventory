@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Button from "../button/Button";
+import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
+import { StyledProductImg } from "../productCard/styles/StyledProductImg";
 import { StyledSelectImage } from "./styles/StyledSelectImage";
 
 interface SelectImageProps {
@@ -9,17 +12,34 @@ interface SelectImageProps {
 const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
     const onImageChange = (e: any) => {
         handleChange(e);
+        console.log(productImage);
     };
 
+    let fileInput: HTMLElement | null;
+
     return (
-        <StyledSelectImage
-            id="productImage"
-            type="file"
-            onChange={onImageChange}
-            required={false}
-            capture="environment"
-            accept="image/*"
-        ></StyledSelectImage>
+        <StyledFlexWrapper flexDirection="column">
+            <StyledSelectImage
+                id="productImage"
+                type="file"
+                onChange={onImageChange}
+                required={false}
+                capture="environment"
+                accept="image/*"
+                ref={(fp) => (fileInput = fp)}
+            ></StyledSelectImage>
+            <Button
+                onBtnClicked={() => fileInput?.click()}
+                buttonText="Upload image"
+            ></Button>
+            {productImage.size > 0 && (
+                <StyledProductImg
+                    id="preview"
+                    src={URL.createObjectURL(productImage)}
+                    alt="preview"
+                ></StyledProductImg>
+            )}
+        </StyledFlexWrapper>
     );
 };
 

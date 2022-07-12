@@ -28,18 +28,20 @@ const Fridge = () => {
     };
 
     return (
-        <StyledMainWrapper>
+        <>
             <AddProductModal
                 isShown={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
             ></AddProductModal>
-            <StyledGridWrapper>{renderAllProducts()}</StyledGridWrapper>
+            <StyledMainWrapper>
+                <StyledGridWrapper>{renderAllProducts()}</StyledGridWrapper>
 
-            <StyledAddBtn
-                className="fa-solid fa-circle-plus fa-3x"
-                onClick={onAddBtnClicked}
-            ></StyledAddBtn>
-        </StyledMainWrapper>
+                <StyledAddBtn
+                    className="fa-solid fa-circle-plus fa-3x"
+                    onClick={onAddBtnClicked}
+                ></StyledAddBtn>
+            </StyledMainWrapper>
+        </>
     );
 };
 

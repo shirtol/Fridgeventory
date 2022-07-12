@@ -7,6 +7,7 @@ import { useUser } from "../userContext/User.context";
 interface ProductContextValue {
     allProducts: Product[];
     setAllProducts: (products: Product[]) => void;
+    addProduct: (product: Product) => void;
 }
 
 interface ProductProviderProps {
@@ -32,6 +33,16 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         setAllProducts(products);
     };
 
+    const addProduct = (product: Product) => {
+        const newProductsArr = allProducts.map((currProducts) => {
+            if (currProducts._id === product._id) {
+                return product;
+            }
+            return currProducts;
+        });
+        setAllProducts(newProductsArr);
+    };
+
     useEffect(() => {
         if (currUser) {
             fetchProducts();
@@ -40,7 +51,11 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         }
     }, [currUser, token]);
 
-    const value: ProductContextValue = { allProducts, setAllProducts };
+    const value: ProductContextValue = {
+        allProducts,
+        setAllProducts,
+        addProduct,
+    };
 
     return (
         <ProductContext.Provider value={value}>

@@ -33,7 +33,7 @@ const ProductCard = ({
     shouldShowContextMenu,
 }: ProductCardProps) => {
     const { token } = useUser();
-    const { allProducts, setAllProducts } = useProduct();
+    const { allProducts, setAllProducts, addProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
 
     const handleDelete = async () => {
@@ -45,18 +45,18 @@ const ProductCard = ({
     };
 
     const addProductToHood = async () => {
-        const { hoodAfterUpdating, productAfterUpdating } =
-            await shareProductToHood(
-                myHood?._id as string,
-                token!,
-                product._id
-            );
-        console.log(productAfterUpdating);
+        const { productAfterUpdating } = await shareProductToHood(
+            myHood?._id as string,
+            token!,
+            product._id
+        );
+        addProduct && addProduct(productAfterUpdating);
         await getMyHood!(myHood!._id);
     };
 
     const getExpiryDays = (date: Date) => {
-        let difference = date.getTime() - new Date().getTime();
+        const parsedDate = new Date(date);
+        let difference = parsedDate.getTime() - new Date().getTime();
         let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
         return TotalDays;
     };
@@ -67,10 +67,7 @@ const ProductCard = ({
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={shouldShowContextMenu ? product._id : ""}>
-                <StyledCard
-                    hasShared={product.isShared}
-                    isMyFridge={isMyFridge}
-                >
+                <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
                     <StyledFlexWrapper flexDirection="column">
                         <StyledImageBox>
                             <StyledProductImg
