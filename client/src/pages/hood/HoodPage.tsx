@@ -1,5 +1,5 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import HoodCard from "../../components/hoodCard/HoodCard";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
@@ -43,16 +43,26 @@ const HoodPage = () => {
         setSelectedHood(currHood);
     };
 
-    const renderAllHoods = () => {
-        return allHoods?.map((hood) => {
-            return (
-                <HoodCard
-                    hood={hood}
-                    onHoodClicked={onHoodClicked}
-                    key={hood._id}
-                ></HoodCard>
-            );
-        });
+    const renderAllHoods = (): ReactNode => {
+        return allHoods?.filter(filterHoodsByUserInput).map(renderHoodCard);
+    };
+
+    const filterHoodsByUserInput = (hood: Hood): boolean => {
+        if (!inputValue) return true;
+        return hood.location
+            .toLowerCase()
+            .split(" ")
+            .some((str) => str.includes(inputValue.toLowerCase()));
+    };
+
+    const renderHoodCard = (hood: Hood): ReactNode => {
+        return (
+            <HoodCard
+                hood={hood}
+                onHoodClicked={onHoodClicked}
+                key={hood._id}
+            ></HoodCard>
+        );
     };
 
     useEffect(() => {
