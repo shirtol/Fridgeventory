@@ -7,6 +7,6 @@ export const StyledAddBtn = styled.i`
     right: 2rem;
     z-index: 20;
     cursor: pointer;
-    color: ${Colors.orange};
+    color: ${Colors.blue};
     text-shadow: ${Shadows.addBtnBoxShadow};
 `;

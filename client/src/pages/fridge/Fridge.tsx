@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StyledBackground } from "../../components/layouts/StyledBackground";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
@@ -68,7 +69,7 @@ const Fridge = () => {
     };
 
     return (
-        <StyledMainArea>
+        <>
             <AddProductModal
                 isShown={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
@@ -91,7 +92,7 @@ const Fridge = () => {
                     onClick={onAddBtnClicked}
                 ></StyledAddBtn>
             </StyledMainWrapper>
-        </StyledMainArea>
+        </>
     );
 };
 

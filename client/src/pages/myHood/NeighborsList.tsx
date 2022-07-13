@@ -20,8 +20,6 @@ const NeighborsList = () => {
             width="max-content"
             justifyContent="flex-start"
             alignItems="flex-end"
-            paddingTop="14rem"
-            height="90vh"
             overflowY="scroll"
         >
             {renderAllNeighbors()}

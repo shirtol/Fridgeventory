@@ -1,5 +1,5 @@
 export const Colors = {
-    orange: "#e66e39",
+    blue: "#7AA3C6",
     greyInput: "#f1f1f1",
     whiteInput: "fff",
     blackText: "#333",
@@ -11,8 +11,8 @@ export const Colors = {
     homePageBoxBg:
         "linear-gradient(190deg,rgba(255, 255, 255, 1) 0%,rgba(241, 241, 241, 0.6923144257703081) 58%,rgba(230, 110, 57, 0.40379901960784315) 100%)",
     modalBg: "linear-gradient(315deg, #f6f6f6 0%, #e9e9e9 74%)",
-    scrollbarThumb: "#ff4e00",
-    scrollbarGradient: "linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%)",
+    scrollbarThumb: " #6a93cb",
+    scrollbarGradient: "linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%)",
     modalWrapperBg: "rgba(255, 255, 255, 0.416)",
 };
 

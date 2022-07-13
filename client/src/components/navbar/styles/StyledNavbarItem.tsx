@@ -7,7 +7,7 @@ export const StyledNavbarItem = styled.li`
         text-decoration: none;
         color: ${(props) => props.color ?? Colors.blackText};
         &:hover {
-            color: ${Colors.orange};
+            color: ${Colors.blue};
             transition: 200ms ease-in-out;
         }
     }

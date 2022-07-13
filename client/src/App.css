@@ -13,8 +13,13 @@ html {
     color: #333;
 }
 
-body {
+.App {
     height: 100vh;
+}
+
+.App > * {
+    height: 100%;
+    width: 100%;
 }
 
 html *::-webkit-scrollbar {
@@ -25,7 +30,7 @@ html *::-webkit-scrollbar {
 }
 
 html *::-webkit-scrollbar-thumb {
-    background-color: #ff4e00;
-    background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+    background-color: #6a93cb;
+    background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
     border-radius: 4px;
 }

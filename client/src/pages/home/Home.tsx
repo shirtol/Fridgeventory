@@ -11,7 +11,6 @@ import HouseSpinner from "../../components/spinner/HouseSpinner";
 const Home = () => {
     return (
         <>
-            <StyledBackground></StyledBackground>
             {/* <StyledSlogan>More Food? Share It!</StyledSlogan> */}
             {/* <StyledMainWrapper>
                 <StyledFlexWrapper

@@ -19,7 +19,7 @@ export const StyledButton = styled.div<StyledButtonProps>`
     background-color: ${(props) =>
         props.disabled ? Colors.greyIcon : Colors.whiteSmoke};
     box-shadow: ${Shadows.buttonBoxShadow};
-    color: ${(props) => (props.disabled ? Colors.whiteSmoke : Colors.orange)};
+    color: ${(props) => (props.disabled ? Colors.whiteSmoke : Colors.blue)};
     width: max-content;
     height: max-content;
     cursor: pointer;
