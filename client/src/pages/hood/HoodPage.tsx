@@ -44,7 +44,6 @@ const HoodPage = () => {
             availableProducts: [],
             location: currAutoComplete!.getPlace().formatted_address as string,
             peopleIdsArr: [],
-            people: [],
             _id: "",
         });
     };
@@ -54,14 +53,11 @@ const HoodPage = () => {
     };
 
     const renderAllHoods = (): ReactNode => {
-        console.log(allHoods);
-
         return allHoods?.filter(isUserInputInHoodLocations).map(renderHoodCard);
     };
 
     const isUserInputInHoodLocations = (hood?: Hood): boolean => {
         if (!inputValue) return true;
-        console.log(hood?.location);
         if (inputValue === hood?.location) {
             return true;
         }

@@ -11,13 +11,6 @@ import {
     ContextMenu,
     ContextMenuItem,
 } from "rctx-contextmenu";
-import {
-    deleteProductById,
-    shareProductToHood,
-} from "../../services/product.services";
-import { useUser } from "../../context/userContext/User.context";
-import { useProduct } from "../../context/productContext/Product.context";
-import { useHood } from "../../context/hoodContext/Hood.context";
 import { StyledExpireDays } from "./styles/StyledExpiryDays";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import "./styles/contextMenuStyle.css";
@@ -25,20 +18,10 @@ import "./styles/contextMenuStyle.css";
 interface ProductCardProps {
     product: Product;
     menuItems: MenuItem[];
-    shouldShowContextMenu: boolean;
+    isMyFridge?: boolean;
 }
 
-const ProductCard = ({
-    product,
-    shouldShowContextMenu,
-    menuItems,
-}: ProductCardProps) => {
-    const { token } = useUser();
-    const { allProducts, setAllProducts, addProduct } = useProduct();
-    const { myHood, getMyHood } = useHood();
-
-    // const getProductDetails = async () => {};
-
+const ProductCard = ({ product, menuItems, isMyFridge }: ProductCardProps) => {
     const getExpiryDays = (date: Date) => {
         const parsedDate = new Date(date);
         let difference = parsedDate.getTime() - new Date().getTime();
@@ -52,7 +35,7 @@ const ProductCard = ({
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={product._id}>
-                <StyledCard isShared={product.isShared}>
+                <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
                     <StyledFlexWrapper flexDirection="column">
                         <StyledImageBox>
                             <StyledProductImg
@@ -82,7 +65,10 @@ const ProductCard = ({
                 {menuItems.map((menuItem) => {
                     return (
                         /*@ts-ignore*/
-                        <ContextMenuItem onClick={menuItem.onClick}>
+                        <ContextMenuItem
+                            onClick={menuItem.onClick}
+                            key={product._id}
+                        >
                             {menuItem.text}
                         </ContextMenuItem>
                     );

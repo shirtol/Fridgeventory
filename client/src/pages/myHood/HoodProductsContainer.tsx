@@ -9,16 +9,15 @@ interface HoodProductsContainerProps {
 }
 
 const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
-    const { myHood, usersInHood } = useHood();
+    const { myHood } = useHood();
 
     const getUserEmail = (ownerId: string) => {
-        const user = usersInHood?.find((user) => user._id === ownerId);
+        const user = myHood?.peopleIdsArr?.find((user) => user._id === ownerId);
         return user?.email;
     };
 
     const SendEmailToPublisher = (ownerId: string, productName: string) => {
         const email = getUserEmail(ownerId);
-        console.log(email);
         window.open(`mailto:${email}?subject=I'm interested in ${productName}`);
     };
 
@@ -26,7 +25,6 @@ const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
         return myHood?.availableProducts?.map((product) => {
             return (
                 <ProductCard
-                    shouldShowContextMenu={false}
                     product={product}
                     key={product._id}
                     menuItems={[

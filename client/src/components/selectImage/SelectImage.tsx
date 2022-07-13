@@ -13,7 +13,6 @@ interface SelectImageProps {
 const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
     const onImageChange = (e: any) => {
         handleChange(e);
-        console.log(productImage);
     };
 
     let fileInput: HTMLElement | null;

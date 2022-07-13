@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
-import Product, { parseProduct } from "../productContext/Product.types";
+import { parseProduct } from "../productContext/Product.types";
 import { useUser } from "../userContext/User.context";
-import { User } from "../userContext/User.type";
 import { Hood } from "./Hood.type";
 
 interface HoodProviderProps {
@@ -16,9 +15,6 @@ interface HoodContextValue {
     myHood: Hood;
     setMyHood: (hood: Hood) => void;
     joinHood: (hood: Hood) => Promise<void>;
-    usersInHood: User[];
-    productsInHood: Product[];
-    setProductsInHood: (products: Product[]) => void;
     getMyHood: (hoodId: string) => Promise<void>;
 }
 
@@ -30,8 +26,6 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
     const { token, currUser } = useUser();
     const [myHood, setMyHood] = useState<Hood>();
-    const [usersInHood, setUsersInHood] = useState<User[]>([]);
-    const [productsInHood, setProductsInHood] = useState<Product[]>([]);
 
     const fetchHoods = async () => {
         try {
@@ -49,10 +43,10 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                     Authorization: token!,
                 },
             });
-            data.populatedHood.availableProducts =
-                data.populatedHood.availableProducts.map(parseProduct);
-            setMyHood(data.populatedHood);
-            setUsersInHood(data.usersInHood);
+            console.log(data);
+
+            data.availableProducts = data.availableProducts.map(parseProduct);
+            setMyHood(data);
         } catch (err: any) {
             console.log(err.message);
         }
@@ -68,7 +62,6 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             data.hood.availableProducts =
                 data.hood.availableProducts.map(parseProduct);
             setMyHood(data.hood);
-            setUsersInHood(data.usersInHood);
             return data;
         } catch (err: any) {
             console.log(err.message);
@@ -89,9 +82,6 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         myHood,
         setMyHood,
         joinHood,
-        usersInHood,
-        productsInHood,
-        setProductsInHood,
         getMyHood,
     };
 

@@ -11,7 +11,8 @@ export const hoodSchema = new mongoose.Schema({
     },
     peopleIdsArr: [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true,
         },
     ],

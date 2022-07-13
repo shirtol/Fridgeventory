@@ -47,7 +47,6 @@ const Fridge = () => {
         return allProducts?.map((product) => {
             return (
                 <ProductCard
-                    shouldShowContextMenu={true}
                     product={product}
                     key={product._id}
                     menuItems={[
@@ -62,6 +61,7 @@ const Fridge = () => {
                                 await deleteProduct(product._id),
                         },
                     ]}
+                    isMyFridge
                 ></ProductCard>
             );
         });

@@ -6,6 +6,7 @@ import {
     fetchProductAndDelete,
     updateProductAfterSharing,
 } from "../services/product.services.js";
+import FridgeventoryError from "../utils/errorHandling.js";
 
 export const getAllProducts = async (req, res) => {
     try {
@@ -70,7 +71,6 @@ export const shareProduct = async (req, res) => {
         const productAfterUpdating = await updateProductAfterSharing(
             req.body.productId
         );
-        console.log(productAfterUpdating);
         return res
             .status(200)
             .send({ hoodAfterUpdating, productAfterUpdating });

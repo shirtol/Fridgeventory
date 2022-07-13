@@ -4,10 +4,10 @@ import { useHood } from "../../context/hoodContext/Hood.context";
 import UserItem from "./UserItem";
 
 const NeighborsList = () => {
-    const { myHood, usersInHood } = useHood();
+    const { myHood } = useHood();
 
     const renderAllNeighbors = () => {
-        return usersInHood?.map((user) => {
+        return myHood?.peopleIdsArr?.map((user) => {
             return <UserItem user={user} key={user._id}></UserItem>;
         });
     };
