@@ -28,7 +28,7 @@ const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
                                 {hood?.location}
                             </StyledHoodLocation>
                             <HoodLottie></HoodLottie>
-                            <StyledHoodLocation>{`${hood.peopleIdsArr.length} neighbors joined`}</StyledHoodLocation>
+                            <StyledHoodLocation>{`${hood.people.length} neighbors joined`}</StyledHoodLocation>
                             <Button
                                 buttonText="Join Hood"
                                 onBtnClicked={onJoinHoodClicked}

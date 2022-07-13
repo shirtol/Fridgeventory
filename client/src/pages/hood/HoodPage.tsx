@@ -43,7 +43,7 @@ const HoodPage = () => {
         setSelectedHood({
             availableProducts: [],
             location: currAutoComplete!.getPlace().formatted_address as string,
-            peopleIdsArr: [],
+            people: [],
             _id: "",
         });
     };

@@ -4,7 +4,7 @@ import { User } from "../userContext/User.type";
 export interface Hood {
     name?: string;
     location: string;
-    peopleIdsArr: User[];
+    people: User[];
     _id: string;
     availableProducts: Product[];
 }

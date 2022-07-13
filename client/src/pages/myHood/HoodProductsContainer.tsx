@@ -12,7 +12,7 @@ const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
     const { myHood } = useHood();
 
     const getUserEmail = (ownerId: string) => {
-        const user = myHood?.peopleIdsArr?.find((user) => user._id === ownerId);
+        const user = myHood?.people?.find((user) => user._id === ownerId);
         return user?.email;
     };
 

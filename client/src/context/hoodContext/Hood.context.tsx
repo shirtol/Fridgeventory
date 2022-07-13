@@ -43,7 +43,6 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                     Authorization: token!,
                 },
             });
-            console.log(data);
 
             data.availableProducts = data.availableProducts.map(parseProduct);
             setMyHood(data);
@@ -59,9 +58,9 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
                     Authorization: token!,
                 },
             });
-            data.hood.availableProducts =
-                data.hood.availableProducts.map(parseProduct);
-            setMyHood(data.hood);
+
+            data.availableProducts = data.availableProducts.map(parseProduct);
+            setMyHood(data);
             return data;
         } catch (err: any) {
             console.log(err.message);

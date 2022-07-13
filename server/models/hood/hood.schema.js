@@ -1,18 +1,14 @@
 import mongoose from "mongoose";
 
 export const hoodSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
     location: {
         type: String,
         required: true,
     },
-    peopleIdsArr: [
+    people: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+            ref: "user",
             required: true,
         },
     ],
