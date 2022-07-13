@@ -44,15 +44,19 @@ const HoodPage = () => {
     };
 
     const renderAllHoods = (): ReactNode => {
-        return allHoods?.filter(filterHoodsByUserInput).map(renderHoodCard);
+        return allHoods
+            ?.filter(isUserInputInhoodsLocations)
+            .map(renderHoodCard);
     };
 
-    const filterHoodsByUserInput = (hood: Hood): boolean => {
+    const isUserInputInhoodsLocations = (hood?: Hood): boolean => {
         if (!inputValue) return true;
-        return hood.location
-            .toLowerCase()
-            .split(" ")
-            .some((str) => str.includes(inputValue.toLowerCase()));
+        return (
+            hood?.location
+                .toLowerCase()
+                .split(" ")
+                .some((str) => str.includes(inputValue.toLowerCase())) ?? false
+        );
     };
 
     const renderHoodCard = (hood: Hood): ReactNode => {
@@ -101,17 +105,31 @@ const HoodPage = () => {
                                 alignItems="flex-start"
                                 marginTop="2rem"
                             >
-                                <StyledFlexWrapper
-                                    flexDirection="column"
-                                    width="50%"
-                                    gap="0"
-                                >
-                                    {renderAllHoods()}
-                                </StyledFlexWrapper>
+                                {allHoods?.length &&
+                                isUserInputInhoodsLocations(selectedHood) ? (
+                                    <StyledFlexWrapper
+                                        flexDirection="column"
+                                        width="50%"
+                                        gap="0"
+                                    >
+                                        {renderAllHoods()}
+                                    </StyledFlexWrapper>
+                                ) : (
+                                    <StyledFlexWrapper
+                                        flexDirection="column"
+                                        width="50%"
+                                        gap="0"
+                                    >
+                                        No Hoods Yet
+                                    </StyledFlexWrapper>
+                                )}
 
                                 <JoinHoodBox
                                     isShown={
-                                        selectedHood?.location !== undefined
+                                        selectedHood?.location !== undefined &&
+                                        isUserInputInhoodsLocations(
+                                            selectedHood
+                                        )
                                     }
                                     hood={selectedHood!}
                                 ></JoinHoodBox>
