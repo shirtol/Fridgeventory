@@ -1,4 +1,4 @@
-import Product from "../../context/productContext/Product.types";
+import Product, { MenuItem } from "../../context/productContext/Product.types";
 import { StyledCard } from "./styles/StyledCard";
 import { StyledCardTitle } from "./styles/StyledCardTitle";
 import { StyledCategory } from "./styles/StyledCategory";
@@ -24,38 +24,18 @@ import "./styles/contextMenuStyle.css";
 
 interface ProductCardProps {
     product: Product;
-    isMyFridge: boolean;
+    menuItems: MenuItem[];
     shouldShowContextMenu: boolean;
 }
 
 const ProductCard = ({
     product,
-    isMyFridge,
     shouldShowContextMenu,
+    menuItems,
 }: ProductCardProps) => {
     const { token } = useUser();
     const { allProducts, setAllProducts, addProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
-
-    const handleDelete = async () => {
-        const deletedProduct = await deleteProductById(product._id, token!);
-        const newProductsArr = allProducts?.filter((product) => {
-            return product._id !== deletedProduct._id;
-        });
-        setAllProducts!(newProductsArr!);
-    };
-
-    const addProductToHood = async () => {
-        const { productAfterUpdating } = await shareProductToHood(
-            myHood?._id as string,
-            token!,
-            product._id
-        );
-        addProduct && addProduct(productAfterUpdating);
-        await getMyHood!(myHood!._id);
-    };
-
-    const SendEmailToPublisher = async () => {};
 
     // const getProductDetails = async () => {};
 
@@ -71,10 +51,8 @@ const ProductCard = ({
     return (
         <>
             {/*@ts-ignore*/}
-            <ContextMenuTrigger
-                id={shouldShowContextMenu ? product._id : "inMyHood"}
-            >
-                <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
+            <ContextMenuTrigger id={product._id}>
+                <StyledCard isShared={product.isShared}>
                     <StyledFlexWrapper flexDirection="column">
                         <StyledImageBox>
                             <StyledProductImg
@@ -101,26 +79,14 @@ const ProductCard = ({
 
             {/*@ts-ignore*/}
             <ContextMenu id={product._id} animation="zoom">
-                {/*@ts-ignore*/}
-                <ContextMenuItem onClick={addProductToHood}>
-                    Give Product
-                </ContextMenuItem>
-                {/*@ts-ignore*/}
-                <ContextMenuItem onClick={handleDelete}>
-                    Delete Product
-                </ContextMenuItem>
-            </ContextMenu>
-
-            {/*@ts-ignore*/}
-            <ContextMenu id="inMyHood" animation="zoom">
-                {/*@ts-ignore*/}
-                <ContextMenuItem onClick={SendEmailToPublisher}>
-                    Get This Product
-                </ContextMenuItem>
-                {/*@ts-ignore*/}
-                {/* <ContextMenuItem onClick={getProductDetails}>
-                    Details
-                </ContextMenuItem> */}
+                {menuItems.map((menuItem) => {
+                    return (
+                        /*@ts-ignore*/
+                        <ContextMenuItem onClick={menuItem.onClick}>
+                            {menuItem.text}
+                        </ContextMenuItem>
+                    );
+                })}
             </ContextMenu>
         </>
     );

@@ -4,16 +4,43 @@ import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
+import { useHood } from "../../context/hoodContext/Hood.context";
 import { useProduct } from "../../context/productContext/Product.context";
+import { useUser } from "../../context/userContext/User.context";
+import {
+    deleteProductById,
+    shareProductToHood,
+} from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
 import { StyledAddBtn } from "./styles/StyledAddBtn";
 
 const Fridge = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { allProducts } = useProduct();
+    const { allProducts, setAllProducts, addProduct } = useProduct();
+    const { myHood, getMyHood } = useHood();
+
+    const { token } = useUser();
 
     const onAddBtnClicked = () => {
         setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
+    };
+
+    const shareProduct = async (productId: string) => {
+        const { productAfterUpdating } = await shareProductToHood(
+            myHood?._id as string,
+            token!,
+            productId
+        );
+        addProduct && addProduct(productAfterUpdating);
+        await getMyHood!(myHood!._id);
+    };
+
+    const deleteProduct = async (productId: string) => {
+        const deletedProduct = await deleteProductById(productId, token!);
+        const newProductsArr = allProducts?.filter((product) => {
+            return product._id !== deletedProduct._id;
+        });
+        setAllProducts!(newProductsArr!);
     };
 
     const renderAllProducts = () => {
@@ -23,7 +50,18 @@ const Fridge = () => {
                     shouldShowContextMenu={true}
                     product={product}
                     key={product._id}
-                    isMyFridge={true}
+                    menuItems={[
+                        {
+                            text: "share",
+                            onClick: async () =>
+                                await shareProduct(product._id),
+                        },
+                        {
+                            text: "delete",
+                            onClick: async () =>
+                                await deleteProduct(product._id),
+                        },
+                    ]}
                 ></ProductCard>
             );
         });

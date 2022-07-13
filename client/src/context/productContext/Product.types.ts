@@ -6,9 +6,15 @@ export default interface Product {
     category: string;
     _id: string;
     isShared: boolean;
+    owner: string;
 }
 
 export const parseProduct = (product: any) => ({
     ...product,
     expiryDate: new Date(product.expiryDate),
 });
+
+export interface MenuItem {
+    text: string;
+    onClick: (e: any) => void;
+}
