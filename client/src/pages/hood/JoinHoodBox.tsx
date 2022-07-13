@@ -12,7 +12,7 @@ interface JoinHoodBoxProps {
 }
 
 const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
-    const { joinHood } = useHood();
+    const { joinHood, myHood, setMyHood } = useHood();
 
     const onJoinHoodClicked = async () => {
         const data = await joinHood!(hood);
