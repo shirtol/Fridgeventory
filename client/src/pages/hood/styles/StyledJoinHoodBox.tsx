@@ -10,4 +10,5 @@ export const StyledJoinHoodBox = styled.div`
     justify-content: space-around;
     flex-direction: column;
     padding: 2rem;
+    text-align: center;
 `;

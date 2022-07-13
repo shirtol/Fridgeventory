@@ -2,10 +2,9 @@ import Product from "../productContext/Product.types";
 import { User } from "../userContext/User.type";
 
 export interface Hood {
-    name: string;
+    name?: string;
     location: string;
-    peopleIdsArr: string[];
+    people: User[];
     _id: string;
     availableProducts: Product[];
-    people: User[];
 }

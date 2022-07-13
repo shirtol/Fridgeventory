@@ -6,6 +6,8 @@ import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
+import { useUser } from "../../context/userContext/User.context";
+import CreateHood from "./CreateHood";
 import JoinHoodBox from "./JoinHoodBox";
 import { StyledLocationInput } from "./styles/StyledLocationInput";
 declare type Libraries = (
@@ -20,7 +22,8 @@ const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
     const [selectedHood, setSelectedHood] = useState<Hood>();
-    const { fetchHoods, allHoods, myHood } = useHood();
+    const { fetchHoods, allHoods, myHood, joinHood } = useHood();
+    const { currUser } = useUser();
     const [inputValue, setInputValue] = useState<string | undefined>("");
     const [currAutoComplete, setCurrAutoComplete] =
         useState<google.maps.places.Autocomplete>();
@@ -37,6 +40,12 @@ const HoodPage = () => {
     const handleSelectLocation = () => {
         currAutoComplete && setCurrAutoComplete(currAutoComplete);
         setInputValue(currAutoComplete!.getPlace().formatted_address);
+        setSelectedHood({
+            availableProducts: [],
+            location: currAutoComplete!.getPlace().formatted_address as string,
+            people: [],
+            _id: "",
+        });
     };
 
     const onHoodClicked = (currHood: Hood) => {
@@ -44,15 +53,20 @@ const HoodPage = () => {
     };
 
     const renderAllHoods = (): ReactNode => {
-        return allHoods?.filter(filterHoodsByUserInput).map(renderHoodCard);
+        return allHoods?.filter(isUserInputInHoodLocations).map(renderHoodCard);
     };
 
-    const filterHoodsByUserInput = (hood: Hood): boolean => {
+    const isUserInputInHoodLocations = (hood?: Hood): boolean => {
         if (!inputValue) return true;
-        return hood.location
-            .toLowerCase()
-            .split(" ")
-            .some((str) => str.includes(inputValue.toLowerCase()));
+        if (inputValue === hood?.location) {
+            return true;
+        }
+        return (
+            hood?.location
+                .toLowerCase()
+                .split(" ")
+                .some((str) => str.includes(inputValue.toLowerCase())) ?? false
+        );
     };
 
     const renderHoodCard = (hood: Hood): ReactNode => {
@@ -63,6 +77,10 @@ const HoodPage = () => {
                 key={hood._id}
             ></HoodCard>
         );
+    };
+
+    const onCreateNewHood = async () => {
+        // await joinHood();
     };
 
     useEffect(() => {
@@ -100,18 +118,31 @@ const HoodPage = () => {
                             <StyledFlexWrapper
                                 alignItems="flex-start"
                                 marginTop="2rem"
+                                width="80%"
                             >
-                                <StyledFlexWrapper
-                                    flexDirection="column"
-                                    width="50%"
-                                    gap="0"
-                                >
-                                    {renderAllHoods()}
-                                </StyledFlexWrapper>
+                                {allHoods?.some(isUserInputInHoodLocations) ? (
+                                    <StyledFlexWrapper
+                                        flexDirection="column"
+                                        width="50%"
+                                        gap="0"
+                                    >
+                                        {renderAllHoods()}
+                                    </StyledFlexWrapper>
+                                ) : (
+                                    <StyledFlexWrapper
+                                        flexDirection="column"
+                                        width="50%"
+                                        gap="0"
+                                        height="60vh"
+                                    >
+                                        <CreateHood></CreateHood>
+                                    </StyledFlexWrapper>
+                                )}
 
                                 <JoinHoodBox
                                     isShown={
-                                        selectedHood?.location !== undefined
+                                        selectedHood?.location !== undefined &&
+                                        isUserInputInHoodLocations(selectedHood)
                                     }
                                     hood={selectedHood!}
                                 ></JoinHoodBox>

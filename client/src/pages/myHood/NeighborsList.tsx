@@ -4,10 +4,12 @@ import { useHood } from "../../context/hoodContext/Hood.context";
 import UserItem from "./UserItem";
 
 const NeighborsList = () => {
-    const { myHood, usersInHood } = useHood();
+    const { myHood } = useHood();
 
     const renderAllNeighbors = () => {
-        return usersInHood?.map((user) => {
+        console.log(myHood);
+
+        return myHood?.people?.map((user) => {
             return <UserItem user={user} key={user._id}></UserItem>;
         });
     };
@@ -18,7 +20,6 @@ const NeighborsList = () => {
             width="max-content"
             justifyContent="flex-start"
             alignItems="flex-end"
-            // paddingLeft="10rem"
             paddingTop="14rem"
             height="90vh"
             overflowY="scroll"
