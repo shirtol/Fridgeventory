@@ -20,6 +20,7 @@ import { useProduct } from "../../context/productContext/Product.context";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { StyledExpireDays } from "./styles/StyledExpiryDays";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
+import "./styles/contextMenuStyle.css";
 
 interface ProductCardProps {
     product: Product;
@@ -54,6 +55,10 @@ const ProductCard = ({
         await getMyHood!(myHood!._id);
     };
 
+    const SendEmailToPublisher = async () => {};
+
+    const getProductDetails = async () => {};
+
     const getExpiryDays = (date: Date) => {
         const parsedDate = new Date(date);
         let difference = parsedDate.getTime() - new Date().getTime();
@@ -66,7 +71,9 @@ const ProductCard = ({
     return (
         <>
             {/*@ts-ignore*/}
-            <ContextMenuTrigger id={shouldShowContextMenu ? product._id : ""}>
+            <ContextMenuTrigger
+                id={shouldShowContextMenu ? product._id : "inMyHood"}
+            >
                 <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
                     <StyledFlexWrapper flexDirection="column">
                         <StyledImageBox>
@@ -101,6 +108,18 @@ const ProductCard = ({
                 {/*@ts-ignore*/}
                 <ContextMenuItem onClick={handleDelete}>
                     Delete Product
+                </ContextMenuItem>
+            </ContextMenu>
+
+            {/*@ts-ignore*/}
+            <ContextMenu id="inMyHood" animation="zoom">
+                {/*@ts-ignore*/}
+                <ContextMenuItem onClick={SendEmailToPublisher}>
+                    Get This Product
+                </ContextMenuItem>
+                {/*@ts-ignore*/}
+                <ContextMenuItem onClick={getProductDetails}>
+                    Details
                 </ContextMenuItem>
             </ContextMenu>
         </>

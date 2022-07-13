@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
@@ -35,7 +36,11 @@ const Fridge = () => {
                 closeModal={() => setIsModalOpen(false)}
             ></AddProductModal>
             <StyledMainWrapper>
-                <StyledGridWrapper>{renderAllProducts()}</StyledGridWrapper>
+                <StyledFlexWrapper>
+                    <StyledGridWrapper gridTemplateCol="repeat(3, 1fr)">
+                        {renderAllProducts()}
+                    </StyledGridWrapper>
+                </StyledFlexWrapper>
 
                 <StyledAddBtn
                     className="fa-solid fa-circle-plus fa-3x"

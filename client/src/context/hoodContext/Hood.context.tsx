@@ -34,33 +34,45 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [productsInHood, setProductsInHood] = useState<Product[]>([]);
 
     const fetchHoods = async () => {
-        const { data } = await hoodsApi.get("/getAllHoods");
-        setAllHoods(data);
+        try {
+            const { data } = await hoodsApi.get("/getAllHoods");
+            setAllHoods(data);
+        } catch (err: any) {
+            console.log(err.message);
+        }
     };
 
     const getMyHood = async (hoodId: string) => {
-        const { data } = await authHoodsApi.get(`/getMyHood/${hoodId}`, {
-            headers: {
-                Authorization: token!,
-            },
-        });
-        data.populatedHood.availableProducts =
-            data.populatedHood.availableProducts.map(parseProduct);
-        setMyHood(data.populatedHood);
-        setUsersInHood(data.usersInHood);
+        try {
+            const { data } = await authHoodsApi.get(`/getMyHood/${hoodId}`, {
+                headers: {
+                    Authorization: token!,
+                },
+            });
+            data.populatedHood.availableProducts =
+                data.populatedHood.availableProducts.map(parseProduct);
+            setMyHood(data.populatedHood);
+            setUsersInHood(data.usersInHood);
+        } catch (err: any) {
+            console.log(err.message);
+        }
     };
 
     const joinHood = async (hood: Hood) => {
-        const { data } = await authHoodsApi.put("/joinHood", hood, {
-            headers: {
-                Authorization: token!,
-            },
-        });
-        data.hood.availableProducts =
-            data.hood.availableProducts.map(parseProduct);
-        setMyHood(data.hood);
-        setUsersInHood(data.usersInHood);
-        return data;
+        try {
+            const { data } = await authHoodsApi.put("/joinHood", hood, {
+                headers: {
+                    Authorization: token!,
+                },
+            });
+            data.hood.availableProducts =
+                data.hood.availableProducts.map(parseProduct);
+            setMyHood(data.hood);
+            setUsersInHood(data.usersInHood);
+            return data;
+        } catch (err: any) {
+            console.log(err.message);
+        }
     };
 
     useEffect(() => {
