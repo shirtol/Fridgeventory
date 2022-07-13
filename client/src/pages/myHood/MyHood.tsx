@@ -6,17 +6,17 @@ import NeighborsList from "./NeighborsList";
 
 const MyHood = () => {
     return (
-        <StyledMainArea>
-            <StyledFlexWrapper
-                alignItems="flex-start"
-                justifyContent="flex-end"
-                width="100%"
-                justifySelf="flex-end"
-            >
-                <HoodProductsContainer></HoodProductsContainer>
-                <NeighborsList></NeighborsList>
-            </StyledFlexWrapper>
-        </StyledMainArea>
+        // <StyledMainArea>
+        <StyledFlexWrapper
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+            justifySelf="flex-end"
+        >
+            <HoodProductsContainer></HoodProductsContainer>
+            <NeighborsList></NeighborsList>
+        </StyledFlexWrapper>
+        // </StyledMainArea>
     );
 };
 

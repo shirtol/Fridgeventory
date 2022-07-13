@@ -15,7 +15,8 @@ import Statistics from "../statistics/Statistics";
 
 const Routes = () => {
     return (
-        <StyledMainAreaGrid>
+        // <StyledMainAreaGrid>
+        <>
             <WebsiteBanner></WebsiteBanner>
             <Navbar></Navbar>
             <Switch>
@@ -33,7 +34,8 @@ const Routes = () => {
                 <Route exact path="/logout" component={Logout}></Route>
                 <Route exact path="/my-hood" component={MyHood}></Route>
             </Switch>
-        </StyledMainAreaGrid>
+        </>
+        // </StyledMainAreaGrid>
     );
 };
 

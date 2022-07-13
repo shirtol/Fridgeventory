@@ -44,12 +44,17 @@ const HoodPage = () => {
     };
 
     const renderAllHoods = (): ReactNode => {
+        console.log(allHoods);
+
         return allHoods
             ?.filter(isUserInputInhoodsLocations)
             .map(renderHoodCard);
     };
 
     const isUserInputInhoodsLocations = (hood?: Hood): boolean => {
+        console.log(hood);
+        console.log(inputValue);
+
         if (!inputValue) return true;
         return (
             hood?.location
@@ -105,8 +110,7 @@ const HoodPage = () => {
                                 alignItems="flex-start"
                                 marginTop="2rem"
                             >
-                                {allHoods?.length &&
-                                isUserInputInhoodsLocations(selectedHood) ? (
+                                {allHoods?.some(isUserInputInhoodsLocations) ? (
                                     <StyledFlexWrapper
                                         flexDirection="column"
                                         width="50%"

@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
-export const StyledHoodProductsWrapper = styled.div`
+interface StyledHoodProductsWrapperProps {
+    gridTemplateColumn: string;
+}
+
+export const StyledHoodProductsWrapper = styled.div<
+    Partial<StyledHoodProductsWrapperProps>
+>`
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: ${(props) =>
+        props.gridTemplateColumn ?? "repeat(3, 1fr)"};
     gap: 2rem;
     justify-items: center;
     align-items: center;

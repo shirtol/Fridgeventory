@@ -57,7 +57,7 @@ const ProductCard = ({
 
     const SendEmailToPublisher = async () => {};
 
-    const getProductDetails = async () => {};
+    // const getProductDetails = async () => {};
 
     const getExpiryDays = (date: Date) => {
         const parsedDate = new Date(date);
@@ -118,9 +118,9 @@ const ProductCard = ({
                     Get This Product
                 </ContextMenuItem>
                 {/*@ts-ignore*/}
-                <ContextMenuItem onClick={getProductDetails}>
+                {/* <ContextMenuItem onClick={getProductDetails}>
                     Details
-                </ContextMenuItem>
+                </ContextMenuItem> */}
             </ContextMenu>
         </>
     );

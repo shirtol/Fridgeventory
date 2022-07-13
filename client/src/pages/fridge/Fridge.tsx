@@ -36,8 +36,14 @@ const Fridge = () => {
                 closeModal={() => setIsModalOpen(false)}
             ></AddProductModal>
             <StyledMainWrapper>
-                <StyledFlexWrapper>
-                    <StyledGridWrapper gridTemplateCol="repeat(3, 1fr)">
+                <StyledFlexWrapper
+                    justifyContent="flex-end"
+                    paddingRight="10rem"
+                >
+                    <StyledGridWrapper
+                        gridTemplateCol="repeat(5, 1fr)"
+                        gridTemplateColLaptop="repeat(4, 1fr)"
+                    >
                         {renderAllProducts()}
                     </StyledGridWrapper>
                 </StyledFlexWrapper>
