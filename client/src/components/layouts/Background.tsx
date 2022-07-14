@@ -4,7 +4,6 @@ import { StyledBackground } from "./StyledBackground";
 
 const Background = () => {
     const location = useLocation();
-    console.log(location);
     return <StyledBackground location={location.pathname}></StyledBackground>;
 };
 

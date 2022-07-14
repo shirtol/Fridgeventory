@@ -7,8 +7,6 @@ const NeighborsList = () => {
     const { myHood } = useHood();
 
     const renderAllNeighbors = () => {
-        console.log(myHood);
-
         return myHood?.people?.map((user) => {
             return <UserItem user={user} key={user._id}></UserItem>;
         });

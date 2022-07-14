@@ -32,11 +32,7 @@ const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
                 onClick={() => fileInput?.click()}
                 className="fa-solid fa-camera fa-2x"
             ></StyledCameraIcon>
-            {/* <Button
-                onBtnClicked={() => fileInput?.click()}
-                buttonText="Upload image"
-            ></Button> */}
-            {productImage.size > 0 && (
+            {productImage?.size > 0 && (
                 <StyledProductImg
                     id="preview"
                     src={URL.createObjectURL(productImage)}

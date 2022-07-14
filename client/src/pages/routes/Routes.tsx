@@ -17,13 +17,17 @@ const Routes = () => {
     return (
         <StyledFlexWrapper
             flexDirection="column"
-            height="100%"
-            width="100%"
+            height="100vh"
+            gap="0"
             justifyContent="flex-start"
         >
             <Background></Background>
             <WebsiteBanner></WebsiteBanner>
-            <StyledFlexWrapper>
+            <StyledFlexWrapper
+                height="100%"
+                justifyContent="space-between"
+                alignItems="flex-start"
+            >
                 <Navbar></Navbar>
                 <Switch>
                     <Route exact path="/" component={Home}></Route>

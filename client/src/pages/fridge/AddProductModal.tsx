@@ -101,11 +101,12 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     return (
         <>
             {isShown && (
-                <StyledModalWrapper>
+                <StyledModalWrapper onClick={closeModal}>
                     <StyledModal
                         height="45%"
                         width="30%"
                         justifyContent="flex-start"
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <SelectImage
                             productImage={form.productImage}

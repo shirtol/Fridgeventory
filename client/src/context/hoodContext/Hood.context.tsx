@@ -32,7 +32,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             const { data } = await hoodsApi.get("/getAllHoods");
             setAllHoods(data);
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
@@ -47,7 +47,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             data.availableProducts = data.availableProducts.map(parseProduct);
             setMyHood(data);
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
@@ -63,7 +63,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             setMyHood(data);
             return data;
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
