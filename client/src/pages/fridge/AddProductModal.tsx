@@ -11,24 +11,34 @@ import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChoo
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
-import { parseProduct } from "../../context/productContext/Product.types";
+import Product, {
+    parseProduct,
+} from "../../context/productContext/Product.types";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import "./styles/datePicker/datePickerStyle.css";
+import axios from "axios";
+import { editProductById } from "../../services/product.services";
 
 interface AddProductModalProps {
     isShown: boolean;
     closeModal: () => void;
+    product?: Product;
 }
 
-const isBlob = (obj: unknown): obj is Blob => typeof obj === typeof new Blob();
+export const isBlob = (obj: unknown): obj is Blob =>
+    typeof obj === typeof new Blob();
 
-const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
+const AddProductModal = ({
+    isShown,
+    closeModal,
+    product,
+}: AddProductModalProps) => {
     const [form, setForm] = useState({
-        name: "",
-        amount: 1,
-        productImage: new Blob(),
-        expiryDate: new Date(),
-        category: "other",
+        name: product?.name ?? "",
+        amount: product?.amount ?? 1,
+        productImage: product?.productImage ?? new Blob(),
+        expiryDate: product?.expiryDate ?? new Date(),
+        category: product?.category ?? "other",
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const { token } = useUser();
@@ -46,14 +56,23 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
     };
 
     const handleSubmit = async () => {
-        closeModal();
         setSubmitMsg("Submitted!");
         try {
             const formData = createFormData();
-            const { data } = await createProductInServer(formData);
+            console.log(formData);
 
-            updateProducts(data);
+            let productAfterSubmit;
+            if (product) {
+                const data = await editProductById(form, product._id, token!);
+                productAfterSubmit = data;
+            } else {
+                const { data } = await createProductInServer(formData);
+                productAfterSubmit = data;
+            }
+
+            updateProducts(productAfterSubmit);
             resetForm();
+            closeModal();
         } catch (err: any) {
             setSubmitMsg(err.response.data || err.message);
         }
@@ -74,16 +93,27 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
         Object.entries(form).forEach((entry) => {
             formData.append(
                 entry[0],
-                isBlob(entry[1]) ? entry[1] : entry[1].toString()
+                isBlob(entry[1]) ? entry[1] : entry[1]!.toString()
             );
         });
         return formData;
     };
 
     const updateProducts = (data: any) => {
-        setAllProducts &&
-            allProducts &&
-            setAllProducts([...allProducts, parseProduct(data)]);
+        console.log(data);
+        let products;
+        if (allProducts?.find((product) => product._id === data._id)) {
+            products = allProducts.map((product) => {
+                if (product._id === data._id) {
+                    return data;
+                }
+                return product;
+            });
+        } else {
+            products = [...(allProducts ?? []), parseProduct(data)];
+        }
+
+        setAllProducts && allProducts && setAllProducts(products);
     };
 
     const createProductInServer = async (formData: FormData): Promise<any> => {
@@ -106,7 +136,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <SelectImage
-                            productImage={form.productImage}
+                            productImage={form?.productImage}
                             handleChange={handleChange}
                             inputLabel="Product Image"
                         ></SelectImage>

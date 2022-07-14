@@ -5,6 +5,8 @@ import {
     fetchAllProducts,
     fetchProductAndDelete,
     updateProductAfterSharing,
+    editProductById,
+    getProductById,
 } from "../services/product.services.js";
 import FridgeventoryError from "../utils/errorHandling.js";
 
@@ -18,7 +20,6 @@ export const getAllProducts = async (req, res) => {
 };
 
 export const addProduct = (req, res) => {
-    console.log(req.file.originalname);
     if (!req.file) {
         res.status(404).send({ message: "Image not found" });
         return;
@@ -79,6 +80,29 @@ export const shareProduct = async (req, res) => {
         return res
             .status(200)
             .send({ hoodAfterUpdating, productAfterUpdating });
+    } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
+};
+
+export const editProduct = async (req, res) => {
+    try {
+        const productAfterEdit = await editProductById(
+            req.body.product,
+            req.params.productId
+        );
+        return res.status(200).send(productAfterEdit);
+    } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
+};
+
+export const getSpecificProduct = async (req, res) => {
+    try {
+        const product = await getProductById(req.params.productId);
+        return res.status(200).send(product);
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);

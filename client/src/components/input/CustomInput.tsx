@@ -7,7 +7,7 @@ import { StyledLabel } from "./styles/StyledLabel";
 interface CustomInputProps {
     id?: string;
     type?: string;
-    value: string | number;
+    value?: string | number;
     onChange: (e: any) => void;
     inputLabel: string;
     required: boolean;

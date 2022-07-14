@@ -40,3 +40,27 @@ export const updateProductAfterSharing = async (productId) => {
         });
     }
 };
+
+export const editProductById = async (product, productId) => {
+    try {
+        const editedProduct = new Product(product);
+        let newProduct = editedProduct.toObject();
+        console.log(newProduct);
+        delete newProduct._id;
+
+        const productAfterEdit = await Product.findOneAndUpdate(
+            { _id: productId },
+            newProduct,
+            { new: true, upsert: true, setDefaultsOnInsert: true }
+        );
+        return productAfterEdit;
+    } catch (err) {
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+        });
+    }
+};
+
+export const getProductById = async (productId) => {
+    return await Product.findById({ _id: productId });
+};

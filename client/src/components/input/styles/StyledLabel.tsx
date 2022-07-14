@@ -2,7 +2,7 @@ import styled from "styled-components";
 import device from "../../../utils/stylesUtils/mediaQuerySizes";
 
 interface StyledLabelProps {
-    isTransform: string | number;
+    isTransform?: string | number;
 }
 
 export const StyledLabel = styled.label<StyledLabelProps>`
