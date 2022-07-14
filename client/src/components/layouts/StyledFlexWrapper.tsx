@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
+import device from "../../utils/stylesUtils/mediaQuerySizes";
 
 interface StyledFlexWrapperProps {
     flexDirection?: string;
@@ -16,6 +16,7 @@ interface StyledFlexWrapperProps {
     alignSelf?: string;
     justifySelf?: string;
     paddingRight?: string;
+    flexDirectionTablet?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -34,4 +35,8 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     padding-top: ${(props) => props.paddingTop ?? "0"};
     align-self: ${(props) => props.alignSelf ?? "auto"};
     justify-self: ${(props) => props.justifySelf ?? "auto"};
+    @media ${device.tablet} {
+        flex-direction: ${(props) =>
+            props.flexDirection ?? props.flexDirectionTablet ?? "row"};
+    }
 `;

@@ -18,7 +18,7 @@ export const fetchUserHood = async (hoodId, userId) => {
         }
         return await populateHood(hood);
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
             hoodId,

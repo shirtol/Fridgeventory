@@ -11,17 +11,14 @@ interface MyHoodProps {
 
 const MyHood = ({ hood }: MyHoodProps) => {
     return (
-        // <StyledMainArea>
         <StyledFlexWrapper
-            alignItems="center"
-            justifyContent="center"
-            width="100%"
+            alignItems="flex-start"
+            justifyContent="space-between"
             justifySelf="flex-end"
         >
             <HoodProductsContainer hood={hood}></HoodProductsContainer>
             <NeighborsList></NeighborsList>
         </StyledFlexWrapper>
-        // </StyledMainArea>
     );
 };
 

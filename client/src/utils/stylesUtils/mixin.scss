@@ -1,0 +1,38 @@
+$media_queries: (
+    mobileS: (
+        max-width: 320px,
+    ),
+    mobileM: (
+        max-width: 375px,
+    ),
+    mobileL: (
+        max-width: 485px,
+    ),
+    tablet: (
+        max-width: 772px,
+    ),
+    laptop: (
+        max-width: 1024px,
+    ),
+    laptopL: (
+        max-width: 1940px,
+    ),
+    desktop: (
+        max-width: 2560px,
+    ),
+);
+
+@mixin responsive($breakpoints) {
+    $conditions: ();
+    @each $breakpoint in $breakpoints {
+        $conditions: append(
+            $conditions,
+            #{inspect(map-get($media_queries, $breakpoint))},
+            comma
+        );
+    }
+
+    @media #{$conditions} {
+        @content;
+    }
+}

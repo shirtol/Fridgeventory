@@ -41,6 +41,10 @@ export const StyledModal = styled.div<StyledModalProps>`
         background-image: ${Colors.scrollbarGradient};
         border-radius: 4px;
     }
+    @media ${device.laptop} {
+        width: 60%;
+        height: 45%;
+    }
     @media ${device.tablet} {
         width: 60%;
         height: 45%;

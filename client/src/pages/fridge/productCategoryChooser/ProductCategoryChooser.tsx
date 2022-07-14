@@ -15,7 +15,7 @@ const ProductCategoryChooser = ({
     onCategoryChange,
 }: ProductCategoryChooserProps) => {
     return (
-        <StyledFlexWrapper>
+        <StyledFlexWrapper flexDirectionTablet="column">
             <Title titleText="Category"></Title>
             <Dropdown
                 options={categoryOptions}

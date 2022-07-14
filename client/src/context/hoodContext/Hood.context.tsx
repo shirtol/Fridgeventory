@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
@@ -32,7 +33,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             const { data } = await hoodsApi.get("/getAllHoods");
             setAllHoods(data);
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
@@ -47,7 +48,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             data.availableProducts = data.availableProducts.map(parseProduct);
             setMyHood(data);
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
@@ -63,12 +64,12 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
             setMyHood(data);
             return data;
         } catch (err: any) {
-            console.log(err.message);
+            console.error(err.message);
         }
     };
 
     useEffect(() => {
-        if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
+        if (currUser?.hoods?.length) {
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);
         }

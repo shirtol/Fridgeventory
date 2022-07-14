@@ -16,6 +16,4 @@ export const StyledHoodProductsWrapper = styled.div<
     grid-auto-rows: 1fr;
     height: max-content;
     overflow-y: scroll;
-    height: 95vh;
-    padding: 10rem;
 `;

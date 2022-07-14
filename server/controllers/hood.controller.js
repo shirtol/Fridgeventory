@@ -19,7 +19,6 @@ export const getHoodById = async (req, res) => {
             req.params.hoodId,
             req.user._id.valueOf()
         );
-        console.log(data);
         return res.status(200).send(data);
     } catch (err) {
         const parsed = JSON.parse(err.message);
