@@ -11,13 +11,14 @@ import {
     deleteProductById,
     getProductById,
     shareProductToHood,
+    unShareProductToHood,
 } from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
 import { StyledAddBtn } from "./styles/StyledAddBtn";
 
 const Fridge = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { allProducts, setAllProducts, addProduct } = useProduct();
+    const { allProducts, setAllProducts, updateProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
     const [selectedProduct, setSelectedProduct] = useState<Product>();
 
@@ -33,7 +34,21 @@ const Fridge = () => {
             token!,
             productId
         );
-        addProduct && addProduct(productAfterUpdating);
+        console.log(productAfterUpdating);
+
+        updateProduct && updateProduct(productAfterUpdating);
+        await getMyHood!(myHood!._id);
+    };
+
+    const handleUnShare = async (productId: string) => {
+        const { productAfterUpdating } = await unShareProductToHood(
+            myHood?._id as string,
+            token!,
+            productId
+        );
+        console.log(productAfterUpdating);
+
+        updateProduct && updateProduct(productAfterUpdating);
         await getMyHood!(myHood!._id);
     };
 
@@ -60,9 +75,11 @@ const Fridge = () => {
                     key={product._id}
                     menuItems={[
                         {
-                            text: "share",
+                            text: product.isShared ? "unshare" : "share",
                             onClick: async () =>
-                                await shareProduct(product._id),
+                                product.isShared
+                                    ? await handleUnShare(product._id)
+                                    : await shareProduct(product._id),
                         },
                         {
                             text: "edit",

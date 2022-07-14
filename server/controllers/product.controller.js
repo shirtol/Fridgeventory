@@ -1,10 +1,13 @@
 import { Product } from "../models/product/product.model.js";
 import { s3 } from "../services/aws.services.js";
-import { addProductToHood } from "../services/hood.services.js";
+import {
+    addProductToHood,
+    removeProductFromHood,
+} from "../services/hood.services.js";
 import {
     fetchAllProducts,
     fetchProductAndDelete,
-    updateProductAfterSharing,
+    updateProductIsShared,
     editProductById,
     getProductById,
 } from "../services/product.services.js";
@@ -74,13 +77,34 @@ export const shareProduct = async (req, res) => {
             req.body.productId,
             req.params.hoodId
         );
-        const productAfterUpdating = await updateProductAfterSharing(
-            req.body.productId
+        const productAfterUpdating = await updateProductIsShared(
+            req.body.productId,
+            true
         );
         return res
             .status(200)
             .send({ hoodAfterUpdating, productAfterUpdating });
     } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
+};
+
+export const unShareProduct = async (req, res) => {
+    try {
+        const hoodAfterUpdating = await removeProductFromHood(
+            req.body.productId,
+            req.params.hoodId
+        );
+        const productAfterUpdating = await updateProductIsShared(
+            req.body.productId,
+            false
+        );
+        return res
+            .status(200)
+            .send({ hoodAfterUpdating, productAfterUpdating });
+    } catch (err) {
+        console.error(err);
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);
     }

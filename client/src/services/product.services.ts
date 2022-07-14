@@ -59,3 +59,25 @@ export const shareProductToHood = async (
         productAfterUpdating: data.productAfterUpdating,
     };
 };
+
+export const unShareProductToHood = async (
+    hoodId: string,
+    token: string,
+    productId: string
+) => {
+    const { data } = await productsApi.put(
+        `/unshareProduct/${hoodId}`,
+        {
+            productId: productId,
+        },
+        {
+            headers: {
+                Authorization: token!,
+            },
+        }
+    );
+    return {
+        hoodAfterUpdating: data.hoodAfterUpdating,
+        productAfterUpdating: data.productAfterUpdating,
+    };
+};

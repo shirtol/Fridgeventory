@@ -72,3 +72,24 @@ export const addProductToHood = async (productObjectId, hoodId, userId) => {
         });
     }
 };
+
+export const removeProductFromHood = async (
+    productObjectId,
+    hoodId,
+    userId
+) => {
+    try {
+        const hood = await Hood.findOneAndUpdate(
+            { _id: hoodId },
+            { $pull: { availableProducts: productObjectId } },
+            { new: true, upsert: true }
+        );
+        return hood;
+    } catch (err) {
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+            hoodId,
+            userId,
+        });
+    }
+};

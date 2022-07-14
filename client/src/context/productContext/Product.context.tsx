@@ -7,7 +7,7 @@ import { useUser } from "../userContext/User.context";
 interface ProductContextValue {
     allProducts: Product[];
     setAllProducts: (products: Product[]) => void;
-    addProduct: (product: Product) => void;
+    updateProduct: (product: Product) => void;
 }
 
 interface ProductProviderProps {
@@ -33,7 +33,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         setAllProducts(products);
     };
 
-    const addProduct = (product: Product) => {
+    const updateProduct = (product: Product) => {
         const newProductsArr = allProducts.map((currProducts) => {
             if (currProducts._id === product._id) {
                 return product;
@@ -54,7 +54,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     const value: ProductContextValue = {
         allProducts,
         setAllProducts,
-        addProduct,
+        updateProduct,
     };
 
     return (
