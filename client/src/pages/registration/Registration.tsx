@@ -51,7 +51,7 @@ const Registration = () => {
     };
 
     return (
-        <StyledModalWrapper>
+        <StyledModalWrapper isAbove={false}>
             <StyledModal>
                 {/* <form> */}
                 <StyledFlexWrapper

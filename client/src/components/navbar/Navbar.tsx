@@ -19,10 +19,6 @@ const Navbar = () => {
             </StyledNavbarItem>
 
             <StyledNavbarItem>
-                <NavLink to="/shopping-list">Shopping List</NavLink>
-            </StyledNavbarItem>
-
-            <StyledNavbarItem>
                 <NavLink to="/hood">Hood</NavLink>
             </StyledNavbarItem>
 

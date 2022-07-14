@@ -27,7 +27,7 @@ const Routes = () => {
                 <WebsiteBanner></WebsiteBanner>
                 <StyledFlexWrapper
                     height="100%"
-                    justifyContent="space-between"
+                    justifyContent="flex-start"
                     alignItems="flex-start"
                 >
                     <HamburgerMenu></HamburgerMenu>

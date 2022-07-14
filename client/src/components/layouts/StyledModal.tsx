@@ -42,11 +42,16 @@ export const StyledModal = styled.div<StyledModalProps>`
         border-radius: 4px;
     }
     @media ${device.laptop} {
-        width: 60%;
+        width: 55%;
         height: 45%;
     }
     @media ${device.tablet} {
         width: 60%;
         height: 45%;
+    }
+    @media ${device.mobileL} {
+        width: 80%;
+        height: 45%;
+        justify-content: ${(props) => props.justifyContent ?? "flex-start"};
     }
 `;

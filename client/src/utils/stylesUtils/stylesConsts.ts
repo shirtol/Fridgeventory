@@ -1,4 +1,5 @@
 export const Colors = {
+    headerBlue: "#5C92C1",
     blue: "#7AA3C6",
     greyInput: "#f1f1f1",
     whiteInput: "fff",

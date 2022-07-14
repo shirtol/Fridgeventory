@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import HoodCard from "../../components/hoodCard/HoodCard";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
+import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
@@ -88,11 +89,10 @@ const HoodPage = () => {
     }, []);
 
     return (
-        <StyledMainArea>
+        <StyledMainWrapper>
             <StyledFlexWrapper
                 flexDirection="column"
                 justifyContent="flex-start"
-                paddingTop="10rem"
             >
                 {isLoaded &&
                     (myHood ? (
@@ -150,7 +150,7 @@ const HoodPage = () => {
                         </>
                     ))}
             </StyledFlexWrapper>
-        </StyledMainArea>
+        </StyledMainWrapper>
     );
 };
 

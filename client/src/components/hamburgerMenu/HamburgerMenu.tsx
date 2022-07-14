@@ -28,10 +28,6 @@ const HamburgerMenu = () => {
             </StyledNavbarItem>
 
             <StyledNavbarItem onClick={() => setOpen(false)}>
-                <NavLink to="/shopping-list">Shopping List</NavLink>
-            </StyledNavbarItem>
-
-            <StyledNavbarItem onClick={() => setOpen(false)}>
                 <NavLink to="/hood">Hood</NavLink>
             </StyledNavbarItem>
 

@@ -5,6 +5,7 @@ import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 export const StyledLocationInput = styled.input`
     text-align: center;
     padding-top: 1rem;
+    margin-top: 2rem;
     width: 30rem;
     height: 5rem;
     font-weight: 600;

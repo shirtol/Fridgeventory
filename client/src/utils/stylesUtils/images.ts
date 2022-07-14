@@ -16,3 +16,12 @@ export const AvatarsImages = {
     Brunette: appImages("./avatars/Brunette.png"),
     Blonde: appImages("./avatars/Blonde.png"),
 };
+
+export const logoImages = {
+    logo: appImages("./logo/logo.png"),
+};
+
+export const iconsImages = {
+    sadCloud: appImages("./icons/notFound.png"),
+    sadFrog: appImages("./icons/frog.png"),
+};

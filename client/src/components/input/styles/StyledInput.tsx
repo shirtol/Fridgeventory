@@ -8,7 +8,7 @@ export const StyledInput = styled.input`
     width: 100%;
     height: 5rem;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.4rem;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     background: #f6f6f68a;
     border-radius: 1rem;
