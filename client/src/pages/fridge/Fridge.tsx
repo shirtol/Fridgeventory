@@ -5,9 +5,11 @@ import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { useProduct } from "../../context/productContext/Product.context";
+import Product from "../../context/productContext/Product.types";
 import { useUser } from "../../context/userContext/User.context";
 import {
     deleteProductById,
+    getProductById,
     shareProductToHood,
 } from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
@@ -17,6 +19,7 @@ const Fridge = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { allProducts, setAllProducts, addProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
+    const [selectedProduct, setSelectedProduct] = useState<Product>();
 
     const { token } = useUser();
 
@@ -34,7 +37,14 @@ const Fridge = () => {
         await getMyHood!(myHood!._id);
     };
 
+    const enterEditProduct = async (product: Product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
+
     const deleteProduct = async (productId: string) => {
+        const product = await getProductById(productId, token!);
+        setSelectedProduct(product);
         const deletedProduct = await deleteProductById(productId, token!);
         const newProductsArr = allProducts?.filter((product) => {
             return product._id !== deletedProduct._id;
@@ -55,6 +65,11 @@ const Fridge = () => {
                                 await shareProduct(product._id),
                         },
                         {
+                            text: "edit",
+                            onClick: async () =>
+                                await enterEditProduct(product),
+                        },
+                        {
                             text: "delete",
                             onClick: async () =>
                                 await deleteProduct(product._id),
@@ -68,10 +83,13 @@ const Fridge = () => {
 
     return (
         <>
-            <AddProductModal
-                isShown={isModalOpen}
-                closeModal={() => setIsModalOpen(false)}
-            ></AddProductModal>
+            {isModalOpen && (
+                <AddProductModal
+                    isShown={isModalOpen}
+                    closeModal={() => setIsModalOpen(false)}
+                    product={selectedProduct}
+                ></AddProductModal>
+            )}
             <StyledMainWrapper>
                 <StyledFlexWrapper
                     justifyContent="flex-end"
@@ -79,7 +97,7 @@ const Fridge = () => {
                 >
                     <StyledGridWrapper
                         gridTemplateCol="repeat(5, 1fr)"
-                        gridTemplateColLaptop="repeat(4, 1fr)"
+                        gridTemplateColLaptop="repeat(3, 1fr)"
                     >
                         {renderAllProducts()}
                     </StyledGridWrapper>

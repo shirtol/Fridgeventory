@@ -5,6 +5,7 @@ import {
     deleteProduct,
     shareProduct,
     editProduct,
+    getSpecificProduct,
 } from "../controllers/product.controller.js";
 import { upload } from "../services/aws.services.js";
 
@@ -19,3 +20,5 @@ productRouter.delete("/deleteProduct/:productId", deleteProduct);
 productRouter.put("/shareProduct/:hoodId", shareProduct);
 
 productRouter.put("/editProduct/:productId", editProduct);
+
+productRouter.get("/getSpecificProduct/:productId", getSpecificProduct);

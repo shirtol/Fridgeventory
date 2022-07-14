@@ -12,9 +12,9 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
             // case "/my-hood":
             //     background = backgroundImages.bg;
             //     break;
-            case "/fridge":
-                background = backgroundImages.bg2;
-                break;
+            // case "/fridge":
+            //     background = backgroundImages.bg2;
+            //     break;
 
             default:
                 background = "#fff";

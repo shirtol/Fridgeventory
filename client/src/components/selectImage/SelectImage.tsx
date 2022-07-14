@@ -1,10 +1,11 @@
+import { isBlob } from "../../pages/fridge/AddProductModal";
 import { StyledCameraIcon } from "../../pages/fridge/styles/StyledCameraIcon";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledProductImg } from "../productCard/styles/StyledProductImg";
 import { StyledSelectImage } from "./styles/StyledSelectImage";
 
 interface SelectImageProps {
-    productImage: Blob;
+    productImage: Blob | string;
     handleChange: (e: any) => void;
     inputLabel: string;
 }
@@ -30,10 +31,15 @@ const SelectImage = ({ productImage, handleChange }: SelectImageProps) => {
                 onClick={() => fileInput?.click()}
                 className="fa-solid fa-camera fa-2x"
             ></StyledCameraIcon>
-            {productImage?.size > 0 && (
+            {((isBlob(productImage) && productImage?.size > 0) ||
+                typeof productImage === "string") && (
                 <StyledProductImg
                     id="preview"
-                    src={URL.createObjectURL(productImage)}
+                    src={
+                        isBlob(productImage)
+                            ? URL.createObjectURL(productImage)
+                            : productImage
+                    }
                     alt="preview"
                 ></StyledProductImg>
             )}

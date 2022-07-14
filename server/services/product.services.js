@@ -41,12 +41,17 @@ export const updateProductAfterSharing = async (productId) => {
     }
 };
 
-export const editProductById = async (product) => {
+export const editProductById = async (product, productId) => {
     try {
+        const editedProduct = new Product(product);
+        let newProduct = editedProduct.toObject();
+        console.log(newProduct);
+        delete newProduct._id;
+
         const productAfterEdit = await Product.findOneAndUpdate(
-            { _id: product._id },
-            { ...product },
-            { new: true }
+            { _id: productId },
+            newProduct,
+            { new: true, upsert: true, setDefaultsOnInsert: true }
         );
         return productAfterEdit;
     } catch (err) {
@@ -54,4 +59,8 @@ export const editProductById = async (product) => {
             message: "Something went wrong",
         });
     }
+};
+
+export const getProductById = async (productId) => {
+    return await Product.findById({ _id: productId });
 };
