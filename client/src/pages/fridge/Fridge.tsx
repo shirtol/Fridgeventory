@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { StyledBackground } from "../../components/layouts/StyledBackground";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
-import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";

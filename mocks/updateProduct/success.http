@@ -1,0 +1,19 @@
+PUT /api/auth/product/editProduct/62cfb2b4f113e34370d3dd6c HTTP/1.1
+Host: {{host}}
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNmMjc4ZjFlNTVmY2NhMjhiYmU2Y2MiLCJpYXQiOjE2NTc3NDY5OTd9.aeGgRSuyNe2Uu2MDofniwP0S_-A15q-uqvVIEEBOuAA
+
+
+{ 
+    "product": 
+    {
+        "name": "lalala",
+        "amount": "41",
+        "productImage": "https://fridgeventory.s3.amazonaws.com/YDP54_Z_P_7290110568276_1.webp",
+        "expiryDate": "2022-08-03T21:00:00.000+00:00",
+        "category": "Dairy & Egg",
+        "_id": "62cfb2b4f113e34370d3dd6c",
+        "isShared": "false",
+        "owner": "62cf278f1e55fcca28bbe6cc"
+    }
+}

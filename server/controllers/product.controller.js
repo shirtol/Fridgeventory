@@ -5,6 +5,7 @@ import {
     fetchAllProducts,
     fetchProductAndDelete,
     updateProductAfterSharing,
+    editProductById,
 } from "../services/product.services.js";
 import FridgeventoryError from "../utils/errorHandling.js";
 
@@ -79,6 +80,17 @@ export const shareProduct = async (req, res) => {
         return res
             .status(200)
             .send({ hoodAfterUpdating, productAfterUpdating });
+    } catch (err) {
+        const parsed = JSON.parse(err.message);
+        return res.status(parsed.statusCode).send(parsed);
+    }
+};
+
+export const editProduct = async (req, res) => {
+    console.log(req.body.product);
+    try {
+        const productAfterEdit = await editProductById(req.body.product);
+        return res.status(200).send(productAfterEdit);
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);

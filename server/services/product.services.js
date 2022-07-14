@@ -40,3 +40,18 @@ export const updateProductAfterSharing = async (productId) => {
         });
     }
 };
+
+export const editProductById = async (product) => {
+    try {
+        const productAfterEdit = await Product.findOneAndUpdate(
+            { _id: product._id },
+            { ...product },
+            { new: true }
+        );
+        return productAfterEdit;
+    } catch (err) {
+        throw new FridgeventoryError(500, {
+            message: "Something went wrong",
+        });
+    }
+};
