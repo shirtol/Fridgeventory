@@ -4,7 +4,7 @@ export const backgroundImages = {
     bg: appImages("./backgrounds/banana.jpg"),
     bg2: appImages("./backgrounds/melon.jpg"),
     bg3: appImages("./backgrounds/bg3.jpg"),
-    bg4: appImages("./backgrounds/pineapple.jpg"),
+    bg4: appImages("./backgrounds/pineappleFlip.jpg"),
 };
 
 export const AvatarsImages = {

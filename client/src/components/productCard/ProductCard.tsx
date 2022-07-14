@@ -67,7 +67,7 @@ const ProductCard = ({ product, menuItems, isMyFridge }: ProductCardProps) => {
                         /*@ts-ignore*/
                         <ContextMenuItem
                             onClick={menuItem.onClick}
-                            key={product._id}
+                            key={menuItem.text}
                         >
                             {menuItem.text}
                         </ContextMenuItem>

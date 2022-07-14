@@ -9,15 +9,15 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
     background: ${(props) => {
         let background;
         switch (props.location) {
-            case "/my-hood":
-                background = backgroundImages.bg;
-                break;
+            // case "/my-hood":
+            //     background = backgroundImages.bg;
+            //     break;
             case "/fridge":
                 background = backgroundImages.bg2;
                 break;
 
             default:
-                background = backgroundImages.bg4;
+                background = "#fff";
                 break;
         }
 

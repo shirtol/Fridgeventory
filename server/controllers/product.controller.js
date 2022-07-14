@@ -18,6 +18,11 @@ export const getAllProducts = async (req, res) => {
 };
 
 export const addProduct = (req, res) => {
+    console.log(req.file.originalname);
+    if (!req.file) {
+        res.status(404).send({ message: "Image not found" });
+        return;
+    }
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: req.file.originalname,

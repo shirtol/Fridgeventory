@@ -11,12 +11,9 @@ import ProductCategoryChooser from "./productCategoryChooser/ProductCategoryChoo
 import { Option } from "react-dropdown";
 import { useUser } from "../../context/userContext/User.context";
 import { useProduct } from "../../context/productContext/Product.context";
-import Product, {
-    parseProduct,
-} from "../../context/productContext/Product.types";
+import { parseProduct } from "../../context/productContext/Product.types";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import "./styles/datePicker/datePickerStyle.css";
-import { StyledCameraIcon } from "./styles/StyledCameraIcon";
 
 interface AddProductModalProps {
     isShown: boolean;
@@ -104,7 +101,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                 <StyledModalWrapper onClick={closeModal}>
                     <StyledModal
                         height="45%"
-                        width="30%"
+                        width="40%"
                         justifyContent="flex-start"
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -135,7 +132,7 @@ const AddProductModal = ({ isShown, closeModal }: AddProductModalProps) => {
                         <ProductCategoryChooser
                             onCategoryChange={handleCategoryChange}
                         ></ProductCategoryChooser>
-                        <StyledFlexWrapper>
+                        <StyledFlexWrapper flexDirectionTablet="column">
                             <Title titleText="Expiry date"></Title>
                             <DatePicker
                                 onChange={(date: Date) => {

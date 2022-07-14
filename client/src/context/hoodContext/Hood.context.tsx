@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
@@ -68,7 +69,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     };
 
     useEffect(() => {
-        if (currUser?.hoods?.length && currUser?.hoods?.length > 0) {
+        if (currUser?.hoods?.length) {
             const hoodId = currUser?.hoods[0];
             getMyHood(hoodId as string);
         }

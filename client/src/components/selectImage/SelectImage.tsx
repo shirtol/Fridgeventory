@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import { StyledCameraIcon } from "../../pages/fridge/styles/StyledCameraIcon";
-import Button from "../button/Button";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledProductImg } from "../productCard/styles/StyledProductImg";
 import { StyledSelectImage } from "./styles/StyledSelectImage";
