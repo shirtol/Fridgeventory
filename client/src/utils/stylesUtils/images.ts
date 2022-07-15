@@ -38,3 +38,12 @@ export const homePageImages = {
 export const hoodImages = {
     hood: appImages("./hood/hood-nobg.png"),
 };
+
+export const navbarImages = {
+    fridge: appImages("./navbar/fridge.png"),
+    hood: appImages("./navbar/hood.png"),
+    login: appImages("./navbar/login.png"),
+    register: appImages("./navbar/register.png"),
+    welcome: appImages("./navbar/welcome.png"),
+    logout: appImages("./navbar/logout.png"),
+};

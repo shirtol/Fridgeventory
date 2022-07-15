@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { AlignItems } from "./layout.types";
 
 interface StyledMainWrapperProps {
-    alignItems: string;
+    alignItems: AlignItems;
     height: string;
 }
 

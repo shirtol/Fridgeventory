@@ -4,7 +4,7 @@ import Routes from "./pages/routes/Routes";
 
 function App() {
     return (
-        <div className="App">
+        <div className="App" onContextMenu={(e) => e.preventDefault()}>
             <Routes></Routes>
         </div>
     );

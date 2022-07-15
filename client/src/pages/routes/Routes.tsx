@@ -36,13 +36,7 @@ const Routes = () => {
                     <Navbar></Navbar>
                     <Switch>
                         <Route exact path="/" component={Home}></Route>
-                        <FilterProvider>
-                            <Route
-                                exact
-                                path="/fridge"
-                                component={Fridge}
-                            ></Route>
-                        </FilterProvider>
+                        <Route exact path="/fridge" component={Fridge}></Route>
                         <Route
                             exact
                             path="/shopping-list"

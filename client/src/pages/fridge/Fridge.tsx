@@ -116,19 +116,61 @@ const Fridge = () => {
                         key={product._id}
                         menuItems={[
                             {
-                                text: product.isShared ? "unshare" : "share",
+                                text: (
+                                    <StyledFlexWrapper justifyContent="flex-start">
+                                        <span
+                                            className="iconify"
+                                            data-icon="ci:share"
+                                            style={{
+                                                color: "#444",
+                                                fontSize: 20,
+                                            }}
+                                        ></span>
+                                        {product.isShared ? "Unshare" : "Share"}
+                                    </StyledFlexWrapper>
+                                ),
                                 onClick: async () =>
                                     product.isShared
                                         ? await handleUnShare(product._id)
                                         : await shareProduct(product._id),
                             },
                             {
-                                text: "edit",
+                                text: (
+                                    <StyledFlexWrapper justifyContent="flex-start">
+                                        <span
+                                            className="iconify"
+                                            data-icon="bxs:edit"
+                                            style={{
+                                                color: "#444",
+                                                fontSize: 20,
+                                            }}
+                                        ></span>
+                                        Edit
+                                    </StyledFlexWrapper>
+                                ),
                                 onClick: async () =>
                                     await enterEditProduct(product),
                             },
                             {
-                                text: "delete",
+                                text: (
+                                    <StyledFlexWrapper justifyContent="flex-start">
+                                        <span
+                                            className="iconify"
+                                            data-icon="fa-solid:trash"
+                                            style={{
+                                                color: "#d11a2a",
+                                                fontSize: 20,
+                                            }}
+                                        ></span>
+                                        <span
+                                            style={{
+                                                color: "#d11a2a",
+                                            }}
+                                        >
+                                            Delete
+                                        </span>
+                                    </StyledFlexWrapper>
+                                ),
                                 onClick: async () =>
                                     await deleteProduct(product._id),
                             },

@@ -15,6 +15,6 @@ export const parseProduct = (product: any) => ({
 });
 
 export interface MenuItem {
-    text: string;
+    text: any;
     onClick: (e: any) => void;
 }
