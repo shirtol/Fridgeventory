@@ -6,7 +6,11 @@ import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import { useUser } from "../../context/userContext/User.context";
 
-const Login = () => {
+interface LoginProps {
+    showOverlay?: boolean;
+}
+
+const Login = ({ showOverlay }: LoginProps) => {
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -28,31 +32,33 @@ const Login = () => {
     };
 
     return (
-        <StyledModalWrapper>
+        <StyledModalWrapper isAbove={false}>
             <StyledModal height="40%" width="30%">
                 {/* <form> */}
                 <StyledFlexWrapper
                     flexDirection="column"
                     paddingTop="3rem"
-                    justifyContent="space-around"
+                    justifyContent="space-between"
                     height="100%"
                 >
-                    <CustomInput
-                        id="email"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        inputLabel="email"
-                        required={true}
-                    ></CustomInput>
-                    <CustomInput
-                        id="password"
-                        type="password"
-                        value={form.password}
-                        onChange={handleChange}
-                        inputLabel="password"
-                        required={true}
-                    ></CustomInput>
+                    <StyledFlexWrapper flexDirection="column">
+                        <CustomInput
+                            id="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            inputLabel="email"
+                            required={true}
+                        ></CustomInput>
+                        <CustomInput
+                            id="password"
+                            type="password"
+                            value={form.password}
+                            onChange={handleChange}
+                            inputLabel="password"
+                            required={true}
+                        ></CustomInput>
+                    </StyledFlexWrapper>
                     <StyledFlexWrapper>
                         <Button
                             buttonText="login"

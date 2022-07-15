@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import device from "../../../utils/stylesUtils/mediaQuerySizes";
+import { Colors } from "../../../utils/stylesUtils/stylesConsts";
 
 export const StyledBannerWrapper = styled.div`
     grid-area: header;
@@ -7,7 +9,17 @@ export const StyledBannerWrapper = styled.div`
     justify-content: center;
     height: 7rem;
     width: 100%;
-    background: #333;
+    background: ${Colors.whiteSmoke};
     top: 0;
-    opacity: 0.2;
+    opacity: 0.6;
+    gap: 2rem;
+    & > * {
+        text-align: center;
+    }
+    @media ${device.tablet} {
+        justify-content: flex-end;
+    }
+    @media ${device.mobileL} {
+        gap: 1.6rem;
+    }
 `;

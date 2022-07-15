@@ -18,6 +18,7 @@ export const fetchProductAndDelete = async (productId, userId) => {
         await product.delete();
         return product;
     } catch (err) {
+        console.error(err);
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
             productId,
@@ -26,15 +27,16 @@ export const fetchProductAndDelete = async (productId, userId) => {
     }
 };
 
-export const updateProductAfterSharing = async (productId) => {
+export const updateProductIsShared = async (productId, isShared) => {
     try {
         const product = await Product.findOneAndUpdate(
             { _id: productId },
-            { isShared: true },
+            { isShared: isShared },
             { new: true }
         );
         return product;
     } catch (err) {
+        console.error(err);
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
         });

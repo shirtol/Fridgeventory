@@ -1,9 +1,12 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { ReactNode, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import CloseBtn from "../../components/closeBtn/CloseBtn";
 import HoodCard from "../../components/hoodCard/HoodCard";
+import JoinHoodModal from "../../components/joinHoodModal/JoinHoodModal";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledMainArea } from "../../components/layouts/StyledMainArea";
+import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
@@ -21,6 +24,7 @@ declare type Libraries = (
 const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedHood, setSelectedHood] = useState<Hood>();
     const { fetchHoods, allHoods, myHood, joinHood } = useHood();
     const { currUser } = useUser();
@@ -50,6 +54,7 @@ const HoodPage = () => {
 
     const onHoodClicked = (currHood: Hood) => {
         setSelectedHood(currHood);
+        setIsModalOpen(true);
     };
 
     const renderAllHoods = (): ReactNode => {
@@ -88,69 +93,99 @@ const HoodPage = () => {
     }, []);
 
     return (
-        <StyledMainArea>
-            <StyledFlexWrapper
-                flexDirection="column"
-                justifyContent="flex-start"
-                paddingTop="10rem"
-            >
-                {isLoaded &&
-                    (myHood ? (
-                        <Redirect to="/my-hood" push={true}></Redirect>
-                    ) : (
-                        <>
-                            <Autocomplete
-                                onPlaceChanged={handleSelectLocation}
-                                onLoad={(autocomplete) => {
-                                    setCurrAutoComplete(autocomplete);
-                                }}
-                            >
-                                <StyledFlexWrapper alignItems="flex-start">
-                                    <StyledLocationInput
-                                        type="text"
-                                        onChange={handleChange}
-                                        value={inputValue!}
-                                        required={false}
-                                    ></StyledLocationInput>
+        <>
+            <JoinHoodModal
+                isHoodClicked={
+                    selectedHood?.location !== undefined &&
+                    isUserInputInHoodLocations(selectedHood)
+                }
+                closeModal={() => {
+                    // if (
+                    //     selectedHood?.location !== undefined &&
+                    //     isUserInputInHoodLocations(selectedHood)
+                    // ) {
+                    //     setIsModalOpen(true);
+                    // } else {
+                    //     setIsModalOpen(false);
+                    // }
+                }}
+                hood={selectedHood!}
+            ></JoinHoodModal>
+
+            <StyledMainWrapper>
+                <StyledFlexWrapper
+                    flexDirection="column"
+                    justifyContent="flex-start"
+                >
+                    {isLoaded &&
+                        (myHood ? (
+                            <Redirect to="/my-hood" push={true}></Redirect>
+                        ) : (
+                            <>
+                                <Autocomplete
+                                    onPlaceChanged={handleSelectLocation}
+                                    onLoad={(autocomplete) => {
+                                        setCurrAutoComplete(autocomplete);
+                                    }}
+                                >
+                                    <StyledFlexWrapper
+                                        alignItems="flex-start"
+                                        width="100%"
+                                        paddingRight="2rem"
+                                        paddingLeft="2rem"
+                                        justifyContent="space-evenly"
+                                    >
+                                        <StyledLocationInput
+                                            type="text"
+                                            onChange={handleChange}
+                                            value={inputValue!}
+                                            required={false}
+                                        ></StyledLocationInput>
+                                    </StyledFlexWrapper>
+                                </Autocomplete>
+
+                                <StyledFlexWrapper
+                                    alignItems="flex-start"
+                                    marginTop="2rem"
+                                    width="80%"
+                                >
+                                    {allHoods?.some(
+                                        isUserInputInHoodLocations
+                                    ) ? (
+                                        <StyledFlexWrapper
+                                            flexDirection="column"
+                                            width="50%"
+                                            gap="0"
+                                        >
+                                            {renderAllHoods()}
+                                        </StyledFlexWrapper>
+                                    ) : (
+                                        <StyledFlexWrapper
+                                            flexDirection="column"
+                                            width="50%"
+                                            gap="0"
+                                            height="60vh"
+                                        >
+                                            <CreateHood></CreateHood>
+                                        </StyledFlexWrapper>
+                                    )}
+
+                                    <JoinHoodBox
+                                        isShown={
+                                            selectedHood?.location !==
+                                                undefined &&
+                                            isUserInputInHoodLocations(
+                                                selectedHood
+                                            )
+                                        }
+                                        hood={selectedHood!}
+                                    ></JoinHoodBox>
                                 </StyledFlexWrapper>
-                            </Autocomplete>
-
-                            <StyledFlexWrapper
-                                alignItems="flex-start"
-                                marginTop="2rem"
-                                width="80%"
-                            >
-                                {allHoods?.some(isUserInputInHoodLocations) ? (
-                                    <StyledFlexWrapper
-                                        flexDirection="column"
-                                        width="50%"
-                                        gap="0"
-                                    >
-                                        {renderAllHoods()}
-                                    </StyledFlexWrapper>
-                                ) : (
-                                    <StyledFlexWrapper
-                                        flexDirection="column"
-                                        width="50%"
-                                        gap="0"
-                                        height="60vh"
-                                    >
-                                        <CreateHood></CreateHood>
-                                    </StyledFlexWrapper>
-                                )}
-
-                                <JoinHoodBox
-                                    isShown={
-                                        selectedHood?.location !== undefined &&
-                                        isUserInputInHoodLocations(selectedHood)
-                                    }
-                                    hood={selectedHood!}
-                                ></JoinHoodBox>
-                            </StyledFlexWrapper>
-                        </>
-                    ))}
-            </StyledFlexWrapper>
-        </StyledMainArea>
+                            </>
+                        ))}
+                </StyledFlexWrapper>
+            </StyledMainWrapper>
+        </>
     );
 };
 

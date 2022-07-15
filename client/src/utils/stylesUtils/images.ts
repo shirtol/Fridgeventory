@@ -16,3 +16,21 @@ export const AvatarsImages = {
     Brunette: appImages("./avatars/Brunette.png"),
     Blonde: appImages("./avatars/Blonde.png"),
 };
+
+export const logoImages = {
+    logo: appImages("./logo/logo.png"),
+};
+
+export const iconsImages = {
+    sadCloud: appImages("./icons/notFound.png"),
+    sadFrog: appImages("./icons/frog.png"),
+};
+
+export const homePageImages = {
+    food: appImages("./home/food-small.jpg"),
+    neighborhood: appImages("./home/neighborhood-small.jpg"),
+    houses: appImages("./home/houses-small.jpg"),
+    people: appImages("./home/people-small.jpg"),
+    eat: appImages("./home/eat-small.jpg"),
+    vik: appImages("./home/vik-muniz.jpg"),
+};

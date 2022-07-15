@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { logoImages } from "../../utils/stylesUtils/images";
+import { StyledLogo } from "../logo/StyledLogo";
 import { StyledSlogan } from "../slogan/StyledSlogan";
 import { StyledBannerWrapper } from "./styles/StyledBannerWrapper";
 
@@ -13,6 +15,7 @@ const WebsiteBanner = () => {
     return (
         <StyledBannerWrapper>
             <StyledSlogan onClick={onSlogenClicked}>FRIDGEVENTORY</StyledSlogan>
+            <StyledLogo src={logoImages.logo}></StyledLogo>
         </StyledBannerWrapper>
     );
 };

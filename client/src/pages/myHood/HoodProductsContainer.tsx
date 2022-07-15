@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
@@ -43,9 +44,16 @@ const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
     };
 
     return (
-        <StyledHoodProductsWrapper>
+        <StyledGridWrapper
+            alignSelf="flex-start"
+            gridTemplateColLaptopML="repeat(2, 1fr)"
+            gridTemplateCol="repeat(4, 1fr)"
+            gridTemplateColLaptopM="repeat(2, 1fr)"
+            gridTemplateColLaptop="repeat(2, 1fr)"
+            gridTemplateColsTablet="repeat(2, 1fr)"
+        >
             {renderHoodProducts()}
-        </StyledHoodProductsWrapper>
+        </StyledGridWrapper>
     );
 };
 

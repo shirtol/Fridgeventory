@@ -12,6 +12,7 @@ export const StyledNavbar = styled.aside`
     width: 17%;
     z-index: 100;
     top: 10%;
+    margin-top: 2rem;
     /* top: 50%;
     margin-top: -20rem; */
     left: 2rem;

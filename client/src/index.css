@@ -8,3 +8,16 @@
     src: local("GraphikMedium"),
         url("./assets/fonts/GraphikMedium.ttf") format("truetype");
 }
+@font-face {
+    font-family: "kobry";
+    src: local("kobry"), url("./assets/fonts/kobry.ttf") format("truetype");
+}
+@font-face {
+    font-family: "starmoon";
+    src: local("starmoon"),
+        url("./assets/fonts/starmoon.otf") format("truetype");
+}
+@font-face {
+    font-family: "hussar";
+    src: local("hussar"), url("./assets/fonts/hussar.otf") format("truetype");
+}

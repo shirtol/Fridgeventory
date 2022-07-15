@@ -22,7 +22,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     align-items: ${(props) => props.alignItems ?? "center"};
     justify-content: ${(props) => props.justifyContent ?? "flex-start"};
     gap: 2rem;
-    position: sticky;
+    position: relative;
     font-family: "Poppins", sans-serif;
     font-size: 1.5rem;
     text-align: center;
@@ -42,11 +42,16 @@ export const StyledModal = styled.div<StyledModalProps>`
         border-radius: 4px;
     }
     @media ${device.laptop} {
-        width: 60%;
+        width: 55%;
         height: 45%;
     }
     @media ${device.tablet} {
         width: 60%;
         height: 45%;
+    }
+    @media ${device.mobileL} {
+        width: 80%;
+        height: 45%;
+        justify-content: ${(props) => props.justifyContent ?? "flex-start"};
     }
 `;

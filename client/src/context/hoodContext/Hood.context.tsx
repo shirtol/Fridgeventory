@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { authHoodsApi, hoodsApi } from "../../apis/fridgeventoryApi";
+import { useProduct } from "../productContext/Product.context";
 import { parseProduct } from "../productContext/Product.types";
 import { useUser } from "../userContext/User.context";
 import { Hood } from "./Hood.type";
@@ -27,6 +28,7 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
     const [allHoods, setAllHoods] = useState<Hood[]>([]);
     const { token, currUser } = useUser();
     const [myHood, setMyHood] = useState<Hood>();
+    const { allProducts } = useProduct();
 
     const fetchHoods = async () => {
         try {
@@ -75,6 +77,12 @@ export const HoodProvider = ({ children }: HoodProviderProps) => {
         }
         if (!currUser) setMyHood(undefined);
     }, [currUser]);
+
+    useEffect(() => {
+        if (myHood) {
+            getMyHood(myHood._id);
+        }
+    }, [allProducts]);
 
     const value = {
         allHoods,

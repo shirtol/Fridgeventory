@@ -14,7 +14,7 @@ const MyHood = ({ hood }: MyHoodProps) => {
         <StyledFlexWrapper
             alignItems="flex-start"
             justifyContent="space-between"
-            justifySelf="flex-end"
+            justifySelf="center"
         >
             <HoodProductsContainer hood={hood}></HoodProductsContainer>
             <NeighborsList></NeighborsList>

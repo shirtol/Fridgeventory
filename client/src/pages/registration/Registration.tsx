@@ -51,7 +51,7 @@ const Registration = () => {
     };
 
     return (
-        <StyledModalWrapper>
+        <StyledModalWrapper isAbove={false}>
             <StyledModal>
                 {/* <form> */}
                 <StyledFlexWrapper
@@ -59,6 +59,7 @@ const Registration = () => {
                     paddingTop="3rem"
                     justifyContent="space-around"
                     height="100%"
+                    paddingBottom="2rem"
                 >
                     <CustomInput
                         id="name"

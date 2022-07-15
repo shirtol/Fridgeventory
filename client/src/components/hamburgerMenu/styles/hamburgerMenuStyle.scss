@@ -1,0 +1,13 @@
+@import "../../../utils/stylesUtils/mixin.scss";
+
+.bm-burger-button {
+    position: fixed;
+    display: none;
+    width: 2rem;
+    height: 2rem;
+    left: 2rem;
+    top: 2rem;
+    @include responsive(tablet) {
+        display: block;
+    }
+}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import device from "../../../utils/stylesUtils/mediaQuerySizes";
 import { Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
 export const StyledJoinHoodBox = styled.div`
@@ -11,4 +12,7 @@ export const StyledJoinHoodBox = styled.div`
     flex-direction: column;
     padding: 2rem;
     text-align: center;
+    @media ${device.tablet} {
+        display: none;
+    }
 `;

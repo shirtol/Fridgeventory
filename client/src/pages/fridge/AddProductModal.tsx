@@ -128,7 +128,7 @@ const AddProductModal = ({
     return (
         <>
             {isShown && (
-                <StyledModalWrapper onClick={closeModal}>
+                <StyledModalWrapper onClick={closeModal} isAbove={true}>
                     <StyledModal
                         height="45%"
                         width="40%"
