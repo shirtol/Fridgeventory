@@ -92,7 +92,7 @@ const Fridge = () => {
                                 await deleteProduct(product._id),
                         },
                     ]}
-                    isMyFridge
+                    isMyProduct
                 ></ProductCard>
             );
         });

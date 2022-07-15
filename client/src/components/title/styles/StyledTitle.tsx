@@ -11,6 +11,7 @@ export const StyledTitle = styled.h3<StyledTitleProps>`
     font-size: ${(props) => props.fontSize ?? "1.3rem"};
     text-align: center;
     width: ${(props) => props.width ?? "auto"};
+    letter-spacing: 1px;
     @media ${device.laptopL} {
         font-size: ${(props) =>
             props.fontSizeLaptopL ?? props.fontSize ?? "1.3rem"};

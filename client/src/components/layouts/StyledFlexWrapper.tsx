@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
-
+export type JustifyContent =
+    | "space-between"
+    | "center"
+    | "space-around"
+    | "space-evenly"
+    | "flex-end"
+    | "flex-start";
 interface StyledFlexWrapperProps {
     flexDirection?: string;
     gap?: string;
     alignItems?: string;
     width?: string;
-    justifyContent?: string;
+    justifyContent?: JustifyContent;
     height?: string;
     overflowY?: string;
     marginTop?: string;
@@ -18,6 +24,7 @@ interface StyledFlexWrapperProps {
     paddingRight?: string;
     flexDirectionTablet?: string;
     paddingBottom?: string;
+    widthMobileL?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -40,5 +47,8 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     @media ${device.tablet} {
         flex-direction: ${(props) =>
             props.flexDirection ?? props.flexDirectionTablet ?? "row"};
+    }
+    @media ${device.mobileL} {
+        width: ${(props) => props.widthMobileL ?? props.width ?? "100%"};
     }
 `;

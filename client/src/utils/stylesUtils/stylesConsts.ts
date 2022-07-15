@@ -1,4 +1,5 @@
 export const Colors = {
+    ribbon: "#7BE0D6",
     headerBlue: "#5C92C1",
     blue: "#7AA3C6",
     greyInput: "#f1f1f1",

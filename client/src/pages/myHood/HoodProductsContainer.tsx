@@ -3,6 +3,7 @@ import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
+import { useUser } from "../../context/userContext/User.context";
 import { StyledHoodProductsWrapper } from "./styles/StyledHoodProductsWrapper";
 
 interface HoodProductsContainerProps {
@@ -11,6 +12,7 @@ interface HoodProductsContainerProps {
 
 const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
     const { myHood } = useHood();
+    const { currUser } = useUser();
 
     const getUserEmail = (ownerId: string) => {
         const user = myHood?.people?.find((user) => user._id === ownerId);
@@ -38,6 +40,7 @@ const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
                                 ),
                         },
                     ]}
+                    isMyProduct={product.owner === currUser?._id}
                 ></ProductCard>
             );
         });

@@ -4,7 +4,9 @@ import HoodLottie from "../../components/hoodLottie/HoodLottie";
 import Title from "../../components/title/Title";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
+import { hoodImages } from "../../utils/stylesUtils/images";
 import { StyledJoinHoodBox } from "./styles/StyledJoinHoodBox";
+import { StyledLandHoodImage } from "./styles/StyledLandHoodImage";
 
 interface JoinHoodBoxProps {
     isShown: boolean;
@@ -36,7 +38,15 @@ const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
                         </>
                     )}
                     {!isShown && (
-                        <Title titleText="Select a hood and join"></Title>
+                        <>
+                            <StyledLandHoodImage
+                                src={hoodImages.hood}
+                            ></StyledLandHoodImage>
+                            <Title
+                                titleText="Select a hood and join"
+                                titleFontSize="2rem"
+                            ></Title>
+                        </>
                     )}
                 </StyledJoinHoodBox>
             }

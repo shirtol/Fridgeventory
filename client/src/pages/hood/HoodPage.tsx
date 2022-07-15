@@ -24,7 +24,6 @@ declare type Libraries = (
 const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedHood, setSelectedHood] = useState<Hood>();
     const { fetchHoods, allHoods, myHood, joinHood } = useHood();
     const { currUser } = useUser();
@@ -54,7 +53,6 @@ const HoodPage = () => {
 
     const onHoodClicked = (currHood: Hood) => {
         setSelectedHood(currHood);
-        setIsModalOpen(true);
     };
 
     const renderAllHoods = (): ReactNode => {
@@ -94,25 +92,20 @@ const HoodPage = () => {
 
     return (
         <>
-            <JoinHoodModal
-                isHoodClicked={
-                    selectedHood?.location !== undefined &&
-                    isUserInputInHoodLocations(selectedHood)
-                }
-                closeModal={() => {
-                    // if (
-                    //     selectedHood?.location !== undefined &&
-                    //     isUserInputInHoodLocations(selectedHood)
-                    // ) {
-                    //     setIsModalOpen(true);
-                    // } else {
-                    //     setIsModalOpen(false);
-                    // }
-                }}
-                hood={selectedHood!}
-            ></JoinHoodModal>
+            {selectedHood && (
+                <JoinHoodModal
+                    isHoodClicked={
+                        selectedHood?.location !== undefined &&
+                        isUserInputInHoodLocations(selectedHood)
+                    }
+                    closeModal={() => {
+                        setSelectedHood(undefined);
+                    }}
+                    hood={selectedHood!}
+                ></JoinHoodModal>
+            )}
 
-            <StyledMainWrapper>
+            <StyledMainWrapper height="100%">
                 <StyledFlexWrapper
                     flexDirection="column"
                     justifyContent="flex-start"
@@ -148,6 +141,7 @@ const HoodPage = () => {
                                     alignItems="flex-start"
                                     marginTop="2rem"
                                     width="80%"
+                                    height="100%"
                                 >
                                     {allHoods?.some(
                                         isUserInputInHoodLocations
@@ -156,6 +150,10 @@ const HoodPage = () => {
                                             flexDirection="column"
                                             width="50%"
                                             gap="0"
+                                            height="60vh"
+                                            overflowY="scroll"
+                                            widthMobileL="95%"
+                                            justifyContent="flex-start"
                                         >
                                             {renderAllHoods()}
                                         </StyledFlexWrapper>
@@ -165,6 +163,7 @@ const HoodPage = () => {
                                             width="50%"
                                             gap="0"
                                             height="60vh"
+                                            widthMobileL="90%"
                                         >
                                             <CreateHood></CreateHood>
                                         </StyledFlexWrapper>
