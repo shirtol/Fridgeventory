@@ -25,3 +25,11 @@ export const iconsImages = {
     sadCloud: appImages("./icons/notFound.png"),
     sadFrog: appImages("./icons/frog.png"),
 };
+
+export const homePageImages = {
+    food: appImages("./home/food1.jpg"),
+    neighborhood: appImages("./home/neighborhood1.jpg"),
+    houses: appImages("./home/houses1.jpg"),
+    people: appImages("./home/people1.jpg"),
+    eat: appImages("./home/eat1.jpg"),
+};
