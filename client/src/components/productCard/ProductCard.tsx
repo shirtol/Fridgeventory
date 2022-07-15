@@ -39,7 +39,11 @@ const ProductCard = ({ product, menuItems, isMyProduct }: ProductCardProps) => {
                     isShared={product.isShared}
                     isMyProduct={isMyProduct}
                 >
-                    <StyledFlexWrapper flexDirection="column">
+                    <StyledFlexWrapper
+                        height="100%"
+                        flexDirection="column"
+                        justifyContent="space-between"
+                    >
                         <StyledImageBox>
                             <StyledProductImg
                                 src={product.productImage}

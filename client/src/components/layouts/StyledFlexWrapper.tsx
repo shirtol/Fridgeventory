@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
-
+export type JustifyContent =
+    | "space-between"
+    | "center"
+    | "space-around"
+    | "space-evenly"
+    | "flex-end"
+    | "flex-start";
 interface StyledFlexWrapperProps {
     flexDirection?: string;
     gap?: string;
     alignItems?: string;
     width?: string;
-    justifyContent?: string;
+    justifyContent?: JustifyContent;
     height?: string;
     overflowY?: string;
     marginTop?: string;

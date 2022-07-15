@@ -10,6 +10,7 @@ interface StyledCardProps {
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
     display: flex;
     width: 30rem;
+    height: 100%;
     align-items: center;
     justify-content: space-around;
     box-shadow: ${(props) => props.boxShadow ?? Shadows.cardBoxShadow};
