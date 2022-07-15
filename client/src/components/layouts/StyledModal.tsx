@@ -22,7 +22,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     align-items: ${(props) => props.alignItems ?? "center"};
     justify-content: ${(props) => props.justifyContent ?? "flex-start"};
     gap: 2rem;
-    position: sticky;
+    position: relative;
     font-family: "Poppins", sans-serif;
     font-size: 1.5rem;
     text-align: center;

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import Button from "../button/Button";
+import CloseBtn from "../closeBtn/CloseBtn";
 import { StyledHoodLocation } from "../hoodCard/styles/StyledHoodLocation";
 import HoodLottie from "../hoodLottie/HoodLottie";
 import { StyledModal } from "../layouts/StyledModal";
@@ -12,12 +13,14 @@ interface JoinHoodModalProps {
     isHoodClicked: boolean;
     closeModal: () => void;
     hood: Hood;
+    children?: ReactNode;
 }
 
 const JoinHoodModal = ({
     isHoodClicked,
     closeModal,
     hood,
+    children,
 }: JoinHoodModalProps) => {
     const { joinHood } = useHood();
 
@@ -35,6 +38,7 @@ const JoinHoodModal = ({
                         justifyContent="flex-start"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        <CloseBtn onClick={closeModal}></CloseBtn>
                         <StyledHoodLocation>
                             {hood?.location}
                         </StyledHoodLocation>

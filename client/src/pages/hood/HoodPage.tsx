@@ -1,6 +1,7 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { ReactNode, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import CloseBtn from "../../components/closeBtn/CloseBtn";
 import HoodCard from "../../components/hoodCard/HoodCard";
 import JoinHoodModal from "../../components/joinHoodModal/JoinHoodModal";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
@@ -53,6 +54,7 @@ const HoodPage = () => {
 
     const onHoodClicked = (currHood: Hood) => {
         setSelectedHood(currHood);
+        setIsModalOpen(true);
     };
 
     const renderAllHoods = (): ReactNode => {
@@ -98,15 +100,18 @@ const HoodPage = () => {
                     isUserInputInHoodLocations(selectedHood)
                 }
                 closeModal={() => {
-                    if (
-                        selectedHood?.location !== undefined &&
-                        isUserInputInHoodLocations(selectedHood)
-                    ) {
-                        setIsModalOpen(false);
-                    }
+                    // if (
+                    //     selectedHood?.location !== undefined &&
+                    //     isUserInputInHoodLocations(selectedHood)
+                    // ) {
+                    //     setIsModalOpen(true);
+                    // } else {
+                    //     setIsModalOpen(false);
+                    // }
                 }}
                 hood={selectedHood!}
             ></JoinHoodModal>
+
             <StyledMainWrapper>
                 <StyledFlexWrapper
                     flexDirection="column"
