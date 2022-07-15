@@ -27,9 +27,10 @@ export const iconsImages = {
 };
 
 export const homePageImages = {
-    food: appImages("./home/food1.jpg"),
-    neighborhood: appImages("./home/neighborhood1.jpg"),
-    houses: appImages("./home/houses1.jpg"),
-    people: appImages("./home/people1.jpg"),
-    eat: appImages("./home/eat1.jpg"),
+    food: appImages("./home/food-small.jpg"),
+    neighborhood: appImages("./home/neighborhood-small.jpg"),
+    houses: appImages("./home/houses-small.jpg"),
+    people: appImages("./home/people-small.jpg"),
+    eat: appImages("./home/eat-small.jpg"),
+    vik: appImages("./home/vik-muniz.jpg"),
 };

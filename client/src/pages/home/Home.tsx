@@ -2,11 +2,12 @@ import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import { ReactPhotoCollage } from "react-photo-collage";
 import { homePageImages } from "../../utils/stylesUtils/images";
+import Welcome from "./Welcome";
 
 const setting = {
-    width: "600px",
-    height: ["250px", "170px"],
-    layout: [1, 4],
+    width: "70%",
+    height: ["25rem", "17rem"],
+    layout: [2, 3],
     photos: [
         {
             source: `${homePageImages.food}`,
@@ -24,7 +25,7 @@ const setting = {
             source: `${homePageImages.neighborhood}`,
         },
         {
-            source: `${homePageImages.food}`,
+            source: `${homePageImages.vik}`,
         },
     ],
     showNumOfRemainingPhotos: true,
@@ -32,13 +33,15 @@ const setting = {
 
 const Home = () => {
     return (
-        <StyledMainWrapper>
+        <StyledMainWrapper alignItems="center">
             <StyledFlexWrapper
                 alignItems="center"
                 justifyContent="center"
-                paddingTop="8rem"
+                paddingTop="2rem"
+                // flexDirection="column"
             >
                 <ReactPhotoCollage {...setting} />
+                <Welcome></Welcome>
             </StyledFlexWrapper>
         </StyledMainWrapper>
     );
