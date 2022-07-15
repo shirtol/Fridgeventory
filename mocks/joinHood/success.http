@@ -1,10 +1,8 @@
 PUT /api/auth/hood/joinHood HTTP/1.1
 Host: {{host}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNiMmViOTc4ZTk2NzdlNzdkMTQ1NWQiLCJpYXQiOjE2NTc2MTA1MTd9.ZUcklyqzM40sFF_2rol3WxJHVatliag35aYSOwyrEMw
-
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNmMjc4ZjFlNTVmY2NhMjhiYmU2Y2MiLCJpYXQiOjE2NTc4OTAxMzd9.0oM0BVTFud9aQKkdz2_or4HZfGtZ-8NXrIow3ROVfHM
 
 {
-    "location": "HaGiborim St 1, Hadera, Israel"
+    "location": "Liverpool, UK"
 }

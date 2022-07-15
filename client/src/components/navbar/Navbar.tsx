@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../../context/userContext/User.context";
-import { StyledHeaderWrapper } from "../layouts/StyledHeaderWrapper";
 import { StyledNavbar } from "./styles/StyledNavbar";
 import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 

@@ -26,9 +26,10 @@ const Routes = () => {
                 <Background></Background>
                 <WebsiteBanner></WebsiteBanner>
                 <StyledFlexWrapper
-                    height="100%"
                     justifyContent="flex-start"
                     alignItems="flex-start"
+                    overflowY="scroll"
+                    height="93vh"
                 >
                     <HamburgerMenu></HamburgerMenu>
                     <Navbar></Navbar>

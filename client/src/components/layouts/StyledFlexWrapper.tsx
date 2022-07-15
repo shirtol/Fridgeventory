@@ -24,6 +24,7 @@ interface StyledFlexWrapperProps {
     paddingRight?: string;
     flexDirectionTablet?: string;
     paddingBottom?: string;
+    widthMobileL?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -46,5 +47,8 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     @media ${device.tablet} {
         flex-direction: ${(props) =>
             props.flexDirection ?? props.flexDirectionTablet ?? "row"};
+    }
+    @media ${device.mobileL} {
+        width: ${(props) => props.widthMobileL ?? props.width ?? "100%"};
     }
 `;

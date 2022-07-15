@@ -34,3 +34,7 @@ export const homePageImages = {
     eat: appImages("./home/eat-small.jpg"),
     vik: appImages("./home/vik-muniz.jpg"),
 };
+
+export const hoodImages = {
+    hood: appImages("./hood/hood-nobg.png"),
+};

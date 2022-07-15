@@ -7,7 +7,7 @@ export const StyledBannerWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 7rem;
+    height: 7vh;
     width: 100%;
     background: ${Colors.whiteSmoke};
     top: 0;
