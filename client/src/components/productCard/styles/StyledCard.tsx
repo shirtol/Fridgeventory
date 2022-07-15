@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Shadows } from "../../../utils/stylesUtils/stylesConsts";
+import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
 interface StyledCardProps {
     boxShadow: string;
     isShared: boolean;
-    isMyFridge: boolean;
+    isMyProduct: boolean;
 }
 
 export const StyledCard = styled.div<Partial<StyledCardProps>>`
@@ -17,14 +17,32 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
     position: relative;
     gap: 1rem;
     padding: 1rem;
-    border: ${(props) =>
-        props.isShared
-            ? props.isMyFridge
-                ? "1px solid #3C80B9"
-                : "none"
-            : "none"};
     & > * {
         flex: 1;
         text-align: center;
+    }
+
+    &::after {
+        display: ${(props) =>
+            props.isShared && props.isMyProduct ? "block" : "none"};
+        --f: 10px;
+        --r: 15px;
+        --t: 10px;
+        content: "Shared";
+        position: absolute;
+        inset: var(--t) calc(-1 * var(--f)) auto auto;
+        padding: 0 10px var(--f) calc(10px + var(--r));
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% calc(100% - var(--f)),
+            calc(100% - var(--f)) 100%,
+            calc(100% - var(--f)) calc(100% - var(--f)),
+            0 calc(100% - var(--f)),
+            var(--r) calc(50% - var(--f) / 2)
+        );
+        background: ${Colors.ribbon};
+        color: ${Colors.whiteSmoke};
+        box-shadow: 0 calc(-1 * var(--f)) 0 inset #0005;
     }
 `;

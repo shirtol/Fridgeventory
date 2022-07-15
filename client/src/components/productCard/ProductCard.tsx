@@ -18,10 +18,10 @@ import "./styles/contextMenuStyle.css";
 interface ProductCardProps {
     product: Product;
     menuItems: MenuItem[];
-    isMyFridge?: boolean;
+    isMyProduct?: boolean;
 }
 
-const ProductCard = ({ product, menuItems, isMyFridge }: ProductCardProps) => {
+const ProductCard = ({ product, menuItems, isMyProduct }: ProductCardProps) => {
     const getExpiryDays = (date: Date) => {
         const parsedDate = new Date(date);
         let difference = parsedDate.getTime() - new Date().getTime();
@@ -35,7 +35,10 @@ const ProductCard = ({ product, menuItems, isMyFridge }: ProductCardProps) => {
         <>
             {/*@ts-ignore*/}
             <ContextMenuTrigger id={product._id}>
-                <StyledCard isShared={product.isShared} isMyFridge={isMyFridge}>
+                <StyledCard
+                    isShared={product.isShared}
+                    isMyProduct={isMyProduct}
+                >
                     <StyledFlexWrapper flexDirection="column">
                         <StyledImageBox>
                             <StyledProductImg
