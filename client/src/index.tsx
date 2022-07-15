@@ -12,6 +12,7 @@ import TranslationProvider from "./context/translation/Translation.context";
 import { ProductProvider } from "./context/productContext/Product.context";
 import { CookiesProvider } from "react-cookie";
 import { HoodProvider } from "./context/hoodContext/Hood.context";
+import { FilterProvider } from "./pages/fridge/filterBox/Filter.context";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -24,7 +25,9 @@ root.render(
                 <UserProvider>
                     <ProductProvider>
                         <HoodProvider>
-                            <App />
+                            <FilterProvider>
+                                <App />
+                            </FilterProvider>
                         </HoodProvider>
                     </ProductProvider>
                 </UserProvider>

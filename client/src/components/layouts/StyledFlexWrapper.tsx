@@ -1,21 +1,19 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
-export type JustifyContent =
-    | "space-between"
-    | "center"
-    | "space-around"
-    | "space-evenly"
-    | "flex-end"
-    | "flex-start";
+import {
+    AlignItems,
+    FlexDirection,
+    JustifyContent,
+    Overflow,
+} from "./layout.types";
 interface StyledFlexWrapperProps {
-    flexDirection?: string;
+    flexDirection?: FlexDirection;
     gap?: string;
-    alignItems?: string;
+    alignItems?: AlignItems;
     width?: string;
     justifyContent?: JustifyContent;
     height?: string;
-    overflowY?: string;
+    overflowY?: Overflow;
     marginTop?: string;
     cursor?: string;
     paddingLeft?: string;

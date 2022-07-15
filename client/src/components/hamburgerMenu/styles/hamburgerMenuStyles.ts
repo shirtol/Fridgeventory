@@ -22,7 +22,7 @@ export const styles = {
     },
     bmItemList: {
         padding: "0.8em",
-        gap: "1rem",
+        gap: "4rem",
         display: "flex",
         flexDirection: "column",
     },

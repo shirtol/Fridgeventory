@@ -1,11 +1,9 @@
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { ReactNode, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import CloseBtn from "../../components/closeBtn/CloseBtn";
 import HoodCard from "../../components/hoodCard/HoodCard";
 import JoinHoodModal from "../../components/joinHoodModal/JoinHoodModal";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
-import { StyledMainArea } from "../../components/layouts/StyledMainArea";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";

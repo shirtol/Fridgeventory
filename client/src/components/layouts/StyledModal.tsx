@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
 import { Colors, Shadows } from "../../utils/stylesUtils/stylesConsts";
+import { AlignItems, JustifyContent } from "./layout.types";
 
 interface StyledModalProps {
     height?: string;
-    justifyContent?: string;
-    alignItems?: string;
+    justifyContent?: JustifyContent;
+    alignItems?: AlignItems;
     width?: string;
 }
 
