@@ -4,6 +4,7 @@ import Background from "../../components/layouts/Background";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import Navbar from "../../components/navbar/Navbar";
 import WebsiteBanner from "../../components/websiteBanner/WebsiteBanner";
+import { FilterProvider } from "../fridge/filterBox/Filter.context";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import HoodPage from "../hood/HoodPage";
@@ -35,7 +36,13 @@ const Routes = () => {
                     <Navbar></Navbar>
                     <Switch>
                         <Route exact path="/" component={Home}></Route>
-                        <Route exact path="/fridge" component={Fridge}></Route>
+                        <FilterProvider>
+                            <Route
+                                exact
+                                path="/fridge"
+                                component={Fridge}
+                            ></Route>
+                        </FilterProvider>
                         <Route
                             exact
                             path="/shopping-list"

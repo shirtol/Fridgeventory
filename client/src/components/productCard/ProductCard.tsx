@@ -20,15 +20,14 @@ interface ProductCardProps {
     menuItems: MenuItem[];
     isMyProduct?: boolean;
 }
+export const getExpiryDays = (date: Date) => {
+    const parsedDate = new Date(date);
+    let difference = parsedDate.getTime() - new Date().getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return TotalDays;
+};
 
 const ProductCard = ({ product, menuItems, isMyProduct }: ProductCardProps) => {
-    const getExpiryDays = (date: Date) => {
-        const parsedDate = new Date(date);
-        let difference = parsedDate.getTime() - new Date().getTime();
-        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-        return TotalDays;
-    };
-
     const dayUntilExpiry = getExpiryDays(product.expiryDate);
 
     return (

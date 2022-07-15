@@ -2,7 +2,9 @@ import { useState } from "react";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
-import ProductCard from "../../components/productCard/ProductCard";
+import ProductCard, {
+    getExpiryDays,
+} from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { useProduct } from "../../context/productContext/Product.context";
 import Product from "../../context/productContext/Product.types";
@@ -14,6 +16,7 @@ import {
     unShareProductToHood,
 } from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
+import { useFilter } from "./filterBox/Filter.context";
 import FilterModal from "./FilterModal";
 import { StyledAddBtn } from "./styles/StyledAddBtn";
 import { StyledFilterIcon } from "./styles/StyledFilterIcon";
@@ -24,20 +27,8 @@ const Fridge = () => {
     const { allProducts, setAllProducts, updateProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
     const [selectedProduct, setSelectedProduct] = useState<Product>();
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const { token } = useUser();
-
-    const updateSelectedCategories = (clickedCategory: string) => {
-        if (!selectedCategories.includes(clickedCategory)) {
-            setSelectedCategories([...selectedCategories, clickedCategory]);
-        } else {
-            setSelectedCategories(
-                selectedCategories.filter(
-                    (category) => category !== clickedCategory
-                )
-            );
-        }
-    };
+    const { selectedCategories, expiryOption, lessThan, sortBy } = useFilter();
 
     const onAddBtnClicked = () => {
         setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
@@ -82,35 +73,70 @@ const Fridge = () => {
         setAllProducts!(newProductsArr!);
     };
 
+    const filterByExpiry = (product: Product) => {
+        switch (expiryOption) {
+            case "Expired":
+                return getExpiryDays(product.expiryDate) <= 0;
+            case "In 5 days":
+                return getExpiryDays(product.expiryDate) <= 5;
+            case "Less than":
+                return getExpiryDays(product.expiryDate) <= lessThan!;
+            case "All":
+            default:
+                return true;
+        }
+    };
+
+    const sortProducts = (a: Product, b: Product) => {
+        switch (sortBy) {
+            case "Name":
+                return a.name > b.name ? 1 : -1;
+            case "Category":
+                return a.category > b.category ? 1 : -1;
+            case "Expiry":
+                return a.expiryDate > b.expiryDate ? 1 : -1;
+            default:
+                return 0;
+        }
+    };
+
     const renderAllProducts = () => {
-        return allProducts?.map((product) => {
-            return (
-                <ProductCard
-                    product={product}
-                    key={product._id}
-                    menuItems={[
-                        {
-                            text: product.isShared ? "unshare" : "share",
-                            onClick: async () =>
-                                product.isShared
-                                    ? await handleUnShare(product._id)
-                                    : await shareProduct(product._id),
-                        },
-                        {
-                            text: "edit",
-                            onClick: async () =>
-                                await enterEditProduct(product),
-                        },
-                        {
-                            text: "delete",
-                            onClick: async () =>
-                                await deleteProduct(product._id),
-                        },
-                    ]}
-                    isMyProduct
-                ></ProductCard>
-            );
-        });
+        return allProducts
+            ?.filter((product) =>
+                selectedCategories?.length
+                    ? selectedCategories?.includes(product.category)
+                    : true
+            )
+            .filter(filterByExpiry)
+            .sort(sortProducts)
+            .map((product) => {
+                return (
+                    <ProductCard
+                        product={product}
+                        key={product._id}
+                        menuItems={[
+                            {
+                                text: product.isShared ? "unshare" : "share",
+                                onClick: async () =>
+                                    product.isShared
+                                        ? await handleUnShare(product._id)
+                                        : await shareProduct(product._id),
+                            },
+                            {
+                                text: "edit",
+                                onClick: async () =>
+                                    await enterEditProduct(product),
+                            },
+                            {
+                                text: "delete",
+                                onClick: async () =>
+                                    await deleteProduct(product._id),
+                            },
+                        ]}
+                        isMyProduct
+                    ></ProductCard>
+                );
+            });
     };
 
     const openSortAndFilterModal = () => {
@@ -128,8 +154,6 @@ const Fridge = () => {
                     closeModal={() => {
                         setIsFilterModalOpen(false);
                     }}
-                    toggleSelectedCategory={updateSelectedCategories}
-                    selectedCategories={selectedCategories}
                 ></FilterModal>
             )}
             {isModalOpen && (
