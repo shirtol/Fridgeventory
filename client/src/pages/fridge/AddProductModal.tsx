@@ -161,6 +161,7 @@ const AddProductModal = ({
 
                         <ProductCategoryChooser
                             onCategoryChange={handleCategoryChange}
+                            category={form.category}
                         ></ProductCategoryChooser>
                         <StyledFlexWrapper flexDirectionTablet="column">
                             <Title titleText="Expiry date"></Title>
@@ -177,7 +178,7 @@ const AddProductModal = ({
 
                         <StyledFlexWrapper alignItems="flex-end">
                             <Button
-                                buttonText="Add New Product"
+                                buttonText="Save"
                                 onBtnClicked={handleSubmit}
                             ></Button>
                         </StyledFlexWrapper>

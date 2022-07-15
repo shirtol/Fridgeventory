@@ -6,8 +6,12 @@
   left: 2rem;
   top: 2rem;
 }
-@media (max-width: 772px) {
+@media (max-width: 768px) {
   .bm-burger-button {
     display: block;
   }
+}
+
+.hamburger-menu {
+  position: absolute;
 }/*# sourceMappingURL=hamburgerMenuStyle.css.map */
