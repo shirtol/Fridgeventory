@@ -24,7 +24,6 @@ declare type Libraries = (
 const libraries: Libraries = ["places"];
 
 const HoodPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedHood, setSelectedHood] = useState<Hood>();
     const { fetchHoods, allHoods, myHood, joinHood } = useHood();
     const { currUser } = useUser();
@@ -54,7 +53,6 @@ const HoodPage = () => {
 
     const onHoodClicked = (currHood: Hood) => {
         setSelectedHood(currHood);
-        setIsModalOpen(true);
     };
 
     const renderAllHoods = (): ReactNode => {
@@ -100,14 +98,7 @@ const HoodPage = () => {
                     isUserInputInHoodLocations(selectedHood)
                 }
                 closeModal={() => {
-                    // if (
-                    //     selectedHood?.location !== undefined &&
-                    //     isUserInputInHoodLocations(selectedHood)
-                    // ) {
-                    //     setIsModalOpen(true);
-                    // } else {
-                    //     setIsModalOpen(false);
-                    // }
+                    setSelectedHood(undefined);
                 }}
                 hood={selectedHood!}
             ></JoinHoodModal>
