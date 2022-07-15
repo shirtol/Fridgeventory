@@ -14,15 +14,30 @@ import {
     unShareProductToHood,
 } from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
+import FilterModal from "./FilterModal";
 import { StyledAddBtn } from "./styles/StyledAddBtn";
+import { StyledFilterIcon } from "./styles/StyledFilterIcon";
 
 const Fridge = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
     const { allProducts, setAllProducts, updateProduct } = useProduct();
     const { myHood, getMyHood } = useHood();
     const [selectedProduct, setSelectedProduct] = useState<Product>();
-
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const { token } = useUser();
+
+    const updateSelectedCategories = (clickedCategory: string) => {
+        if (!selectedCategories.includes(clickedCategory)) {
+            setSelectedCategories([...selectedCategories, clickedCategory]);
+        } else {
+            setSelectedCategories(
+                selectedCategories.filter(
+                    (category) => category !== clickedCategory
+                )
+            );
+        }
+    };
 
     const onAddBtnClicked = () => {
         setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
@@ -98,8 +113,25 @@ const Fridge = () => {
         });
     };
 
+    const openSortAndFilterModal = () => {
+        setIsFilterModalOpen((prev) => !prev);
+    };
+
     return (
         <>
+            <StyledFilterIcon
+                className="fa-solid fa-filter fa-2x"
+                onClick={openSortAndFilterModal}
+            ></StyledFilterIcon>
+            {isFilterModalOpen && (
+                <FilterModal
+                    closeModal={() => {
+                        setIsFilterModalOpen(false);
+                    }}
+                    toggleSelectedCategory={updateSelectedCategories}
+                    selectedCategories={selectedCategories}
+                ></FilterModal>
+            )}
             {isModalOpen && (
                 <AddProductModal
                     isShown={isModalOpen}

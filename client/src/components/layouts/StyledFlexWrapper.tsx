@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 import device from "../../utils/stylesUtils/mediaQuerySizes";
 export type JustifyContent =
@@ -25,6 +26,7 @@ interface StyledFlexWrapperProps {
     flexDirectionTablet?: string;
     paddingBottom?: string;
     widthMobileL?: string;
+    flexWrap?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -44,6 +46,7 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     padding-bottom: ${(props) => props.paddingBottom ?? "0"};
     align-self: ${(props) => props.alignSelf ?? "auto"};
     justify-self: ${(props) => props.justifySelf ?? "auto"};
+    flex-wrap: ${(props) => props.flexWrap ?? "no-wrap"};
     @media ${device.tablet} {
         flex-direction: ${(props) =>
             props.flexDirection ?? props.flexDirectionTablet ?? "row"};
