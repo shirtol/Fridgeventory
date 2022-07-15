@@ -178,7 +178,7 @@ const AddProductModal = ({
 
                         <StyledFlexWrapper alignItems="flex-end">
                             <Button
-                                buttonText="Add New Product"
+                                buttonText="Save"
                                 onBtnClicked={handleSubmit}
                             ></Button>
                         </StyledFlexWrapper>
