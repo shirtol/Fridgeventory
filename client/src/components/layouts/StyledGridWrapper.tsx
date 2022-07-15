@@ -5,6 +5,8 @@ interface StyledGridWrapperProps {
     gridTemplateCol: string;
     alignSelf: string;
     gridTemplateColLaptop: string;
+    gridTemplateColLaptopM: string;
+    gridTemplateColLaptopML: string;
     gridTemplateColsTablet: string;
     heightTablet: string;
     gridTemplateColsMobileL: string;
@@ -21,7 +23,16 @@ export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
     height: max-content;
     overflow-y: scroll;
     align-self: ${(props) => props.alignSelf ?? "center"};
-    @media ${device.laptopL} {
+
+    @media ${device.laptopML} {
+        grid-template-columns: ${(props) =>
+            props.gridTemplateColLaptopML ?? "repeat(3, 1fr)"};
+    }
+    @media ${device.laptopM} {
+        grid-template-columns: ${(props) =>
+            props.gridTemplateColLaptopM ?? "repeat(3, 1fr)"};
+    }
+    @media ${device.laptop} {
         grid-template-columns: ${(props) =>
             props.gridTemplateColLaptop ?? "repeat(3, 1fr)"};
     }

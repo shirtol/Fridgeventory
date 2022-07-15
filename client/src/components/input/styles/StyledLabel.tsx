@@ -24,5 +24,6 @@ export const StyledLabel = styled.label<StyledLabelProps>`
     @media ${device.tablet} {
         transform-origin: center top;
         width: max-content;
+        font-size: 1.1rem;
     }
 `;

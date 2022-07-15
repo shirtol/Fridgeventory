@@ -1,8 +1,14 @@
+@import "../../../utils/stylesUtils/mixin.scss";
+
 .lottie-hood {
-    width: 40rem;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     z-index: 200;
+    // @include responsive(tablet) {
+    //     font-size: 1.2rem;
+    //     width: 15rem;
+    // }
 }

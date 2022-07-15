@@ -17,6 +17,7 @@ interface StyledFlexWrapperProps {
     justifySelf?: string;
     paddingRight?: string;
     flexDirectionTablet?: string;
+    paddingBottom?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -33,6 +34,7 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     padding-left: ${(props) => props.paddingLeft ?? "0"};
     padding-right: ${(props) => props.paddingRight ?? "0"};
     padding-top: ${(props) => props.paddingTop ?? "0"};
+    padding-bottom: ${(props) => props.paddingBottom ?? "0"};
     align-self: ${(props) => props.alignSelf ?? "auto"};
     justify-self: ${(props) => props.justifySelf ?? "auto"};
     @media ${device.tablet} {

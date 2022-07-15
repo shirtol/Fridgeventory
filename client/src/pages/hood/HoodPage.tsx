@@ -105,7 +105,13 @@ const HoodPage = () => {
                                     setCurrAutoComplete(autocomplete);
                                 }}
                             >
-                                <StyledFlexWrapper alignItems="flex-start">
+                                <StyledFlexWrapper
+                                    alignItems="flex-start"
+                                    width="100%"
+                                    paddingRight="2rem"
+                                    paddingLeft="2rem"
+                                    justifyContent="space-evenly"
+                                >
                                     <StyledLocationInput
                                         type="text"
                                         onChange={handleChange}

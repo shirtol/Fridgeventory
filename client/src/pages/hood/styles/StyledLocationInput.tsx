@@ -7,9 +7,9 @@ export const StyledLocationInput = styled.input`
     padding-top: 1rem;
     margin-top: 2rem;
     width: 30rem;
-    height: 5rem;
+    height: 4rem;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.5rem;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     background: #f6f6f68a;
     border-radius: 1rem;
@@ -21,5 +21,11 @@ export const StyledLocationInput = styled.input`
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
+    }
+    @media ${device.tablet} {
+        width: 25rem;
+    }
+    @media ${device.mobileS} {
+        width: 20rem;
     }
 `;

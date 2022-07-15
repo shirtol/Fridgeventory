@@ -9,13 +9,19 @@ $media_queries: (
         max-width: 485px,
     ),
     tablet: (
-        max-width: 772px,
+        max-width: 768px,
     ),
     laptop: (
         max-width: 1024px,
     ),
+    laptopM: (
+        max-width: 1200px,
+    ),
+    laptopML: (
+        max-width: 1600px,
+    ),
     laptopL: (
-        max-width: 1940px,
+        max-width: 1920px,
     ),
     desktop: (
         max-width: 2560px,

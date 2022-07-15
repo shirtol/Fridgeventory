@@ -12,13 +12,16 @@ const CreateHood = () => {
             <Title
                 titleText="We didn't find your hood!"
                 titleFontSize="3rem"
-                titleWidth="40rem"
+                TitleFontSizeLaptopL="2rem"
+                // titleWidth="40rem"
             ></Title>
             <StyledHoodNotFound src={iconsImages.sadFrog}></StyledHoodNotFound>
             <Title
                 titleText="Search for your hood, click on the full address and be the first one to join"
                 titleFontSize="2rem"
-                titleWidth="50rem"
+                TitleFontSizeLaptopL="1.6rem"
+
+                // titleWidth="50rem"
             ></Title>
         </StyledCreateHoodWrapper>
     );

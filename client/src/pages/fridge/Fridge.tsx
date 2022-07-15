@@ -108,13 +108,12 @@ const Fridge = () => {
                 ></AddProductModal>
             )}
             <StyledMainWrapper>
-                <StyledFlexWrapper
-                    justifyContent="flex-end"
-                    paddingRight="10rem"
-                >
+                <StyledFlexWrapper>
                     <StyledGridWrapper
-                        gridTemplateCol="repeat(5, 1fr)"
-                        gridTemplateColLaptop="repeat(3, 1fr)"
+                        gridTemplateCol="repeat(4, 1fr)"
+                        gridTemplateColLaptopM="repeat(2, 1fr)"
+                        gridTemplateColLaptop="repeat(2, 1fr)"
+                        gridTemplateColsTablet="repeat(2, 1fr)"
                     >
                         {renderAllProducts()}
                     </StyledGridWrapper>

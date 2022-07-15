@@ -5,11 +5,21 @@ interface TitleProps {
     titleText: string;
     titleFontSize?: string;
     titleWidth?: string;
+    TitleFontSizeLaptopL?: string;
 }
 
-const Title = ({ titleText, titleFontSize, titleWidth }: TitleProps) => {
+const Title = ({
+    titleText,
+    titleFontSize,
+    titleWidth,
+    TitleFontSizeLaptopL,
+}: TitleProps) => {
     return (
-        <StyledTitle fontSize={titleFontSize} width={titleWidth}>
+        <StyledTitle
+            fontSize={titleFontSize}
+            width={titleWidth}
+            fontSizeLaptopL={TitleFontSizeLaptopL}
+        >
             {titleText}
         </StyledTitle>
     );
