@@ -143,6 +143,11 @@ const Fridge = () => {
         setIsFilterModalOpen((prev) => !prev);
     };
 
+    const closeModal = () => {
+        setSelectedProduct(undefined);
+        setIsModalOpen(false);
+    };
+
     return (
         <>
             <StyledFilterIcon
@@ -159,7 +164,7 @@ const Fridge = () => {
             {isModalOpen && (
                 <AddProductModal
                     isShown={isModalOpen}
-                    closeModal={() => setIsModalOpen(false)}
+                    closeModal={closeModal}
                     product={selectedProduct}
                 ></AddProductModal>
             )}

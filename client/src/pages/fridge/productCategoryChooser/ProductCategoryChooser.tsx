@@ -9,10 +9,12 @@ import { categoryOptions } from "../../../utils/products/consts";
 
 interface ProductCategoryChooserProps {
     onCategoryChange: (selectedCategory: Option) => void;
+    category?: string;
 }
 
 const ProductCategoryChooser = ({
     onCategoryChange,
+    category,
 }: ProductCategoryChooserProps) => {
     return (
         <StyledFlexWrapper flexDirectionTablet="column">
@@ -20,7 +22,7 @@ const ProductCategoryChooser = ({
             <Dropdown
                 options={categoryOptions}
                 onChange={onCategoryChange}
-                value={categoryOptions[categoryOptions.length - 1]}
+                value={category ?? categoryOptions[categoryOptions.length - 1]}
                 className="Dropdown-root category-chooser"
                 menuClassName="category-drop-down"
             />
