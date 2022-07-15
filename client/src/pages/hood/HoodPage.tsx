@@ -105,6 +105,7 @@ const HoodPage = () => {
                         setIsModalOpen(false);
                     }
                 }}
+                hood={selectedHood!}
             ></JoinHoodModal>
             <StyledMainWrapper>
                 <StyledFlexWrapper
