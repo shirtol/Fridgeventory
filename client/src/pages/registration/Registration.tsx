@@ -18,6 +18,7 @@ const Registration = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e: any) => {
         setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -86,18 +87,24 @@ const Registration = () => {
                     ></CustomInput>
                     <CustomInput
                         id="password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         value={form.password}
                         onChange={handleChange}
                         inputLabel="password"
                         required={true}
+                        isPassword
+                        showPassword={showPassword}
+                        toggleShowPassword={() =>
+                            setShowPassword(!showPassword)
+                        }
                     ></CustomInput>
                     <CustomInput
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         value={confirmPassword}
                         onChange={handleConfirmPassword}
                         inputLabel="confirm password"
                         required={true}
+                        showPassword={showPassword}
                     ></CustomInput>
                     <StyledFlexWrapper>
                         <Button

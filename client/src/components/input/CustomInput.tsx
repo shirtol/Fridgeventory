@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { Colors } from "../../utils/stylesUtils/stylesConsts";
+import { StyledEye } from "./styles/StyledEye";
 import { StyledInput } from "./styles/StyledInput";
 import { StyledInputContainer } from "./styles/StyledInputContainer";
 import { StyledLabel } from "./styles/StyledLabel";
@@ -13,6 +14,9 @@ interface CustomInputProps {
     required: boolean;
     min?: string;
     inputWidth?: string;
+    isPassword?: boolean;
+    showPassword?: boolean;
+    toggleShowPassword?: () => void;
 }
 
 const CustomInput = ({
@@ -24,6 +28,9 @@ const CustomInput = ({
     required,
     min,
     inputWidth,
+    isPassword,
+    showPassword,
+    toggleShowPassword,
 }: CustomInputProps) => {
     return (
         <StyledInputContainer>
@@ -39,6 +46,11 @@ const CustomInput = ({
             <StyledLabel htmlFor={id} isTransform={value}>
                 {inputLabel}
             </StyledLabel>
+            <StyledEye
+                isPassword={isPassword}
+                showPassword={showPassword}
+                onClick={toggleShowPassword}
+            ></StyledEye>
         </StyledInputContainer>
     );
 };

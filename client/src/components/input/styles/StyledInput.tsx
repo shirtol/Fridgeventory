@@ -1,4 +1,6 @@
+import { PromiseProvider } from "mongoose";
 import styled from "styled-components";
+import { iconsImages } from "../../../utils/stylesUtils/images";
 import device from "../../../utils/stylesUtils/mediaQuerySizes";
 import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
