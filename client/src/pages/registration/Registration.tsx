@@ -14,6 +14,7 @@ const Registration = () => {
         name: "",
         email: "",
         password: "",
+        phone: "",
     });
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -74,7 +75,7 @@ const Registration = () => {
                 <StyledFlexWrapper
                     flexDirection="column"
                     paddingTop="3rem"
-                    justifyContent="space-around"
+                    justifyContent="flex-start"
                     height="100%"
                     paddingBottom="2rem"
                 >
@@ -92,6 +93,14 @@ const Registration = () => {
                         onChange={handleChange}
                         inputLabel="email"
                         required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={handleChange}
+                        inputLabel="phone"
+                        required={false}
                     ></CustomInput>
                     <CustomInput
                         id="password"
@@ -114,7 +123,7 @@ const Registration = () => {
                         required={true}
                         showPassword={showPassword}
                     ></CustomInput>
-                    <StyledFlexWrapper>
+                    <StyledFlexWrapper paddingBottom="2rem">
                         <Button
                             buttonText="register"
                             onBtnClicked={handleSubmit}

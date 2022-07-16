@@ -5,7 +5,7 @@ export interface User {
     tokens?: string[];
     hoods?: string[];
     icon?: UserAvatar;
-    phoneNumber?: string;
+    phone?: string;
     _id?: string;
 }
 

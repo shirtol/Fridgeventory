@@ -49,3 +49,9 @@ export const navbarImages = {
     welcome: appImages("./navbar/welcome.png"),
     logout: appImages("./navbar/logout.png"),
 };
+
+export const hoodContextMenuImages = {
+    phone: appImages("./hood/contextMenu/phone.png"),
+    email: appImages("./hood/contextMenu/email.png"),
+    whatsapp: appImages("./hood/contextMenu/whatsapp.png"),
+};
