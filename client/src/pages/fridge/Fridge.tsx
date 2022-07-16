@@ -270,6 +270,7 @@ const Fridge = () => {
                     token && (
                         <StyledFlexWrapper>
                             <StyledGridWrapper
+                                height="90vh"
                                 gridTemplateCol="repeat(4, 1fr)"
                                 gridTemplateColLaptopM="repeat(2, 1fr)"
                                 gridTemplateColLaptop="repeat(2, 1fr)"
