@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import React, { useContext, useState } from "react";
 import { ReactNode } from "react";
-import { useTranslation as useTranslate, TFunction } from "react-i18next";
+import { useTranslation as useTranslate } from "react-i18next";
 import common_en from "./translationsJson/en/common.json";
 import common_he from "./translationsJson/he/common.json";
 

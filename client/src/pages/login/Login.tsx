@@ -32,7 +32,7 @@ const Login = ({ showOverlay }: LoginProps) => {
             await login!(form.email, form.password);
             setErrorMsg("");
         } catch (err: any) {
-            setErrorMsg(err.response.data.message);
+            setErrorMsg("Invalid email or password");
         }
 
         setIsLoading(false);

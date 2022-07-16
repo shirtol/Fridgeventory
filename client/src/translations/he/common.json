@@ -1,0 +1,79 @@
+{
+    "welcome": {
+        "navButton": "ברוכים הבאים",
+        "title": "ברוכים הבאים לFridgeventory!",
+        "subtitle": "שמים את הקטנת הצריכה כעדיפות",
+        "description": "Fridgeventory הוקם עם חזון, להפחית את בזבוז המזון אדם אחד כל פעם. עקבו אחר המוצרים פגי התוקף שלכם וחילקו את המוצרים עם השכונה שלכם לפני שהתוקף שלהם פג."
+    },
+    "fridge": {
+        "navButton": "מקרר",
+        "notLoggedIn": "התחבר/י על מנת לקבל את החוויה המלאה"
+    },
+    "hood": {
+        "navButton": "שכונה",
+        "joinHood": "הצטרפות לשכונה",
+        "enterLocation": "הכנס/י כתובת",
+        "xNeighborsJoined": "{{neighbors}} שכנים הצטרפו"
+    },
+    "login": {
+        "navButton": "התחברות",
+        "button": "התחברות",
+        "error": "שם משתמש/סיסמא לא נכונים"
+    },
+    "register": {
+        "navButton": "הרשמה",
+        "name": "שם",
+        "email": "אימייל",
+        "password": "סיסמא",
+        "confirmPassword": "הכנס סיסמא שנית",
+        "error": {
+            "passwordsDontMatch": "הסיסמאות לא תואמות",
+            "invalidEmail": "אנא הכנס/י כתובת אימייל תקנית",
+            "emptyName": "אנא הכנס/י שם",
+            "passwordInvalid": "הסיסמא צריכה להיות באורך 8 תווים עם לפחות: 1 אות גדולה, 1 אות קטנה, 1 מספר, 1תו מיוחד"
+        }
+    },
+    "logout": {
+        "navButton": "התנתקות"
+    },
+    "categories": {
+        "Baby": "תינוקות",
+        "Bread & Bakery": "לחם & מאפים",
+        "Breakfast & Cereal": "ארוחת בוקר & דגני בוקר",
+        "Canned Goods & Soups": "שימורים & מרקים",
+        "Condiments/Spices & Bake": "רטבים/תבלינים & אפייה",
+        "Cookies, Snacks & Candy": "עוגיות, חטיפים & ממתקים",
+        "Dairy & Eggs": "חלבי & ביצים",
+        "Frozen Foods": "מאכלים קפואים",
+        "Fruits & Vegetables": "פירות & ירקות",
+        "Grains, Pasta & Sides": "דגנים, פסטה & תוספות",
+        "Meat & Seafood": "בשר & דגים",
+        "Pet Care": "חיות מחמד",
+        "Other": "אחר"
+    },
+    "modals": {
+        "addProduct": {
+            "save": "שמירה",
+            "category": "קטגוריה",
+            "productName": "שם המוצר",
+            "amount": "כמות",
+            "expiryDate": "תוקף"
+        },
+        "filter": {
+            "category": "קטגוריה",
+            "expiry": {
+                "title": "תוקף",
+                "all": "הכל",
+                "expired": "פג תוקף",
+                "in5Days": "בעוד 5 ימים",
+                "lessThan": "בעוד פחות מ"
+            },
+            "sort": {
+                "title": "מיון לפי",
+                "name": "שם",
+                "expiry": "תוקף",
+                "category": "קטגוריה"
+            }
+        }
+    }
+}

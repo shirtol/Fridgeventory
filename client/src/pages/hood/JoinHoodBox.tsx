@@ -4,6 +4,7 @@ import HoodLottie from "../../components/hoodLottie/HoodLottie";
 import Title from "../../components/title/Title";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
+import { useUser } from "../../context/userContext/User.context";
 import { hoodImages } from "../../utils/stylesUtils/images";
 import { StyledJoinHoodBox } from "./styles/StyledJoinHoodBox";
 import { StyledLandHoodImage } from "./styles/StyledLandHoodImage";
@@ -19,6 +20,7 @@ const JoinHoodBox = ({
     hood,
     onJoinHoodClicked,
 }: JoinHoodBoxProps) => {
+    const { currUser } = useUser();
     return (
         <>
             {
@@ -33,6 +35,7 @@ const JoinHoodBox = ({
                             <Button
                                 buttonText="Join Hood"
                                 onBtnClicked={onJoinHoodClicked}
+                                disable={!currUser}
                             ></Button>
                         </>
                     )}

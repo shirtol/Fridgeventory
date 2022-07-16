@@ -19,6 +19,8 @@ const NeighborsList = () => {
             justifyContent="flex-start"
             alignItems="flex-end"
             overflowY="scroll"
+            paddingTop="2rem"
+            height="80vh"
         >
             {renderAllNeighbors()}
         </StyledFlexWrapper>

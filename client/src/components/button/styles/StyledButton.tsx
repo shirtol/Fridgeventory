@@ -17,7 +17,7 @@ export const StyledButton = styled.div<StyledButtonProps>`
     letter-spacing: 2px;
     border-radius: 4px;
     background-color: ${(props) =>
-        props.disabled ? Colors.greyIcon : Colors.whiteSmoke};
+        props.disabled ? Colors.lightGrey : Colors.whiteSmoke};
     box-shadow: ${Shadows.buttonBoxShadow};
     color: ${(props) => (props.disabled ? Colors.whiteSmoke : Colors.blue)};
     width: max-content;

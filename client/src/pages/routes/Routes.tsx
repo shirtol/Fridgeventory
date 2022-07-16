@@ -3,6 +3,7 @@ import HamburgerMenu from "../../components/hamburgerMenu/HamburgerMenu";
 import Background from "../../components/layouts/Background";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import Navbar from "../../components/navbar/Navbar";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 import WebsiteBanner from "../../components/websiteBanner/WebsiteBanner";
 import { FilterProvider } from "../fridge/filterBox/Filter.context";
 import Fridge from "../fridge/Fridge";

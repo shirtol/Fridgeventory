@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
+import NotLoggedInPage from "../../components/notLoggedIn/NotLoggedInPage";
 import ProductCard, {
     getExpiryDays,
 } from "../../components/productCard/ProductCard";
@@ -239,21 +240,27 @@ const Fridge = () => {
                 {isLoading ? (
                     <HouseSpinner isShown={isLoading} />
                 ) : (
-                    <StyledFlexWrapper>
-                        <StyledGridWrapper
-                            gridTemplateCol="repeat(4, 1fr)"
-                            gridTemplateColLaptopM="repeat(2, 1fr)"
-                            gridTemplateColLaptop="repeat(2, 1fr)"
-                            gridTemplateColsTablet="repeat(2, 1fr)"
-                        >
-                            {renderAllProducts()}
-                        </StyledGridWrapper>
-                    </StyledFlexWrapper>
+                    token && (
+                        <StyledFlexWrapper>
+                            <StyledGridWrapper
+                                gridTemplateCol="repeat(4, 1fr)"
+                                gridTemplateColLaptopM="repeat(2, 1fr)"
+                                gridTemplateColLaptop="repeat(2, 1fr)"
+                                gridTemplateColsTablet="repeat(2, 1fr)"
+                                gridTemplateColsTabletS="repeat(1, 1fr)"
+                            >
+                                {renderAllProducts()}
+                            </StyledGridWrapper>
+                        </StyledFlexWrapper>
+                    )
                 )}
-                <StyledAddBtn
-                    className="fa-solid fa-circle-plus fa-3x"
-                    onClick={onAddBtnClicked}
-                ></StyledAddBtn>
+                {token && (
+                    <StyledAddBtn
+                        className="fa-solid fa-circle-plus fa-3x"
+                        onClick={onAddBtnClicked}
+                    ></StyledAddBtn>
+                )}
+                {!token && <NotLoggedInPage />}
             </StyledMainWrapper>
         </>
     );

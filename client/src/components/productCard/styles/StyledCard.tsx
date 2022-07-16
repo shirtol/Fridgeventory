@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import device from "../../../utils/stylesUtils/mediaQuerySizes";
 import { Colors, Shadows } from "../../../utils/stylesUtils/stylesConsts";
 
 interface StyledCardProps {
@@ -45,5 +46,10 @@ export const StyledCard = styled.div<Partial<StyledCardProps>>`
         background: ${Colors.ribbon};
         color: ${Colors.whiteSmoke};
         box-shadow: 0 calc(-1 * var(--f)) 0 inset #0005;
+    }
+
+    @media ${device.tabletS} {
+        width: 25rem;
+        padding: 2rem;
     }
 `;

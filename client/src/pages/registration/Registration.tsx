@@ -14,6 +14,7 @@ const Registration = () => {
         name: "",
         email: "",
         password: "",
+        phone: "",
     });
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
@@ -44,11 +45,19 @@ const Registration = () => {
     };
 
     const formNotValidated = () => {
-        if (confirmPassword !== form.password) {
+        if (!form.name.length) {
+            setErrorMsg("Please enter your name");
+            return true;
+        } else if (
+            !form.email.length ||
+            !form.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        ) {
+            setErrorMsg("Please enter a valid email");
+            return true;
+        } else if (confirmPassword !== form.password) {
             setErrorMsg("Passwords do NOT match");
             return true;
-        }
-        if (form.password.length < 8) {
+        } else if (form.password.length < 8) {
             setErrorMsg(
                 "Invalid password. Password length must be at least 8 characters"
             );
@@ -66,7 +75,7 @@ const Registration = () => {
                 <StyledFlexWrapper
                     flexDirection="column"
                     paddingTop="3rem"
-                    justifyContent="space-around"
+                    justifyContent="flex-start"
                     height="100%"
                     paddingBottom="2rem"
                 >
@@ -84,6 +93,14 @@ const Registration = () => {
                         onChange={handleChange}
                         inputLabel="email"
                         required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={handleChange}
+                        inputLabel="phone"
+                        required={false}
                     ></CustomInput>
                     <CustomInput
                         id="password"
@@ -106,7 +123,7 @@ const Registration = () => {
                         required={true}
                         showPassword={showPassword}
                     ></CustomInput>
-                    <StyledFlexWrapper>
+                    <StyledFlexWrapper paddingBottom="2rem">
                         <Button
                             buttonText="register"
                             onBtnClicked={handleSubmit}

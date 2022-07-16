@@ -6,6 +6,7 @@ export const Colors = {
     whiteInput: "fff",
     blackText: "#333",
     selectedBlue: "#6495ED",
+    lightGrey: "#aaaaaa",
     greyIcon: "#888888",
     whiteSmoke: "#f6f6f6",
     hamburgerMenuIcon: "#373a47",
