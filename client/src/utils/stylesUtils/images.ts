@@ -42,12 +42,12 @@ export const hoodImages = {
 };
 
 export const navbarImages = {
-    fridge: appImages("./navbar/fridge.png"),
+    fridge: appImages("./navbar/fridge1.png"),
     hood: appImages("./navbar/hood.png"),
-    login: appImages("./navbar/login.png"),
-    register: appImages("./navbar/register.png"),
+    login: appImages("./navbar/login1.png"),
+    register: appImages("./navbar/register1.png"),
     welcome: appImages("./navbar/welcome.png"),
-    logout: appImages("./navbar/logout.png"),
+    logout: appImages("./navbar/logout1.png"),
 };
 
 export const hoodContextMenuImages = {

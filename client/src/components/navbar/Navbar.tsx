@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useUser } from "../../context/userContext/User.context";
 import { navbarImages } from "../../utils/stylesUtils/images";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
@@ -9,12 +9,14 @@ import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 
 const Navbar = () => {
     const { token } = useUser();
+    const location = useLocation<string>();
+    console.log(location);
 
     return (
         <StyledNavbar>
-            <StyledNavbarItem>
+            <StyledNavbarItem selected={location.pathname === "/"}>
                 <NavLink to="/">
-                    <StyledFlexWrapper>
+                    <StyledFlexWrapper justifyContent="flex-start">
                         <StyledNavbarIcon
                             src={navbarImages.welcome}
                         ></StyledNavbarIcon>
@@ -23,9 +25,9 @@ const Navbar = () => {
                 </NavLink>
             </StyledNavbarItem>
 
-            <StyledNavbarItem>
+            <StyledNavbarItem selected={location.pathname === "/fridge"}>
                 <NavLink to="/fridge">
-                    <StyledFlexWrapper>
+                    <StyledFlexWrapper justifyContent="flex-start">
                         <StyledNavbarIcon
                             src={navbarImages.fridge}
                         ></StyledNavbarIcon>
@@ -34,9 +36,14 @@ const Navbar = () => {
                 </NavLink>
             </StyledNavbarItem>
 
-            <StyledNavbarItem>
+            <StyledNavbarItem
+                selected={
+                    location.pathname === "/hood" ||
+                    location.pathname === "/my-hood"
+                }
+            >
                 <NavLink to="/hood">
-                    <StyledFlexWrapper>
+                    <StyledFlexWrapper justifyContent="flex-start">
                         <StyledNavbarIcon
                             src={navbarImages.hood}
                         ></StyledNavbarIcon>
@@ -46,9 +53,9 @@ const Navbar = () => {
             </StyledNavbarItem>
 
             {!token && (
-                <StyledNavbarItem>
+                <StyledNavbarItem selected={location.pathname === "/register"}>
                     <NavLink to="/register">
-                        <StyledFlexWrapper>
+                        <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
                                 src={navbarImages.register}
                             ></StyledNavbarIcon>
@@ -59,9 +66,9 @@ const Navbar = () => {
             )}
 
             {!token && (
-                <StyledNavbarItem>
+                <StyledNavbarItem selected={location.pathname === "/login"}>
                     <NavLink to="/login">
-                        <StyledFlexWrapper>
+                        <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
                                 src={navbarImages.login}
                             ></StyledNavbarIcon>
@@ -72,9 +79,9 @@ const Navbar = () => {
             )}
 
             {token && (
-                <StyledNavbarItem>
+                <StyledNavbarItem selected={location.pathname === "/logout"}>
                     <NavLink to="/logout">
-                        <StyledFlexWrapper>
+                        <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
                                 src={navbarImages.logout}
                             ></StyledNavbarIcon>

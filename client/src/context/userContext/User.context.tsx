@@ -52,7 +52,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
             data: newUser,
         });
         setToken(data.token);
-        setCookie("token", data.token);
+        setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 7 });
         setCurrUser(data);
         history.push("/");
     };
@@ -65,7 +65,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         console.log(data);
 
         setToken(data.token);
-        setCookie("token", data.token);
+        setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 7 });
         setCurrUser(data.user);
         history.push("/");
     };

@@ -2,6 +2,8 @@ export const Colors = {
     ribbon: "#7BE0D6",
     headerBlue: "#5C92C1",
     blue: "#7AA3C6",
+    blue20: "#7AA3C640",
+    blue10: "#7AA3C622",
     greyInput: "#f1f1f1",
     whiteInput: "fff",
     blackText: "#333",
@@ -9,6 +11,7 @@ export const Colors = {
     lightGrey: "#aaaaaa",
     greyIcon: "#888888",
     whiteSmoke: "#f6f6f6",
+    whiteSmoke60: "#f6f6f699",
     hamburgerMenuIcon: "#373a47",
     hamburgerMenuBg: "linear-gradient(315deg, #d5d5d5 0%, #e9e9e9 74%)",
     homePageBoxBg:
