@@ -9,7 +9,7 @@ interface StyledGridWrapperProps {
     gridTemplateColLaptopML: string;
     gridTemplateColsTablet: string;
     heightTablet: string;
-    gridTemplateColsMobileL: string;
+    gridTemplateColsTabletS: string;
 }
 
 export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
@@ -41,8 +41,8 @@ export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
             props.gridTemplateColsTablet ?? "repeat(3, 1fr)"};
         height: ${(props) => props.heightTablet ?? "max-content"};
     }
-    @media ${device.mobileL} {
+    @media ${device.tabletS} {
         grid-template-columns: ${(props) =>
-            props.gridTemplateColsMobileL ?? "repeat(2, 1fr)"};
+            props.gridTemplateColsTabletS ?? "repeat(2, 1fr)"};
     }
 `;

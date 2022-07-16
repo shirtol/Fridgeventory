@@ -247,6 +247,7 @@ const Fridge = () => {
                                 gridTemplateColLaptopM="repeat(2, 1fr)"
                                 gridTemplateColLaptop="repeat(2, 1fr)"
                                 gridTemplateColsTablet="repeat(2, 1fr)"
+                                gridTemplateColsTabletS="repeat(1, 1fr)"
                             >
                                 {renderAllProducts()}
                             </StyledGridWrapper>
