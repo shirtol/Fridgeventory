@@ -24,18 +24,21 @@ export const editProductById = async (
     productId: string,
     token: string
 ) => {
-    const { data } = await productsApi.put(
-        `/editProduct/${productId}`,
-        {
+    try {
+        const { data } = await productsApi.put(
+            `/editProduct/${productId}`,
             product,
-        },
-        {
-            headers: {
-                Authorization: token,
-            },
-        }
-    );
-    return data;
+            {
+                headers: {
+                    Authorization: token,
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
 };
 
 export const shareProductToHood = async (

@@ -112,11 +112,19 @@ export const unShareProduct = async (req, res) => {
 
 export const editProduct = async (req, res) => {
     try {
-        const productAfterEdit = await editProductById(
-            req.body.product,
-            req.params.productId
-        );
-        return res.status(200).send(productAfterEdit);
+        if (req.file) {
+            await fetchProductAndDelete(
+                req.params.productId,
+                req.user._id.valueOf()
+            );
+            addProduct(req, res);
+        } else {
+            const productAfterEdit = await editProductById(
+                req.body,
+                req.params.productId
+            );
+            return res.status(200).send(productAfterEdit);
+        }
     } catch (err) {
         const parsed = JSON.parse(err.message);
         return res.status(parsed.statusCode).send(parsed);
