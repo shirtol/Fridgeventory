@@ -7,6 +7,9 @@ import Button from "../../components/button/Button";
 import { useUser } from "../../context/userContext/User.context";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import HouseSpinner from "../../components/spinner/HouseSpinner";
+import "react-phone-number-input/style.css";
+import PhoneInput, { Value } from "react-phone-number-input";
+import "./styles/phoneInputStyles.css";
 
 const Registration = () => {
     const { register } = useUser();
@@ -66,6 +69,10 @@ const Registration = () => {
         return false;
     };
 
+    const onPhoneNumberChange = (value: Value) => {
+        setForm((prev) => ({ ...prev, phone: value }));
+    };
+
     return isLoading ? (
         <HouseSpinner isShown={isLoading} />
     ) : (
@@ -94,14 +101,11 @@ const Registration = () => {
                         inputLabel="email"
                         required={true}
                     ></CustomInput>
-                    <CustomInput
+                    <PhoneInput
                         id="phone"
-                        type="tel"
                         value={form.phone}
-                        onChange={handleChange}
-                        inputLabel="phone"
-                        required={false}
-                    ></CustomInput>
+                        onChange={onPhoneNumberChange}
+                    ></PhoneInput>
                     <CustomInput
                         id="password"
                         type={showPassword ? "text" : "password"}
