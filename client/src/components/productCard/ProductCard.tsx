@@ -14,6 +14,7 @@ import {
 import { StyledExpireDays } from "./styles/StyledExpiryDays";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import "./styles/contextMenuStyle.css";
+import { v4 as uuid } from "uuid";
 
 interface ProductCardProps {
     product: Product;
@@ -73,7 +74,7 @@ const ProductCard = ({ product, menuItems, isMyProduct }: ProductCardProps) => {
                         /*@ts-ignore*/
                         <ContextMenuItem
                             onClick={menuItem.onClick}
-                            key={menuItem.text}
+                            key={uuid()}
                         >
                             {menuItem.text}
                         </ContextMenuItem>

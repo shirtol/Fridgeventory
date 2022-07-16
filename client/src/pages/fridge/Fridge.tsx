@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
@@ -18,6 +18,7 @@ import {
     unShareProductToHood,
 } from "../../services/product.services";
 import AddProductModal from "./AddProductModal";
+import DeleteProductModal from "./deleteProductModal/DeleteProductModal";
 import { useFilter } from "./filterBox/Filter.context";
 import FilterModal from "./FilterModal";
 import { StyledAddBtn } from "./styles/StyledAddBtn";
@@ -32,6 +33,11 @@ const Fridge = () => {
     const { token } = useUser();
     const { selectedCategories, expiryOption, lessThan, sortBy } = useFilter();
     const [isLoading, setIsLoading] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+    // useEffect(() => {
+    //     deleteProduct(product._id)
+    // }, [])
 
     const onAddBtnClicked = () => {
         setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
@@ -81,6 +87,7 @@ const Fridge = () => {
 
     const deleteProduct = async (productId: string) => {
         setIsLoading(true);
+        setIsDeleteModalOpen(false);
 
         try {
             const product = await getProductById(productId, token!);
@@ -93,7 +100,7 @@ const Fridge = () => {
         } catch (err) {
             console.error(err);
         }
-
+        setSelectedProduct(undefined);
         setIsLoading(false);
     };
 
@@ -186,7 +193,10 @@ const Fridge = () => {
                         </span>
                     </StyledFlexWrapper>
                 ),
-                onClick: async () => await deleteProduct(product._id),
+                onClick: () => {
+                    setSelectedProduct(product);
+                    setIsDeleteModalOpen(true);
+                },
             },
         ];
     };
@@ -221,8 +231,20 @@ const Fridge = () => {
         setIsModalOpen(false);
     };
 
+    const closeDeleteModal = () => {
+        setSelectedProduct(undefined);
+        setIsDeleteModalOpen(false);
+    };
+
     return (
         <>
+            <DeleteProductModal
+                isShown={isDeleteModalOpen}
+                closeModal={closeDeleteModal}
+                onDeleteApproved={async () =>
+                    await deleteProduct(selectedProduct!._id)
+                }
+            ></DeleteProductModal>
             <StyledFilterIcon
                 className="fa-solid fa-filter fa-2x"
                 onClick={openSortAndFilterModal}

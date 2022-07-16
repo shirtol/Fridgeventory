@@ -6,7 +6,7 @@ import { useUser } from "../userContext/User.context";
 
 interface ProductContextValue {
     allProducts: Product[];
-    setAllProducts: (products: Product[]) => void;
+    setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>;
     updateProduct: (product: Product) => void;
 }
 

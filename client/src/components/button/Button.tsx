@@ -3,7 +3,7 @@ import { StyledButton } from "./styles/StyledButton";
 
 interface ButtonProps {
     buttonText: string;
-    onBtnClicked: () => void;
+    onBtnClicked: (param: any) => any;
     disable?: boolean;
 }
 

@@ -16,7 +16,6 @@ import Product, {
 } from "../../context/productContext/Product.types";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import "./styles/datePicker/datePickerStyle.css";
-import axios from "axios";
 import { editProductById } from "../../services/product.services";
 
 interface AddProductModalProps {
@@ -57,22 +56,32 @@ const AddProductModal = ({
 
     const handleSubmit = async () => {
         setSubmitMsg("Submitted!");
+
         try {
             const formData = createFormData();
             let productAfterSubmit;
             if (product) {
-                const data = await editProductById(form, product._id, token!);
-                productAfterSubmit = data;
+                productAfterSubmit = await editProductById(
+                    formData,
+                    product._id,
+                    token!
+                );
+
+                setAllProducts!((prev) =>
+                    prev.filter((p) => {
+                        return p._id !== product._id;
+                    })
+                );
             } else {
-                const { data } = await createProductInServer(formData);
-                productAfterSubmit = data;
+                productAfterSubmit = (await createProductInServer(formData))
+                    .data;
             }
 
             updateProducts(productAfterSubmit);
             resetForm();
             closeModal();
         } catch (err: any) {
-            setSubmitMsg(err.response.data || err.message);
+            setSubmitMsg(err.response?.data || err.message);
         }
     };
 
@@ -88,29 +97,35 @@ const AddProductModal = ({
 
     const createFormData = () => {
         const formData = new FormData();
+
         Object.entries(form).forEach((entry) => {
             formData.append(
                 entry[0],
                 isBlob(entry[1]) ? entry[1] : entry[1]!.toString()
             );
         });
+
         return formData;
     };
 
     const updateProducts = (data: any) => {
-        let products;
-        if (allProducts?.find((product) => product._id === data._id)) {
-            products = allProducts.map((product) => {
-                if (product._id === data._id) {
-                    return data;
+        setAllProducts &&
+            allProducts &&
+            setAllProducts((prev) => {
+                let products;
+                if (prev.find((product) => product._id === data._id)) {
+                    products = prev.map((product) => {
+                        if (product._id === data._id) {
+                            return data;
+                        }
+                        return product;
+                    });
+                } else {
+                    products = [...(prev ?? []), parseProduct(data)];
                 }
-                return product;
-            });
-        } else {
-            products = [...(allProducts ?? []), parseProduct(data)];
-        }
 
-        setAllProducts && allProducts && setAllProducts(products);
+                return products;
+            });
     };
 
     const createProductInServer = async (formData: FormData): Promise<any> => {

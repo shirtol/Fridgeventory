@@ -56,6 +56,7 @@ export const editProductById = async (product, productId) => {
         );
         return productAfterEdit;
     } catch (err) {
+        console.error(err);
         throw new FridgeventoryError(500, {
             message: "Something went wrong",
         });
