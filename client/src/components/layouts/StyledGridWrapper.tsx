@@ -10,6 +10,7 @@ interface StyledGridWrapperProps {
     gridTemplateColsTablet: string;
     heightTablet: string;
     gridTemplateColsTabletS: string;
+    height: string;
 }
 
 export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
@@ -20,7 +21,7 @@ export const StyledGridWrapper = styled.div<Partial<StyledGridWrapperProps>>`
     justify-items: center;
     padding: 2rem;
     grid-auto-rows: 1fr;
-    height: max-content;
+    height: ${(props) => props.height ?? "max-content"};
     overflow-y: scroll;
     align-self: ${(props) => props.alignSelf ?? "center"};
 
