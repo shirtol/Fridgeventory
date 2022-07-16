@@ -26,6 +26,7 @@ interface StyledFlexWrapperProps {
     widthMobileL?: string;
     flexWrap?: string;
     alignItemsTablet?: string;
+    justifyContentTablet?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -51,6 +52,8 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
             props.flexDirectionTablet ?? props.flexDirection ?? "row"};
         align-items: ${(props) =>
             props.alignItemsTablet ?? props.alignItems ?? "center"};
+        justify-content: ${(props) =>
+            props.justifyContent ?? props.justifyContentTablet ?? "center"};
     }
     @media ${device.mobileL} {
         width: ${(props) => props.widthMobileL ?? props.width ?? "100%"};

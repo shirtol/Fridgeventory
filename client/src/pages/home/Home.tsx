@@ -3,13 +3,14 @@ import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import { ReactPhotoCollage } from "react-photo-collage";
 import { homePageImages } from "../../utils/stylesUtils/images";
 import Welcome from "./Welcome";
+import { useWindowWidth } from "@react-hook/window-size";
 
 const Home = () => {
+    const width = useWindowWidth();
     const setting = {
         width: "70%",
-        height:
-            window.innerWidth < 772 ? ["20rem", "13rem"] : ["25rem", "17rem"],
-        layout: window.innerWidth < 772 ? [1, 2] : [2, 3],
+        height: width < 772 ? ["20rem", "13rem"] : ["25rem", "17rem"],
+        layout: width < 772 ? [1, 2] : [2, 3],
         photos: [
             {
                 source: `${homePageImages.food}`,
