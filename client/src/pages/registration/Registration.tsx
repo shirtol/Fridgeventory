@@ -70,6 +70,8 @@ const Registration = () => {
     };
 
     const onPhoneNumberChange = (value: Value) => {
+        console.log(value);
+
         setForm((prev) => ({ ...prev, phone: value }));
     };
 
@@ -105,6 +107,7 @@ const Registration = () => {
                         id="phone"
                         value={form.phone}
                         onChange={onPhoneNumberChange}
+                        placeholder="Enter phone number"
                     ></PhoneInput>
                     <CustomInput
                         id="password"

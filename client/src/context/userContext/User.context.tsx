@@ -47,6 +47,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     };
 
     const register = async (newUser: User) => {
+        newUser.email = newUser.email.toLowerCase();
         const { data } = await fridgeventoryApi.post("/user/register", {
             data: newUser,
         });
@@ -57,8 +58,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     };
 
     const login = async (email: string, password: string) => {
+        const loweredCaseEmail = email.toLowerCase();
         const { data } = await fridgeventoryApi.post("/user/login", {
-            data: { email, password },
+            data: { email: loweredCaseEmail, password },
         });
         console.log(data);
 

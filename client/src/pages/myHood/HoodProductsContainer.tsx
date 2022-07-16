@@ -14,6 +14,8 @@ const HoodProductsContainer = () => {
 
     const getUser = (ownerId: string) => {
         const user = myHood?.people?.find((user) => user._id === ownerId);
+        console.log(user);
+
         return user;
     };
 
