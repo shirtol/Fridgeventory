@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { iconsImages } from "../../../utils/stylesUtils/images";
 
 export const StyledInputContainer = styled.div`
     position: relative;

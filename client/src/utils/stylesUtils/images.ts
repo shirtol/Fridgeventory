@@ -24,6 +24,8 @@ export const logoImages = {
 export const iconsImages = {
     sadCloud: appImages("./icons/notFound.png"),
     sadFrog: appImages("./icons/frog.png"),
+    eye: appImages("./icons/eye.png"),
+    eyeClose: appImages("./icons/eye-close.png"),
 };
 
 export const homePageImages = {
