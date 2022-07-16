@@ -25,6 +25,7 @@ interface StyledFlexWrapperProps {
     paddingBottom?: string;
     widthMobileL?: string;
     flexWrap?: string;
+    alignItemsTablet?: string;
 }
 
 export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
@@ -47,7 +48,9 @@ export const StyledFlexWrapper = styled.div<StyledFlexWrapperProps>`
     flex-wrap: ${(props) => props.flexWrap ?? "no-wrap"};
     @media ${device.tablet} {
         flex-direction: ${(props) =>
-            props.flexDirection ?? props.flexDirectionTablet ?? "row"};
+            props.flexDirectionTablet ?? props.flexDirection ?? "row"};
+        align-items: ${(props) =>
+            props.alignItemsTablet ?? props.alignItems ?? "center"};
     }
     @media ${device.mobileL} {
         width: ${(props) => props.widthMobileL ?? props.width ?? "100%"};

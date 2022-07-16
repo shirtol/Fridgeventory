@@ -1,0 +1,79 @@
+{
+    "welcome": {
+        "navButton": "Welcome",
+        "title": "Welcome To Fridgeventory!",
+        "subtitle": "Making decreased food waste a priority.",
+        "description": "Fridgeventory was created with a vision, to decrease food waste one person at a time. Keep track of your expired products, and share products with your hood before they expire."
+    },
+    "fridge": {
+        "navButton": "Fridge",
+        "notLoggedIn": "Please login to get the full experience"
+    },
+    "hood": {
+        "navButton": "Hood",
+        "joinHood": "Join Hood",
+        "enterLocation": "Enter a location",
+        "xNeighborsJoined": "{{neighbors}} neighbors joined"
+    },
+    "login": {
+        "navButton": "Login",
+        "button": "Login",
+        "error": "Invalid email/password"
+    },
+    "register": {
+        "navButton": "Register",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "error": {
+            "passwordsDontMatch": "Passwords DO NOT match",
+            "invalidEmail": "Invalid Email",
+            "emptyName": "Please enter a name",
+            "passwordInvalid": "Password must be at least 8 characters, have 1 lowercase, 1 upper case, 1 symbol and 1 number"
+        }
+    },
+    "logout": {
+        "navButton": "Logout"
+    },
+    "categories": {
+        "Baby": "Baby",
+        "Bread & Bakery": "Bread & Bakery",
+        "Breakfast & Cereal": "Breakfast & Cereal",
+        "Canned Goods & Soups": "Canned Goods & Soups",
+        "Condiments/Spices & Bake": "Condiments/Spices & Bake",
+        "Cookies, Snacks & Candy": "Cookies, Snacks & Candy",
+        "Dairy & Eggs": "Dairy & Eggs",
+        "Frozen Foods": "Frozen Foods",
+        "Fruits & Vegetables": "Fruits & Vegetables",
+        "Grains, Pasta & Sides": "Grains, Pasta & Sides",
+        "Meat & Seafood": "Meat & Seafood",
+        "Pet Care": "Pet Care",
+        "Other": "Other"
+    },
+    "modals": {
+        "addProduct": {
+            "save": "Save",
+            "category": "Category",
+            "productName": "Product Name",
+            "amount": "Amount",
+            "expiryDate": "Expiry Date"
+        },
+        "filter": {
+            "category": "Category",
+            "expiry": {
+                "title": "Expiry",
+                "all": "All",
+                "expired": "Expired",
+                "in5Days": "In 5 days",
+                "lessThan": "Less than"
+            },
+            "sort": {
+                "title": "Sort By",
+                "name": "Name",
+                "expiry": "Expiry",
+                "category": "Category"
+            }
+        }
+    }
+}

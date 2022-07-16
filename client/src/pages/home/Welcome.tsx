@@ -11,14 +11,15 @@ const Welcome = () => {
                 flexDirection="column"
                 alignItems="flex-start"
                 alignSelf="flex-start"
+                alignItemsTablet="center"
             >
-                <StyledWelcomeMsg fontSize="4rem">
+                <StyledWelcomeMsg fontSize="4rem" fontSizeTablet="3rem">
                     Welcome To Fridgeventory!
                 </StyledWelcomeMsg>
-                <StyledWelcomeMsg fontSize="2rem">
+                <StyledWelcomeMsg fontSize="2rem" fontSizeTablet="1.6rem">
                     Making decreased food waste a priority.
                 </StyledWelcomeMsg>
-                <StyledWelcomeMsg fontSize="1.7rem">
+                <StyledWelcomeMsg fontSize="1.7rem" fontSizeTablet="1.4rem">
                     Fridgeventory was created with a vision, to decrease food
                     waste one person at a time. Keep track of your expired
                     products, and share products with your hood before they
