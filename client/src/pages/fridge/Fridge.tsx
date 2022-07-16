@@ -65,8 +65,6 @@ const Fridge = () => {
                 token!,
                 productId
             );
-            console.log(productAfterUpdating);
-
             updateProduct && updateProduct(productAfterUpdating);
             await getMyHood!(myHood!._id);
         } catch (err) {

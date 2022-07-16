@@ -70,8 +70,6 @@ const Registration = () => {
     };
 
     const onPhoneNumberChange = (value: Value) => {
-        console.log(value);
-
         setForm((prev) => ({ ...prev, phone: value }));
     };
 

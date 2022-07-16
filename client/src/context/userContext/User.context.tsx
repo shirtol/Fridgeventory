@@ -62,8 +62,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         const { data } = await fridgeventoryApi.post("/user/login", {
             data: { email: loweredCaseEmail, password },
         });
-        console.log(data);
-
         setToken(data.token);
         setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 7 });
         setCurrUser(data.user);

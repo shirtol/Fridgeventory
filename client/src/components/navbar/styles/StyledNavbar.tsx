@@ -10,7 +10,7 @@ export const StyledNavbar = styled.aside`
     font-size: 1.7rem;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 17%;
+    width: 20%;
     z-index: 100;
     padding-top: 2rem;
     background: ${Colors.whiteSmoke60};

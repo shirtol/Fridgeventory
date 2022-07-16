@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { NavLink, useLocation } from "react-router-dom";
 import { useUser } from "../../context/userContext/User.context";
@@ -9,11 +9,19 @@ import { StyledBurgerWrapper } from "./styles/StyledBurgerWrapper";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledNavbarIcon } from "../navbar/styles/StyledNavbarIcon";
 import { navbarImages } from "../../utils/stylesUtils/images";
+import { useWindowWidth } from "@react-hook/window-size";
 
 const HamburgerMenu = () => {
     const [open, setOpen] = useState(false);
     const { token } = useUser();
     const location = useLocation<string>();
+    const width = useWindowWidth();
+
+    useEffect(() => {
+        if (width > 772) {
+            setOpen(false);
+        }
+    }, [width]);
 
     return (
         <StyledBurgerWrapper>

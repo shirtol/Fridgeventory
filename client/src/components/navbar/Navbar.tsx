@@ -10,7 +10,6 @@ import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 const Navbar = () => {
     const { token } = useUser();
     const location = useLocation<string>();
-    console.log(location);
 
     return (
         <StyledNavbar>
