@@ -69,19 +69,24 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     };
 
     const logout = async () => {
-        await fridgeventoryApi.post(
-            "auth/user/logout",
-            {},
-            {
-                headers: {
-                    Authorization: token!,
-                },
-            }
-        );
-        removeCookie("token");
-        setToken("");
-        setCurrUser(undefined);
-        history.push("/");
+        try {
+            await fridgeventoryApi.post(
+                "auth/user/logout",
+                {},
+                {
+                    headers: {
+                        Authorization: token!,
+                    },
+                }
+            );
+        } catch (err) {
+            console.error(err);
+        } finally {
+            removeCookie("token");
+            setToken("");
+            setCurrUser(undefined);
+            history.push("/");
+        }
     };
 
     const value: UserContextValue = {
