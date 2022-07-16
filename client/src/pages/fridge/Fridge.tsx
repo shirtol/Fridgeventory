@@ -5,6 +5,7 @@ import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import ProductCard, {
     getExpiryDays,
 } from "../../components/productCard/ProductCard";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { useProduct } from "../../context/productContext/Product.context";
 import Product from "../../context/productContext/Product.types";
@@ -29,33 +30,49 @@ const Fridge = () => {
     const [selectedProduct, setSelectedProduct] = useState<Product>();
     const { token } = useUser();
     const { selectedCategories, expiryOption, lessThan, sortBy } = useFilter();
+    const [isLoading, setIsLoading] = useState(false);
 
     const onAddBtnClicked = () => {
         setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
     };
 
     const shareProduct = async (productId: string) => {
-        const { productAfterUpdating } = await shareProductToHood(
-            myHood?._id as string,
-            token!,
-            productId
-        );
-        console.log(productAfterUpdating);
+        setIsLoading(true);
 
-        updateProduct && updateProduct(productAfterUpdating);
-        await getMyHood!(myHood!._id);
+        try {
+            const { productAfterUpdating } = await shareProductToHood(
+                myHood?._id as string,
+                token!,
+                productId
+            );
+
+            updateProduct && updateProduct(productAfterUpdating);
+            await getMyHood!(myHood!._id);
+        } catch (err) {
+            console.error(err);
+        }
+
+        setIsLoading(false);
     };
 
     const handleUnShare = async (productId: string) => {
-        const { productAfterUpdating } = await unShareProductToHood(
-            myHood?._id as string,
-            token!,
-            productId
-        );
-        console.log(productAfterUpdating);
+        setIsLoading(true);
 
-        updateProduct && updateProduct(productAfterUpdating);
-        await getMyHood!(myHood!._id);
+        try {
+            const { productAfterUpdating } = await unShareProductToHood(
+                myHood?._id as string,
+                token!,
+                productId
+            );
+            console.log(productAfterUpdating);
+
+            updateProduct && updateProduct(productAfterUpdating);
+            await getMyHood!(myHood!._id);
+        } catch (err) {
+            console.error(err);
+        }
+
+        setIsLoading(false);
     };
 
     const enterEditProduct = async (product: Product) => {
@@ -64,13 +81,21 @@ const Fridge = () => {
     };
 
     const deleteProduct = async (productId: string) => {
-        const product = await getProductById(productId, token!);
-        setSelectedProduct(product);
-        const deletedProduct = await deleteProductById(productId, token!);
-        const newProductsArr = allProducts?.filter((product) => {
-            return product._id !== deletedProduct._id;
-        });
-        setAllProducts!(newProductsArr!);
+        setIsLoading(true);
+
+        try {
+            const product = await getProductById(productId, token!);
+            setSelectedProduct(product);
+            const deletedProduct = await deleteProductById(productId, token!);
+            const newProductsArr = allProducts?.filter((product) => {
+                return product._id !== deletedProduct._id;
+            });
+            setAllProducts!(newProductsArr!);
+        } catch (err) {
+            console.error(err);
+        }
+
+        setIsLoading(false);
     };
 
     const filterByExpiry = (product: Product) => {
@@ -211,17 +236,20 @@ const Fridge = () => {
                 ></AddProductModal>
             )}
             <StyledMainWrapper>
-                <StyledFlexWrapper>
-                    <StyledGridWrapper
-                        gridTemplateCol="repeat(4, 1fr)"
-                        gridTemplateColLaptopM="repeat(2, 1fr)"
-                        gridTemplateColLaptop="repeat(2, 1fr)"
-                        gridTemplateColsTablet="repeat(2, 1fr)"
-                    >
-                        {renderAllProducts()}
-                    </StyledGridWrapper>
-                </StyledFlexWrapper>
-
+                {isLoading ? (
+                    <HouseSpinner isShown={isLoading} />
+                ) : (
+                    <StyledFlexWrapper>
+                        <StyledGridWrapper
+                            gridTemplateCol="repeat(4, 1fr)"
+                            gridTemplateColLaptopM="repeat(2, 1fr)"
+                            gridTemplateColLaptop="repeat(2, 1fr)"
+                            gridTemplateColsTablet="repeat(2, 1fr)"
+                        >
+                            {renderAllProducts()}
+                        </StyledGridWrapper>
+                    </StyledFlexWrapper>
+                )}
                 <StyledAddBtn
                     className="fa-solid fa-circle-plus fa-3x"
                     onClick={onAddBtnClicked}

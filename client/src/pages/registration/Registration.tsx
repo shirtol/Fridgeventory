@@ -6,6 +6,7 @@ import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper"
 import Button from "../../components/button/Button";
 import { useUser } from "../../context/userContext/User.context";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 
 const Registration = () => {
     const { register } = useUser();
@@ -16,6 +17,7 @@ const Registration = () => {
     });
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e: any) => {
         setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -28,12 +30,16 @@ const Registration = () => {
     const handleSubmit = async () => {
         if (formNotValidated()) return;
 
+        setIsLoading(true);
+
         try {
             await register!(form);
             setErrorMsg("");
         } catch (err: any) {
             setErrorMsg(err.response.data.message);
         }
+
+        setIsLoading(false);
     };
 
     const formNotValidated = () => {
@@ -50,7 +56,9 @@ const Registration = () => {
         return false;
     };
 
-    return (
+    return isLoading ? (
+        <HouseSpinner isShown={isLoading} />
+    ) : (
         <StyledModalWrapper isAbove={false}>
             <StyledModal>
                 {/* <form> */}

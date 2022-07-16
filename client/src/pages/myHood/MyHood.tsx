@@ -14,8 +14,8 @@ const MyHood = ({ hood }: MyHoodProps) => {
             justifyContent="space-between"
             justifySelf="center"
         >
-            <HoodProductsContainer hood={hood}></HoodProductsContainer>
-            <NeighborsList></NeighborsList>
+            <HoodProductsContainer />
+            <NeighborsList />
         </StyledFlexWrapper>
     );
 };

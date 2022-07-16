@@ -5,6 +5,7 @@ import HoodCard from "../../components/hoodCard/HoodCard";
 import JoinHoodModal from "../../components/joinHoodModal/JoinHoodModal";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
@@ -28,6 +29,7 @@ const HoodPage = () => {
     const [inputValue, setInputValue] = useState<string | undefined>("");
     const [currAutoComplete, setCurrAutoComplete] =
         useState<google.maps.places.Autocomplete>();
+    const [isLoading, setIsLoading] = useState(false);
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEYS!,
@@ -80,8 +82,16 @@ const HoodPage = () => {
         );
     };
 
-    const onCreateNewHood = async () => {
-        // await joinHood();
+    const onJoinHoodClicked = async () => {
+        setIsLoading(true);
+
+        try {
+            selectedHood && (await joinHood!(selectedHood));
+        } catch (err) {
+            console.error(err);
+        }
+
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -110,7 +120,9 @@ const HoodPage = () => {
                 >
                     {isLoaded &&
                         (myHood ? (
-                            <Redirect to="/my-hood" push={true}></Redirect>
+                            <Redirect to="/my-hood" push={true} />
+                        ) : isLoading ? (
+                            <HouseSpinner isShown={isLoading} />
                         ) : (
                             <>
                                 <Autocomplete
@@ -176,6 +188,7 @@ const HoodPage = () => {
                                             )
                                         }
                                         hood={selectedHood!}
+                                        onJoinHoodClicked={onJoinHoodClicked}
                                     ></JoinHoodBox>
                                 </StyledFlexWrapper>
                             </>
