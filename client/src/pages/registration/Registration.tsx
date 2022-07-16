@@ -105,6 +105,7 @@ const Registration = () => {
                         id="phone"
                         value={form.phone}
                         onChange={onPhoneNumberChange}
+                        placeholder="Enter phone number"
                     ></PhoneInput>
                     <CustomInput
                         id="password"

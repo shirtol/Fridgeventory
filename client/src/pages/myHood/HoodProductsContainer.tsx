@@ -14,6 +14,7 @@ const HoodProductsContainer = () => {
 
     const getUser = (ownerId: string) => {
         const user = myHood?.people?.find((user) => user._id === ownerId);
+
         return user;
     };
 
@@ -25,10 +26,12 @@ const HoodProductsContainer = () => {
     };
 
     const sendWhatsapp = ({ phone }: User) => {
+        if (!phone) return;
         window.open(`https://wa.me/${phone}`);
     };
 
     const callPublisher = ({ phone }: User) => {
+        if (!phone) return;
         window.open(`tel:${phone}`);
     };
 
@@ -52,6 +55,7 @@ const HoodProductsContainer = () => {
                     <StyledFlexWrapper justifyContent="flex-start">
                         <StyledContextMenuImage
                             src={hoodContextMenuImages.whatsapp}
+                            disabled={!user.phone}
                         ></StyledContextMenuImage>
                         Send message to {user.name}
                     </StyledFlexWrapper>
@@ -63,6 +67,7 @@ const HoodProductsContainer = () => {
                     <StyledFlexWrapper justifyContent="flex-start">
                         <StyledContextMenuImage
                             src={hoodContextMenuImages.phone}
+                            disabled={!user.phone}
                         ></StyledContextMenuImage>
                         Call {user.name}
                     </StyledFlexWrapper>

@@ -28,7 +28,7 @@ export const userSchema = new mongoose.Schema({
             }
         },
     },
-    phoneNumber: {
+    phone: {
         type: String,
     },
     hoods: [

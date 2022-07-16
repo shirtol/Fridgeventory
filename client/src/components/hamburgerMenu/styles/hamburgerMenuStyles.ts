@@ -17,12 +17,10 @@ export const styles = {
     bmMenu: {
         backgroundImage: Colors.hamburgerMenuBg,
         background: Colors.whiteSmoke,
-        padding: "2.5em 1.5em 0",
         fontSize: "1.15em",
     },
     bmItemList: {
-        padding: "0.8em",
-        gap: "4rem",
+        gap: "0rem",
         display: "flex",
         flexDirection: "column",
     },

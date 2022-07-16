@@ -59,8 +59,6 @@ const AddProductModal = ({
         setSubmitMsg("Submitted!");
         try {
             const formData = createFormData();
-            console.log(formData);
-
             let productAfterSubmit;
             if (product) {
                 const data = await editProductById(form, product._id, token!);
@@ -100,7 +98,6 @@ const AddProductModal = ({
     };
 
     const updateProducts = (data: any) => {
-        console.log(data);
         let products;
         if (allProducts?.find((product) => product._id === data._id)) {
             products = allProducts.map((product) => {

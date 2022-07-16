@@ -47,23 +47,23 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     };
 
     const register = async (newUser: User) => {
+        newUser.email = newUser.email.toLowerCase();
         const { data } = await fridgeventoryApi.post("/user/register", {
             data: newUser,
         });
         setToken(data.token);
-        setCookie("token", data.token);
+        setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 7 });
         setCurrUser(data);
         history.push("/");
     };
 
     const login = async (email: string, password: string) => {
+        const loweredCaseEmail = email.toLowerCase();
         const { data } = await fridgeventoryApi.post("/user/login", {
-            data: { email, password },
+            data: { email: loweredCaseEmail, password },
         });
-        console.log(data);
-
         setToken(data.token);
-        setCookie("token", data.token);
+        setCookie("token", data.token, { maxAge: 60 * 60 * 24 * 7 });
         setCurrUser(data.user);
         history.push("/");
     };

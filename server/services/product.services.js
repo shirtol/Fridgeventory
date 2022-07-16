@@ -47,7 +47,6 @@ export const editProductById = async (product, productId) => {
     try {
         const editedProduct = new Product(product);
         let newProduct = editedProduct.toObject();
-        console.log(newProduct);
         delete newProduct._id;
 
         const productAfterEdit = await Product.findOneAndUpdate(
