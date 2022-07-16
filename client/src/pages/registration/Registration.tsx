@@ -44,11 +44,19 @@ const Registration = () => {
     };
 
     const formNotValidated = () => {
-        if (confirmPassword !== form.password) {
+        if (!form.name.length) {
+            setErrorMsg("Please enter your name");
+            return true;
+        } else if (
+            !form.email.length ||
+            !form.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        ) {
+            setErrorMsg("Please enter a valid email");
+            return true;
+        } else if (confirmPassword !== form.password) {
             setErrorMsg("Passwords do NOT match");
             return true;
-        }
-        if (form.password.length < 8) {
+        } else if (form.password.length < 8) {
             setErrorMsg(
                 "Invalid password. Password length must be at least 8 characters"
             );
