@@ -11,7 +11,6 @@ export const StyledNavbar = styled.aside`
     align-items: flex-start;
     justify-content: flex-start;
     width: 17%;
-    gap: 1rem;
     z-index: 100;
     padding-top: 2rem;
     background: ${Colors.whiteSmoke60};

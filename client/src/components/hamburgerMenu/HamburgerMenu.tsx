@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useUser } from "../../context/userContext/User.context";
 import { StyledNavbarItem } from "../navbar/styles/StyledNavbarItem";
 import { styles } from "./styles/hamburgerMenuStyles";
@@ -13,6 +13,7 @@ import { navbarImages } from "../../utils/stylesUtils/images";
 const HamburgerMenu = () => {
     const [open, setOpen] = useState(false);
     const { token } = useUser();
+    const location = useLocation<string>();
 
     return (
         <StyledBurgerWrapper>
@@ -23,7 +24,10 @@ const HamburgerMenu = () => {
                 onClose={() => setOpen(false)}
                 isOpen={open}
             >
-                <StyledNavbarItem onClick={() => setOpen(false)}>
+                <StyledNavbarItem
+                    onClick={() => setOpen(false)}
+                    selected={location.pathname === "/"}
+                >
                     <NavLink to="/">
                         <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
@@ -34,7 +38,10 @@ const HamburgerMenu = () => {
                     </NavLink>
                 </StyledNavbarItem>
 
-                <StyledNavbarItem onClick={() => setOpen(false)}>
+                <StyledNavbarItem
+                    onClick={() => setOpen(false)}
+                    selected={location.pathname === "/fridge"}
+                >
                     <NavLink to="/fridge">
                         <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
@@ -45,7 +52,13 @@ const HamburgerMenu = () => {
                     </NavLink>
                 </StyledNavbarItem>
 
-                <StyledNavbarItem onClick={() => setOpen(false)}>
+                <StyledNavbarItem
+                    onClick={() => setOpen(false)}
+                    selected={
+                        location.pathname === "/hood" ||
+                        location.pathname === "/my-hood"
+                    }
+                >
                     <NavLink to="/hood">
                         <StyledFlexWrapper justifyContent="flex-start">
                             <StyledNavbarIcon
@@ -57,7 +70,10 @@ const HamburgerMenu = () => {
                 </StyledNavbarItem>
 
                 {!token && (
-                    <StyledNavbarItem onClick={() => setOpen(false)}>
+                    <StyledNavbarItem
+                        onClick={() => setOpen(false)}
+                        selected={location.pathname === "/register"}
+                    >
                         <NavLink to="/register">
                             <StyledFlexWrapper justifyContent="flex-start">
                                 <StyledNavbarIcon
@@ -70,7 +86,10 @@ const HamburgerMenu = () => {
                 )}
 
                 {!token && (
-                    <StyledNavbarItem onClick={() => setOpen(false)}>
+                    <StyledNavbarItem
+                        onClick={() => setOpen(false)}
+                        selected={location.pathname === "/login"}
+                    >
                         <NavLink to="/login">
                             <StyledFlexWrapper justifyContent="flex-start">
                                 <StyledNavbarIcon
@@ -83,7 +102,10 @@ const HamburgerMenu = () => {
                 )}
 
                 {token && (
-                    <StyledNavbarItem onClick={() => setOpen(false)}>
+                    <StyledNavbarItem
+                        onClick={() => setOpen(false)}
+                        selected={location.pathname === "/logout"}
+                    >
                         <NavLink to="/logout">
                             <StyledFlexWrapper justifyContent="flex-start">
                                 <StyledNavbarIcon
