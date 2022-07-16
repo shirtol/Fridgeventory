@@ -37,7 +37,7 @@ const AddProductModal = ({
         amount: product?.amount ?? 1,
         productImage: product?.productImage ?? new Blob(),
         expiryDate: product?.expiryDate ?? new Date(),
-        category: product?.category ?? "other",
+        category: product?.category ?? "Other",
     });
     const [submitMsg, setSubmitMsg] = useState("");
     const { token } = useUser();
@@ -91,7 +91,7 @@ const AddProductModal = ({
             amount: 1,
             productImage: new Blob(),
             expiryDate: new Date(),
-            category: "other",
+            category: "Other",
         });
     };
 
