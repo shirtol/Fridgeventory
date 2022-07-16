@@ -4,6 +4,7 @@ import CustomInput from "../../components/input/CustomInput";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
+import HouseSpinner from "../../components/spinner/HouseSpinner";
 import { useUser } from "../../context/userContext/User.context";
 
 interface LoginProps {
@@ -17,21 +18,28 @@ const Login = ({ showOverlay }: LoginProps) => {
     });
     const [errorMsg, setErrorMsg] = useState("");
     const { login } = useUser();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e: any) => {
         setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
 
     const handleSubmit = async () => {
+        setIsLoading(true);
+
         try {
             await login!(form.email, form.password);
             setErrorMsg("");
         } catch (err: any) {
             setErrorMsg(err.response.data.message);
         }
+
+        setIsLoading(false);
     };
 
-    return (
+    return isLoading ? (
+        <HouseSpinner isShown={isLoading} />
+    ) : (
         <StyledModalWrapper isAbove={false}>
             <StyledModal height="40%" width="30%">
                 {/* <form> */}

@@ -1,16 +1,9 @@
-import React from "react";
 import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
-import { Hood } from "../../context/hoodContext/Hood.type";
 import { useUser } from "../../context/userContext/User.context";
-import { StyledHoodProductsWrapper } from "./styles/StyledHoodProductsWrapper";
 
-interface HoodProductsContainerProps {
-    hood: Hood;
-}
-
-const HoodProductsContainer = ({ hood }: HoodProductsContainerProps) => {
+const HoodProductsContainer = () => {
     const { myHood } = useHood();
     const { currUser } = useUser();
 

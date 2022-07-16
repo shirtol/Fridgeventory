@@ -11,15 +11,14 @@ import { StyledLandHoodImage } from "./styles/StyledLandHoodImage";
 interface JoinHoodBoxProps {
     isShown: boolean;
     hood: Hood;
+    onJoinHoodClicked: () => void;
 }
 
-const JoinHoodBox = ({ isShown, hood }: JoinHoodBoxProps) => {
-    const { joinHood, myHood, setMyHood } = useHood();
-
-    const onJoinHoodClicked = async () => {
-        const data = await joinHood!(hood);
-    };
-
+const JoinHoodBox = ({
+    isShown,
+    hood,
+    onJoinHoodClicked,
+}: JoinHoodBoxProps) => {
     return (
         <>
             {
