@@ -10,9 +10,13 @@ import HouseSpinner from "../../components/spinner/HouseSpinner";
 import "react-phone-number-input/style.css";
 import PhoneInput, { Value } from "react-phone-number-input";
 import "./styles/phoneInputStyles.css";
+import { useTranslation } from "../../context/translation/Translation.context";
+import { StyledInputContainer } from "../../components/input/styles/StyledInputContainer";
+import { StyledLabel } from "../../components/input/styles/StyledLabel";
 
 const Registration = () => {
     const { register } = useUser();
+    const { t } = useTranslation();
     const [form, setForm] = useState<User>({
         name: "",
         email: "",
@@ -89,7 +93,7 @@ const Registration = () => {
                     id="name"
                     value={form.name}
                     onChange={handleChange}
-                    inputLabel="name"
+                    inputLabel={t("register.name")}
                     required={true}
                 ></CustomInput>
                 <CustomInput
@@ -97,16 +101,26 @@ const Registration = () => {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    inputLabel="email"
+                    inputLabel={t("register.email")}
                     required={true}
                 ></CustomInput>
+                <StyledInputContainer>
+                    <StyledLabel htmlFor="phone" isTransform={form.phone}>
+                        {t("register.phone")}
+                    </StyledLabel>
 
+                    <PhoneInput
+                        id="phone"
+                        value={form.phone}
+                        onChange={onPhoneNumberChange}
+                    ></PhoneInput>
+                </StyledInputContainer>
                 <CustomInput
                     id="password"
                     type={showPassword ? "text" : "password"}
                     value={form.password}
                     onChange={handleChange}
-                    inputLabel="password"
+                    inputLabel={t("register.password")}
                     required={true}
                     isPassword
                     showPassword={showPassword}
@@ -116,19 +130,14 @@ const Registration = () => {
                     type={showPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={handleConfirmPassword}
-                    inputLabel="confirm password"
+                    inputLabel={t("register.confirmPassword")}
                     required={true}
                     showPassword={showPassword}
                 ></CustomInput>
-                <PhoneInput
-                    id="phone"
-                    value={form.phone}
-                    onChange={onPhoneNumberChange}
-                    placeholder="Enter phone number"
-                ></PhoneInput>
+
                 <StyledFlexWrapper paddingBottom="2rem">
                     <Button
-                        buttonText="register"
+                        buttonText={t("register.navButton")}
                         onBtnClicked={handleSubmit}
                     ></Button>
                 </StyledFlexWrapper>

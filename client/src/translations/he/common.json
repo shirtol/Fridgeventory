@@ -26,6 +26,7 @@
         "email": "אימייל",
         "password": "סיסמא",
         "confirmPassword": "הכנס סיסמא שנית",
+        "phone": "הכנס מספר טלפון",
         "error": {
             "passwordsDontMatch": "הסיסמאות לא תואמות",
             "invalidEmail": "אנא הכנס/י כתובת אימייל תקנית",

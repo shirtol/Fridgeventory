@@ -26,6 +26,7 @@
         "email": "Email",
         "password": "Password",
         "confirmPassword": "Confirm Password",
+        "phone": "Enter phone number",
         "error": {
             "passwordsDontMatch": "Passwords DO NOT match",
             "invalidEmail": "Invalid Email",

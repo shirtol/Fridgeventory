@@ -5,6 +5,7 @@ import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import HouseSpinner from "../../components/spinner/HouseSpinner";
+import { useTranslation } from "../../context/translation/Translation.context";
 import { useUser } from "../../context/userContext/User.context";
 
 interface LoginProps {
@@ -12,6 +13,7 @@ interface LoginProps {
 }
 
 const Login = ({ showOverlay }: LoginProps) => {
+    const { t } = useTranslation();
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -56,7 +58,7 @@ const Login = ({ showOverlay }: LoginProps) => {
                         type="email"
                         value={form.email}
                         onChange={handleChange}
-                        inputLabel="email"
+                        inputLabel={t("register.email")}
                         required={true}
                     ></CustomInput>
                     <CustomInput
@@ -64,7 +66,7 @@ const Login = ({ showOverlay }: LoginProps) => {
                         type={showPassword ? "text" : "password"}
                         value={form.password}
                         onChange={handleChange}
-                        inputLabel="password"
+                        inputLabel={t("register.password")}
                         required={true}
                         isPassword
                         showPassword={showPassword}
@@ -75,7 +77,7 @@ const Login = ({ showOverlay }: LoginProps) => {
                 </StyledFlexWrapper>
                 <StyledFlexWrapper>
                     <Button
-                        buttonText="login"
+                        buttonText={t("login.navButton")}
                         onBtnClicked={handleSubmit}
                     ></Button>
                 </StyledFlexWrapper>
