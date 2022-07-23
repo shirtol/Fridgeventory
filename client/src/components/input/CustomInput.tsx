@@ -1,5 +1,3 @@
-import React, { ChangeEvent, useState } from "react";
-import { Colors } from "../../utils/stylesUtils/stylesConsts";
 import { StyledEye } from "./styles/StyledEye";
 import { StyledInput } from "./styles/StyledInput";
 import { StyledInputContainer } from "./styles/StyledInputContainer";

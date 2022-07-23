@@ -1,5 +1,4 @@
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
-import { StyledGridWrapper } from "../../components/layouts/StyledGridWrapper";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import Product from "../../context/productContext/Product.types";
@@ -91,17 +90,13 @@ const HoodProductsContainer = () => {
     };
 
     return (
-        <StyledGridWrapper
+        <StyledFlexWrapper
             alignSelf="flex-start"
-            gridTemplateColLaptopML="repeat(2, 1fr)"
-            gridTemplateCol="repeat(4, 1fr)"
-            gridTemplateColLaptopM="repeat(2, 1fr)"
-            gridTemplateColLaptop="repeat(2, 1fr)"
-            gridTemplateColsTablet="repeat(2, 1fr)"
-            gridTemplateColsTabletS="repeat(1, 1fr)"
+            flexWrap="wrap"
+            justifyContent="flex-start"
         >
             {renderHoodProducts()}
-        </StyledGridWrapper>
+        </StyledFlexWrapper>
     );
 };
 

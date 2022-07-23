@@ -77,67 +77,64 @@ const Registration = () => {
         <HouseSpinner isShown={isLoading} />
     ) : (
         <StyledModalWrapper isAbove={false}>
-            <StyledModal>
+            <StyledFlexWrapper
+                flexDirection="column"
+                paddingTop="3rem"
+                height="100%"
+                paddingBottom="2rem"
+                width="60%"
+            >
                 {/* <form> */}
-                <StyledFlexWrapper
-                    flexDirection="column"
-                    paddingTop="3rem"
-                    justifyContent="flex-start"
-                    height="100%"
-                    paddingBottom="2rem"
-                >
-                    <CustomInput
-                        id="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        inputLabel="name"
-                        required={true}
-                    ></CustomInput>
-                    <CustomInput
-                        id="email"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        inputLabel="email"
-                        required={true}
-                    ></CustomInput>
-                    <PhoneInput
-                        id="phone"
-                        value={form.phone}
-                        onChange={onPhoneNumberChange}
-                        placeholder="Enter phone number"
-                    ></PhoneInput>
-                    <CustomInput
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        value={form.password}
-                        onChange={handleChange}
-                        inputLabel="password"
-                        required={true}
-                        isPassword
-                        showPassword={showPassword}
-                        toggleShowPassword={() =>
-                            setShowPassword(!showPassword)
-                        }
-                    ></CustomInput>
-                    <CustomInput
-                        type={showPassword ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={handleConfirmPassword}
-                        inputLabel="confirm password"
-                        required={true}
-                        showPassword={showPassword}
-                    ></CustomInput>
-                    <StyledFlexWrapper paddingBottom="2rem">
-                        <Button
-                            buttonText="register"
-                            onBtnClicked={handleSubmit}
-                        ></Button>
-                    </StyledFlexWrapper>
-                    <>{errorMsg}</>
-                    {/* </form> */}
+                <CustomInput
+                    id="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    inputLabel="name"
+                    required={true}
+                ></CustomInput>
+                <CustomInput
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    inputLabel="email"
+                    required={true}
+                ></CustomInput>
+
+                <CustomInput
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={form.password}
+                    onChange={handleChange}
+                    inputLabel="password"
+                    required={true}
+                    isPassword
+                    showPassword={showPassword}
+                    toggleShowPassword={() => setShowPassword(!showPassword)}
+                ></CustomInput>
+                <CustomInput
+                    type={showPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={handleConfirmPassword}
+                    inputLabel="confirm password"
+                    required={true}
+                    showPassword={showPassword}
+                ></CustomInput>
+                <PhoneInput
+                    id="phone"
+                    value={form.phone}
+                    onChange={onPhoneNumberChange}
+                    placeholder="Enter phone number"
+                ></PhoneInput>
+                <StyledFlexWrapper paddingBottom="2rem">
+                    <Button
+                        buttonText="register"
+                        onBtnClicked={handleSubmit}
+                    ></Button>
                 </StyledFlexWrapper>
-            </StyledModal>
+                <>{errorMsg}</>
+                {/* </form> */}
+            </StyledFlexWrapper>
         </StyledModalWrapper>
     );
 };

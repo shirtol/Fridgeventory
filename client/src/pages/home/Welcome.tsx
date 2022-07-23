@@ -13,10 +13,18 @@ const Welcome = () => {
                 alignSelf="flex-start"
                 alignItemsTablet="center"
             >
-                <StyledWelcomeMsg fontSize="4rem" fontSizeTablet="3rem">
+                <StyledWelcomeMsg
+                    fontSize="4rem"
+                    fontSizeTablet="3rem"
+                    color="#646FD4"
+                >
                     Welcome To Fridgeventory!
                 </StyledWelcomeMsg>
-                <StyledWelcomeMsg fontSize="2rem" fontSizeTablet="1.6rem">
+                <StyledWelcomeMsg
+                    fontSize="2rem"
+                    fontSizeTablet="1.6rem"
+                    color="#92A0D4"
+                >
                     Making decreased food waste a priority.
                 </StyledWelcomeMsg>
                 <StyledWelcomeMsg fontSize="1.7rem" fontSizeTablet="1.4rem">
