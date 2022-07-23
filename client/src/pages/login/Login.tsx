@@ -5,6 +5,7 @@ import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import { StyledModal } from "../../components/layouts/StyledModal";
 import { StyledModalWrapper } from "../../components/layouts/StyledModalWrapper";
 import HouseSpinner from "../../components/spinner/HouseSpinner";
+import { useTranslation } from "../../context/translation/Translation.context";
 import { useUser } from "../../context/userContext/User.context";
 
 interface LoginProps {
@@ -12,6 +13,7 @@ interface LoginProps {
 }
 
 const Login = ({ showOverlay }: LoginProps) => {
+    const { t } = useTranslation();
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -42,47 +44,47 @@ const Login = ({ showOverlay }: LoginProps) => {
         <HouseSpinner isShown={isLoading} />
     ) : (
         <StyledModalWrapper isAbove={false}>
-            <StyledModal height="40%" width="30%">
-                {/* <form> */}
-                <StyledFlexWrapper
-                    flexDirection="column"
-                    paddingTop="3rem"
-                    justifyContent="space-between"
-                    height="100%"
-                >
-                    <StyledFlexWrapper flexDirection="column">
-                        <CustomInput
-                            id="email"
-                            type="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            inputLabel="email"
-                            required={true}
-                        ></CustomInput>
-                        <CustomInput
-                            id="password"
-                            type={showPassword ? "text" : "password"}
-                            value={form.password}
-                            onChange={handleChange}
-                            inputLabel="password"
-                            required={true}
-                            isPassword
-                            showPassword={showPassword}
-                            toggleShowPassword={() =>
-                                setShowPassword(!showPassword)
-                            }
-                        ></CustomInput>
-                    </StyledFlexWrapper>
-                    <StyledFlexWrapper>
-                        <Button
-                            buttonText="login"
-                            onBtnClicked={handleSubmit}
-                        ></Button>
-                    </StyledFlexWrapper>
+            {/* <StyledModal height="40%" width="30%"> */}
+            {/* <form> */}
+            <StyledFlexWrapper
+                flexDirection="column"
+                paddingTop="3rem"
+                height="100%"
+                width="60%"
+            >
+                <StyledFlexWrapper flexDirection="column">
+                    <CustomInput
+                        id="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        inputLabel={t("register.email")}
+                        required={true}
+                    ></CustomInput>
+                    <CustomInput
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        value={form.password}
+                        onChange={handleChange}
+                        inputLabel={t("register.password")}
+                        required={true}
+                        isPassword
+                        showPassword={showPassword}
+                        toggleShowPassword={() =>
+                            setShowPassword(!showPassword)
+                        }
+                    ></CustomInput>
+                </StyledFlexWrapper>
+                <StyledFlexWrapper>
+                    <Button
+                        buttonText={t("login.navButton")}
+                        onBtnClicked={handleSubmit}
+                    ></Button>
                 </StyledFlexWrapper>
                 <>{errorMsg}</>
-                {/* </form> */}
-            </StyledModal>
+            </StyledFlexWrapper>
+            {/* </form> */}
+            {/* </StyledModal> */}
         </StyledModalWrapper>
     );
 };

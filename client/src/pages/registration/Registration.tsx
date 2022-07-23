@@ -10,9 +10,13 @@ import HouseSpinner from "../../components/spinner/HouseSpinner";
 import "react-phone-number-input/style.css";
 import PhoneInput, { Value } from "react-phone-number-input";
 import "./styles/phoneInputStyles.css";
+import { useTranslation } from "../../context/translation/Translation.context";
+import { StyledInputContainer } from "../../components/input/styles/StyledInputContainer";
+import { StyledLabel } from "../../components/input/styles/StyledLabel";
 
 const Registration = () => {
     const { register } = useUser();
+    const { t } = useTranslation();
     const [form, setForm] = useState<User>({
         name: "",
         email: "",
@@ -77,67 +81,69 @@ const Registration = () => {
         <HouseSpinner isShown={isLoading} />
     ) : (
         <StyledModalWrapper isAbove={false}>
-            <StyledModal>
+            <StyledFlexWrapper
+                flexDirection="column"
+                paddingTop="3rem"
+                height="100%"
+                paddingBottom="2rem"
+                width="60%"
+            >
                 {/* <form> */}
-                <StyledFlexWrapper
-                    flexDirection="column"
-                    paddingTop="3rem"
-                    justifyContent="flex-start"
-                    height="100%"
-                    paddingBottom="2rem"
-                >
-                    <CustomInput
-                        id="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        inputLabel="name"
-                        required={true}
-                    ></CustomInput>
-                    <CustomInput
-                        id="email"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        inputLabel="email"
-                        required={true}
-                    ></CustomInput>
+                <CustomInput
+                    id="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    inputLabel={t("register.name")}
+                    required={true}
+                ></CustomInput>
+                <CustomInput
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    inputLabel={t("register.email")}
+                    required={true}
+                ></CustomInput>
+                <StyledInputContainer>
+                    <StyledLabel htmlFor="phone" isTransform={form.phone}>
+                        {t("register.phone")}
+                    </StyledLabel>
+
                     <PhoneInput
                         id="phone"
                         value={form.phone}
                         onChange={onPhoneNumberChange}
-                        placeholder="Enter phone number"
                     ></PhoneInput>
-                    <CustomInput
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        value={form.password}
-                        onChange={handleChange}
-                        inputLabel="password"
-                        required={true}
-                        isPassword
-                        showPassword={showPassword}
-                        toggleShowPassword={() =>
-                            setShowPassword(!showPassword)
-                        }
-                    ></CustomInput>
-                    <CustomInput
-                        type={showPassword ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={handleConfirmPassword}
-                        inputLabel="confirm password"
-                        required={true}
-                        showPassword={showPassword}
-                    ></CustomInput>
-                    <StyledFlexWrapper paddingBottom="2rem">
-                        <Button
-                            buttonText="register"
-                            onBtnClicked={handleSubmit}
-                        ></Button>
-                    </StyledFlexWrapper>
-                    <>{errorMsg}</>
-                    {/* </form> */}
+                </StyledInputContainer>
+                <CustomInput
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={form.password}
+                    onChange={handleChange}
+                    inputLabel={t("register.password")}
+                    required={true}
+                    isPassword
+                    showPassword={showPassword}
+                    toggleShowPassword={() => setShowPassword(!showPassword)}
+                ></CustomInput>
+                <CustomInput
+                    type={showPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={handleConfirmPassword}
+                    inputLabel={t("register.confirmPassword")}
+                    required={true}
+                    showPassword={showPassword}
+                ></CustomInput>
+
+                <StyledFlexWrapper paddingBottom="2rem">
+                    <Button
+                        buttonText={t("register.navButton")}
+                        onBtnClicked={handleSubmit}
+                    ></Button>
                 </StyledFlexWrapper>
-            </StyledModal>
+                <>{errorMsg}</>
+                {/* </form> */}
+            </StyledFlexWrapper>
         </StyledModalWrapper>
     );
 };

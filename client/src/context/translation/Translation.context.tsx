@@ -1,9 +1,9 @@
 import i18next from "i18next";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";
 import { useTranslation as useTranslate } from "react-i18next";
-import common_en from "./translationsJson/en/common.json";
-import common_he from "./translationsJson/he/common.json";
+import common_en from "../../translations/en/common.json";
+import common_he from "../../translations/he/common.json";
 
 i18next.init({
     interpolation: { escapeValue: false },
@@ -16,6 +16,7 @@ i18next.init({
             common: common_he,
         },
     },
+    initImmediate: true,
 });
 
 interface TranslationProviderProps {
@@ -45,6 +46,10 @@ const TranslationProvider = ({ children }: TranslationProviderProps) => {
         chosenTranslation,
         setChosenTranslation,
     };
+
+    useEffect(() => {
+        i18n.changeLanguage(chosenTranslation);
+    }, [chosenTranslation]);
 
     return (
         <TranslationContext.Provider value={value}>

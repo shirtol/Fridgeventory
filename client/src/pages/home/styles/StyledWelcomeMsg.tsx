@@ -13,6 +13,8 @@ export const StyledWelcomeMsg = styled.h3<Partial<StyledWelcomeMsgProps>>`
     color: ${(props) => props.color ?? Colors.blackText};
     line-height: 4rem;
     letter-spacing: 0.6px;
+    unicode-bidi: plaintext;
+    text-align: center;
     @media ${device.tablet} {
         text-align: center;
         padding: 0 1rem;

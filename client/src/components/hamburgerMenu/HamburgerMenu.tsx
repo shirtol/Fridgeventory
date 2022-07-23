@@ -10,12 +10,14 @@ import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
 import { StyledNavbarIcon } from "../navbar/styles/StyledNavbarIcon";
 import { navbarImages } from "../../utils/stylesUtils/images";
 import { useWindowWidth } from "@react-hook/window-size";
+import { useTranslation } from "../../context/translation/Translation.context";
 
 const HamburgerMenu = () => {
     const [open, setOpen] = useState(false);
     const { token } = useUser();
     const location = useLocation<string>();
     const width = useWindowWidth();
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (width > 772) {
@@ -41,7 +43,7 @@ const HamburgerMenu = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.welcome}
                             ></StyledNavbarIcon>
-                            Welcome
+                            {t("welcome.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>
@@ -55,7 +57,7 @@ const HamburgerMenu = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.fridge}
                             ></StyledNavbarIcon>
-                            Fridge
+                            {t("fridge.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>
@@ -72,7 +74,7 @@ const HamburgerMenu = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.hood}
                             ></StyledNavbarIcon>
-                            Hood
+                            {t("hood.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>
@@ -87,7 +89,7 @@ const HamburgerMenu = () => {
                                 <StyledNavbarIcon
                                     src={navbarImages.register}
                                 ></StyledNavbarIcon>
-                                Register
+                                {t("register.navButton")}
                             </StyledFlexWrapper>
                         </NavLink>
                     </StyledNavbarItem>
@@ -103,7 +105,7 @@ const HamburgerMenu = () => {
                                 <StyledNavbarIcon
                                     src={navbarImages.login}
                                 ></StyledNavbarIcon>
-                                Login
+                                {t("login.navButton")}
                             </StyledFlexWrapper>
                         </NavLink>
                     </StyledNavbarItem>
@@ -119,7 +121,7 @@ const HamburgerMenu = () => {
                                 <StyledNavbarIcon
                                     src={navbarImages.logout}
                                 ></StyledNavbarIcon>
-                                Logout
+                                {t("logout.navButton")}
                             </StyledFlexWrapper>
                         </NavLink>
                     </StyledNavbarItem>

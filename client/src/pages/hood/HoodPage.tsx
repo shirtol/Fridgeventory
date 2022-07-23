@@ -8,7 +8,6 @@ import { StyledMainWrapper } from "../../components/layouts/StyledMainWrapper";
 import HouseSpinner from "../../components/spinner/HouseSpinner";
 import { useHood } from "../../context/hoodContext/Hood.context";
 import { Hood } from "../../context/hoodContext/Hood.type";
-import { useUser } from "../../context/userContext/User.context";
 import CreateHood from "./CreateHood";
 import JoinHoodBox from "./JoinHoodBox";
 import { StyledLocationInput } from "./styles/StyledLocationInput";
@@ -25,7 +24,6 @@ const libraries: Libraries = ["places"];
 const HoodPage = () => {
     const [selectedHood, setSelectedHood] = useState<Hood>();
     const { fetchHoods, allHoods, myHood, joinHood } = useHood();
-    const { currUser } = useUser();
     const [inputValue, setInputValue] = useState<string | undefined>("");
     const [currAutoComplete, setCurrAutoComplete] =
         useState<google.maps.places.Autocomplete>();

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useTranslation } from "../../context/translation/Translation.context";
 import { useUser } from "../../context/userContext/User.context";
 import { navbarImages } from "../../utils/stylesUtils/images";
 import { StyledFlexWrapper } from "../layouts/StyledFlexWrapper";
@@ -10,6 +11,7 @@ import { StyledNavbarItem } from "./styles/StyledNavbarItem";
 const Navbar = () => {
     const { token } = useUser();
     const location = useLocation<string>();
+    const { t } = useTranslation();
 
     return (
         <StyledNavbar>
@@ -19,7 +21,7 @@ const Navbar = () => {
                         <StyledNavbarIcon
                             src={navbarImages.welcome}
                         ></StyledNavbarIcon>
-                        Welcome
+                        {t("welcome.navButton")}
                     </StyledFlexWrapper>
                 </NavLink>
             </StyledNavbarItem>
@@ -30,7 +32,7 @@ const Navbar = () => {
                         <StyledNavbarIcon
                             src={navbarImages.fridge}
                         ></StyledNavbarIcon>
-                        Fridge
+                        {t("fridge.navButton")}
                     </StyledFlexWrapper>
                 </NavLink>
             </StyledNavbarItem>
@@ -46,7 +48,7 @@ const Navbar = () => {
                         <StyledNavbarIcon
                             src={navbarImages.hood}
                         ></StyledNavbarIcon>
-                        Hood
+                        {t("hood.navButton")}
                     </StyledFlexWrapper>
                 </NavLink>
             </StyledNavbarItem>
@@ -58,7 +60,7 @@ const Navbar = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.register}
                             ></StyledNavbarIcon>
-                            Register
+                            {t("register.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>
@@ -71,7 +73,7 @@ const Navbar = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.login}
                             ></StyledNavbarIcon>
-                            Login
+                            {t("login.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>
@@ -84,7 +86,7 @@ const Navbar = () => {
                             <StyledNavbarIcon
                                 src={navbarImages.logout}
                             ></StyledNavbarIcon>
-                            Logout
+                            {t("logout.navButton")}
                         </StyledFlexWrapper>
                     </NavLink>
                 </StyledNavbarItem>

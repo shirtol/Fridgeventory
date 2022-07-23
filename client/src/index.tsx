@@ -13,28 +13,32 @@ import { ProductProvider } from "./context/productContext/Product.context";
 import { CookiesProvider } from "react-cookie";
 import { HoodProvider } from "./context/hoodContext/Hood.context";
 import { FilterProvider } from "./pages/fridge/filterBox/Filter.context";
+import { I18nextProvider } from "react-i18next";
+import i18next from "i18next";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
     // <React.StrictMode>
-    <BrowserRouter>
+    <I18nextProvider i18n={i18next}>
         <TranslationProvider>
-            <CookiesProvider>
-                <UserProvider>
-                    <ProductProvider>
-                        <HoodProvider>
-                            <FilterProvider>
-                                <App />
-                            </FilterProvider>
-                        </HoodProvider>
-                    </ProductProvider>
-                </UserProvider>
-            </CookiesProvider>
+            <BrowserRouter>
+                <CookiesProvider>
+                    <UserProvider>
+                        <ProductProvider>
+                            <HoodProvider>
+                                <FilterProvider>
+                                    <App />
+                                </FilterProvider>
+                            </HoodProvider>
+                        </ProductProvider>
+                    </UserProvider>
+                </CookiesProvider>
+            </BrowserRouter>
         </TranslationProvider>
-    </BrowserRouter>
-    // </React.StrictMode>
+        {/* // </React.StrictMode> */}
+    </I18nextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

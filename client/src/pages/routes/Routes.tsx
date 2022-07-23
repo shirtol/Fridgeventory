@@ -3,9 +3,7 @@ import HamburgerMenu from "../../components/hamburgerMenu/HamburgerMenu";
 import Background from "../../components/layouts/Background";
 import { StyledFlexWrapper } from "../../components/layouts/StyledFlexWrapper";
 import Navbar from "../../components/navbar/Navbar";
-import HouseSpinner from "../../components/spinner/HouseSpinner";
 import WebsiteBanner from "../../components/websiteBanner/WebsiteBanner";
-import { FilterProvider } from "../fridge/filterBox/Filter.context";
 import Fridge from "../fridge/Fridge";
 import Home from "../home/Home";
 import HoodPage from "../hood/HoodPage";
@@ -31,7 +29,7 @@ const Routes = () => {
                     justifyContent="flex-start"
                     alignItems="flex-start"
                     overflowY="scroll"
-                    height="93vh"
+                    height="90vh"
                 >
                     <HamburgerMenu></HamburgerMenu>
                     <Navbar></Navbar>
